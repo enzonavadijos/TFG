@@ -1,0 +1,34 @@
+﻿Player,Nation,Pos,Age,MP,Starts,Min,90s,Gls,Ast,G+A,G-PK,PK,PKatt,CrdY,CrdR,Gls.1,Ast.1,G+A.1,G-PK.1,G+A-PK,Matches,Squad
+Jordi Alba,es ESP,"MF,DF",32,2,2,210,2.3,0,0,0,0,0,0,1,0,0.00,0.00,0.00,0.00,0.00,Matches,Barcelona
+Dani Alves,br BRA,"MF,DF",38,2,2,210,2.3,0,1,1,0,0,0,0,0,0.00,0.43,0.43,0.00,0.43,Matches,Barcelona
+Sergio Busquets,es ESP,MF,33,2,2,210,2.3,0,1,1,0,0,0,0,0,0.00,0.43,0.43,0.00,0.43,Matches,Barcelona
+Ferran Jutglà,es ESP,FW,22,2,2,210,2.3,1,0,1,1,0,0,0,0,0.43,0.00,0.43,0.43,0.43,Matches,Barcelona
+Ronald Araújo,uy URU,DF,22,2,2,165,1.8,0,0,0,0,0,0,0,0,0.00,0.00,0.00,0.00,0.00,Matches,Barcelona
+Nicolás González,es ESP,MF,19,2,1,165,1.8,0,1,1,0,0,0,0,0,0.00,0.55,0.55,0.00,0.55,Matches,Barcelona
+Gerard Piqué,es ESP,DF,34,2,1,165,1.8,0,0,0,0,0,0,1,0,0.00,0.00,0.00,0.00,0.00,Matches,Barcelona
+Marc-André ter Stegen,de GER,GK,29,1,1,120,1.3,0,0,0,0,0,0,0,0,0.00,0.00,0.00,0.00,0.00,Matches,Barcelona
+Pedri,es ESP,MF,18,1,1,104,1.2,1,0,1,1,0,0,1,0,0.87,0.00,0.87,0.87,0.87,Matches,Barcelona
+Eric García,es ESP,DF,20,1,1,90,1.0,0,0,0,0,0,0,0,0,0.00,0.00,0.00,0.00,0.00,Matches,Barcelona
+Óscar Mingueza,es ESP,DF,22,1,1,90,1.0,0,1,1,0,0,0,0,0,0.00,1.00,1.00,0.00,1.00,Matches,Barcelona
+Neto,br BRA,GK,32,1,1,90,1.0,0,0,0,0,0,0,0,0,0.00,0.00,0.00,0.00,0.00,Matches,Barcelona
+Gavi,es ESP,MF,16,1,1,60,0.7,0,0,0,0,0,0,0,0,0.00,0.00,0.00,0.00,0.00,Matches,Barcelona
+Ferrán Torres,es ESP,FW,21,1,1,60,0.7,1,0,1,1,0,0,0,0,1.50,0.00,1.50,1.50,1.50,Matches,Barcelona
+Ilias Akhomach,ma MAR,FW,17,1,1,45,0.5,0,0,0,0,0,0,0,0,0.00,0.00,0.00,0.00,0.00,Matches,Barcelona
+Abde Ezzalzouli,ma MAR,FW,19,1,1,45,0.5,0,0,0,0,0,0,0,0,0.00,0.00,0.00,0.00,0.00,Matches,Barcelona
+Riqui Puig,es ESP,MF,21,1,1,45,0.5,0,0,0,0,0,0,0,0,0.00,0.00,0.00,0.00,0.00,Matches,Barcelona
+Frenkie de Jong,nl NED,"DF,MF",24,2,0,88,1.0,0,0,0,0,0,0,2,0,0.00,0.00,0.00,0.00,0.00,Matches,Barcelona
+Ousmane Dembélé,fr FRA,"FW,MF",24,1,0,45,0.5,1,0,1,1,0,0,0,0,2.00,0.00,2.00,2.00,2.00,Matches,Barcelona
+Ansu Fati,es ESP,"FW,MF",18,1,0,35,0.4,0,0,0,0,0,0,0,0,0.00,0.00,0.00,0.00,0.00,Matches,Barcelona
+,,,,Playing Time,Playing Time,Playing Time,Playing Time,Performance,Performance,Performance,Performance,Performance,Performance,Performance,Performance,Per 90 Minutes,Per 90 Minutes,Per 90 Minutes,Per 90 Minutes,Per 90 Minutes,,Barcelona
+Player,Nation,Pos,Age,MP,Starts,Min,90s,Gls,Ast,G+A,G-PK,PK,PKatt,CrdY,CrdR,Gls,Ast,G+A,G-PK,G+A-PK,Matches,Barcelona
+Sergiño Dest,us USA,"DF,MF",20,1,0,25,0.3,0,0,0,0,0,0,0,0,0.00,0.00,0.00,0.00,0.00,Matches,Barcelona
+Alvaro Sanz,es ESP,MF,20,1,0,17,0.2,0,0,0,0,0,0,0,0,0.00,0.00,0.00,0.00,0.00,Matches,Barcelona
+Martin Braithwaite,dk DEN,"FW,MF",30,1,0,16,0.2,0,0,0,0,0,0,0,0,0.00,0.00,0.00,0.00,0.00,Matches,Barcelona
+Alejandro Balde,es ESP,DF,17,0,0,,,,,,,,,,,,,,,,Matches,Barcelona
+Arnau Comas,es ESP,DF,21,0,0,,,,,,,,,,,,,,,,Matches,Barcelona
+Estanis,es ESP,FW,17,0,0,,,,,,,,,,,,,,,,Matches,Barcelona
+Guillem Jaime,es ESP,DF,22,0,0,,,,,,,,,,,,,,,,Matches,Barcelona
+Clément Lenglet,fr FRA,DF,26,0,0,,,,,,,,,,,,,,,,Matches,Barcelona
+Mika Mármol,es ESP,DF,20,0,0,,,,,,,,,,,,,,,,Matches,Barcelona
+Iñaki Peña,es ESP,GK,22,0,0,,,,,,,,,,,,,,,,Matches,Barcelona
+Arnau Tenas,es ESP,GK,20,0,0,,,,,,,,,,,,,,,,Matches,Barcelona

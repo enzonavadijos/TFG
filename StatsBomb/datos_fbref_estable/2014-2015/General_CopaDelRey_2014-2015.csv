@@ -1,0 +1,33 @@
+﻿Player,Nation,Pos,Age,MP,Starts,Min,90s,Gls,Ast,G+A,G-PK,PK,PKatt,CrdY,CrdR,Gls.1,Ast.1,G+A.1,G-PK.1,G+A-PK,Matches,Squad
+Marc-André ter Stegen,de GER,GK,22,8,8,720,8.0,0,0,0,0,0,0,0,0,0.00,0.00,0.00,0.00,0.00,Matches,Barcelona
+Javier Mascherano,ar ARG,"DF,MF",30,7,7,586,6.5,0,1,1,0,0,0,2,0,0.00,0.15,0.15,0.00,0.15,Matches,Barcelona
+Andrés Iniesta,es ESP,MF,30,7,7,544,6.0,3,0,3,3,0,0,0,0,0.50,0.00,0.50,0.50,0.50,Matches,Barcelona
+Lionel Messi,ar ARG,"FW,MF",27,6,6,540,6.0,5,3,8,4,1,2,1,0,0.83,0.50,1.33,0.67,1.17,Matches,Barcelona
+Luis Suárez,uy URU,FW,27,6,6,526,5.8,2,2,4,2,0,0,2,0,0.34,0.34,0.68,0.34,0.68,Matches,Barcelona
+Gerard Piqué,es ESP,DF,27,6,6,524,5.8,1,0,1,1,0,0,2,0,0.17,0.00,0.17,0.17,0.17,Matches,Barcelona
+Neymar,br BRA,"FW,MF",22,6,6,501,5.6,7,0,7,7,0,1,1,0,1.26,0.00,1.26,1.26,1.26,Matches,Barcelona
+Jordi Alba,es ESP,"DF,MF",25,6,6,495,5.5,1,1,2,1,0,0,0,0,0.18,0.18,0.36,0.18,0.36,Matches,Barcelona
+Dani Alves,br BRA,"DF,MF",31,5,5,450,5.0,0,2,2,0,0,0,1,0,0.00,0.40,0.40,0.00,0.40,Matches,Barcelona
+Ivan Rakitić,hr CRO,MF,26,7,5,425,4.7,1,0,1,1,0,0,0,0,0.21,0.00,0.21,0.21,0.21,Matches,Barcelona
+Rafinha,br BRA,MF,21,6,5,421,4.7,1,0,1,1,0,0,0,0,0.21,0.00,0.21,0.21,0.21,Matches,Barcelona
+Marc Bartra,es ESP,DF,23,5,4,365,4.1,0,0,0,0,0,0,0,0,0.00,0.00,0.00,0.00,0.00,Matches,Barcelona
+Sergio Busquets,es ESP,MF,26,4,4,312,3.5,0,0,0,0,0,0,1,0,0.00,0.00,0.00,0.00,0.00,Matches,Barcelona
+Jérémy Mathieu,fr FRA,DF,30,6,3,333,3.7,1,0,1,1,0,0,1,0,0.27,0.00,0.27,0.27,0.27,Matches,Barcelona
+Adriano,br BRA,"DF,MF",29,4,3,301,3.3,2,0,2,2,0,0,1,0,0.60,0.00,0.60,0.60,0.60,Matches,Barcelona
+Sergi Roberto,es ESP,"DF,MF",22,4,3,298,3.3,2,0,2,2,0,0,0,0,0.60,0.00,0.60,0.60,0.60,Matches,Barcelona
+Pedro,es ESP,"FW,MF",27,6,3,278,3.1,5,0,5,4,1,1,0,0,1.62,0.00,1.62,1.29,1.29,Matches,Barcelona
+Martín Montoya,es ESP,DF,23,3,3,240,2.7,0,0,0,0,0,0,0,0,0.00,0.00,0.00,0.00,0.00,Matches,Barcelona
+Munir El Haddadi,ma MAR,"FW,MF",18,3,3,237,2.6,0,0,0,0,0,0,0,0,0.00,0.00,0.00,0.00,0.00,Matches,Barcelona
+Sergi Samper,es ESP,MF,19,3,2,196,2.2,0,0,0,0,0,0,0,0,0.00,0.00,0.00,0.00,0.00,Matches,Barcelona
+,,,,Playing Time,Playing Time,Playing Time,Playing Time,Performance,Performance,Performance,Performance,Performance,Performance,Performance,Performance,Per 90 Minutes,Per 90 Minutes,Per 90 Minutes,Per 90 Minutes,Per 90 Minutes,,Barcelona
+Player,Nation,Pos,Age,MP,Starts,Min,90s,Gls,Ast,G+A,G-PK,PK,PKatt,CrdY,CrdR,Gls,Ast,G+A,G-PK,G+A-PK,Matches,Barcelona
+Douglas,br BRA,DF,23,3,1,165,1.8,0,0,0,0,0,0,0,0,0.00,0.00,0.00,0.00,0.00,Matches,Barcelona
+Gerard Gumbau,es ESP,MF,19,1,1,90,1.0,0,0,0,0,0,0,0,0,0.00,0.00,0.00,0.00,0.00,Matches,Barcelona
+Jordi Masip,es ESP,GK,25,1,1,90,1.0,0,0,0,0,0,0,0,0,0.00,0.00,0.00,0.00,0.00,Matches,Barcelona
+Adama Traoré,es ESP,"FW,MF",18,2,1,77,0.9,1,0,1,1,0,0,0,0,1.17,0.00,1.17,1.17,1.17,Matches,Barcelona
+Xavi,es ESP,MF,34,3,0,77,0.9,0,1,1,0,0,0,0,0,0.00,1.17,1.17,0.00,1.17,Matches,Barcelona
+Sandro Ramírez,es ESP,"FW,MF",19,2,0,61,0.7,1,0,1,1,0,0,0,0,1.48,0.00,1.48,1.48,1.48,Matches,Barcelona
+Alen Halilović,hr CRO,MF,18,1,0,30,0.3,0,0,0,0,0,0,0,0,0.00,0.00,0.00,0.00,0.00,Matches,Barcelona
+Edgar Ié,gw GNB,DF,20,1,0,28,0.3,0,0,0,0,0,0,0,0,0.00,0.00,0.00,0.00,0.00,Matches,Barcelona
+Claudio Bravo,cl CHI,GK,31,0,0,,,,,,,,,,,,,,,,Matches,Barcelona
+Diawandou Diagne,sn SEN,"DF,MF",19,0,0,,,,,,,,,,,,,,,,Matches,Barcelona

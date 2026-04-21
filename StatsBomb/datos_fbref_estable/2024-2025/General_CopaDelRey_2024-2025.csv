@@ -1,0 +1,30 @@
+﻿Player,Nation,Pos,Age,MP,Starts,Min,90s,Gls,Ast,G+A,G-PK,PK,PKatt,CrdY,CrdR,Gls.1,Ast.1,G+A.1,G-PK.1,G+A-PK,Matches,Squad
+Frenkie de Jong,nl NED,MF,27.0,6,6,534.0,5.9,0.0,0.0,0.0,0.0,0.0,0.0,2.0,0.0,0.0,0.0,0.0,0.0,0.0,Matches,Barcelona
+Jules Koundé,fr FRA,DF,25.0,6,6,529.0,5.9,2.0,1.0,3.0,2.0,0.0,0.0,0.0,0.0,0.34,0.17,0.51,0.34,0.51,Matches,Barcelona
+Pedri,es ESP,MF,21.0,6,6,450.0,5.0,2.0,1.0,3.0,2.0,0.0,0.0,0.0,0.0,0.4,0.2,0.6,0.4,0.6,Matches,Barcelona
+Wojciech Szczęsny,pl POL,GK,34.0,5,5,480.0,5.3,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,Matches,Barcelona
+Lamine Yamal,es ESP,"MF,FW",17.0,5,5,462.0,5.1,2.0,5.0,7.0,2.0,0.0,0.0,0.0,0.0,0.39,0.97,1.36,0.39,1.36,Matches,Barcelona
+Pau Cubarsí,es ESP,DF,17.0,6,5,431.0,4.8,1.0,0.0,1.0,1.0,0.0,0.0,0.0,0.0,0.21,0.0,0.21,0.21,0.21,Matches,Barcelona
+Raphinha,br BRA,"MF,FW",27.0,5,5,420.0,4.7,1.0,4.0,5.0,1.0,0.0,0.0,2.0,0.0,0.21,0.86,1.07,0.21,1.07,Matches,Barcelona
+Iñigo Martínez,es ESP,DF,33.0,5,4,406.0,4.5,1.0,0.0,1.0,1.0,0.0,0.0,0.0,0.0,0.22,0.0,0.22,0.22,0.22,Matches,Barcelona
+Ferrán Torres,es ESP,FW,24.0,5,4,371.0,4.1,6.0,0.0,6.0,6.0,0.0,0.0,0.0,0.0,1.46,0.0,1.46,1.46,1.46,Matches,Barcelona
+Fermin López,es ESP,MF,21.0,6,3,318.0,3.5,1.0,1.0,2.0,1.0,0.0,0.0,1.0,0.0,0.28,0.28,0.57,0.28,0.57,Matches,Barcelona
+Gerard Martín,es ESP,DF,22.0,5,3,313.0,3.5,0.0,0.0,0.0,0.0,0.0,0.0,2.0,0.0,0.0,0.0,0.0,0.0,0.0,Matches,Barcelona
+Dani Olmo,es ESP,"MF,FW",26.0,4,3,248.0,2.8,0.0,2.0,2.0,0.0,0.0,0.0,0.0,0.0,0.0,0.73,0.73,0.0,0.73,Matches,Barcelona
+Alejandro Balde,es ESP,DF,20.0,3,3,225.0,2.5,0.0,1.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.4,0.4,0.0,0.4,Matches,Barcelona
+Eric García,es ESP,"MF,DF",23.0,6,2,269.0,3.0,1.0,0.0,1.0,1.0,0.0,0.0,0.0,0.0,0.33,0.0,0.33,0.33,0.33,Matches,Barcelona
+Ronald Araújo,uy URU,DF,25.0,4,2,222.0,2.5,0.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.41,0.41,0.0,0.41,Matches,Barcelona
+Gavi,es ESP,MF,19.0,4,1,175.0,1.9,1.0,0.0,1.0,1.0,0.0,0.0,1.0,0.0,0.51,0.0,0.51,0.51,0.51,Matches,Barcelona
+Robert Lewandowski,pl POL,FW,35.0,3,1,101.0,1.1,3.0,0.0,3.0,3.0,0.0,0.0,1.0,0.0,2.67,0.0,2.67,2.67,2.67,Matches,Barcelona
+Pablo Torre,es ESP,MF,21.0,2,1,94.0,1.0,1.0,2.0,3.0,1.0,0.0,0.0,0.0,0.0,0.96,1.91,2.87,0.96,2.87,Matches,Barcelona
+Iñaki Peña,es ESP,GK,25.0,1,1,90.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,Matches,Barcelona
+Sergi Dominguez,es ESP,DF,19.0,1,0,29.0,0.3,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,Matches,Barcelona
+Ansu Fati,es ESP,"FW,MF",21.0,1,0,29.0,0.3,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,Matches,Barcelona
+Marc Casado,es ESP,MF,20.0,1,0,27.0,0.3,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,Matches,Barcelona
+Pau Victor,es ESP,FW,22.0,2,0,25.0,0.3,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,Matches,Barcelona
+Héctor Fort,es ESP,DF,17.0,1,0,12.0,0.1,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,Matches,Barcelona
+Toni Fernández,es ESP,MF,16.0,1,0,10.0,0.1,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,Matches,Barcelona
+Ander Astralaga,es ESP,GK,20.0,0,0,,,,,,,,,,,,,,,,Matches,Barcelona
+Andreas Christensen,dk DEN,"DF,MF",28.0,0,0,,,,,,,,,,,,,,,,Matches,Barcelona
+Diego Kochen,us USA,GK,18.0,0,0,,,,,,,,,,,,,,,,Matches,Barcelona
+Marc-André ter Stegen,de GER,GK,32.0,0,0,,,,,,,,,,,,,,,,Matches,Barcelona

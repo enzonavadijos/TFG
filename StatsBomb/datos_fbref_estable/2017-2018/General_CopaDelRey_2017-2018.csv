@@ -1,0 +1,34 @@
+﻿Player,Nation,Pos,Age,MP,Starts,Min,90s,Gls,Ast,G+A,G-PK,PK,PKatt,CrdY,CrdR,Gls.1,Ast.1,G+A.1,G-PK.1,G+A-PK,Matches,Squad
+Jasper Cillessen,nl NED,GK,28,9,9,810,9.0,0,0,0,0,0,0,0,0,0.00,0.00,0.00,0.00,0.00,Matches,Barcelona
+Gerard Piqué,es ESP,DF,30,8,8,633,7.0,1,0,1,1,0,0,0,0,0.14,0.00,0.14,0.14,0.14,Matches,Barcelona
+Sergio Busquets,es ESP,MF,29,7,7,615,6.8,0,0,0,0,0,0,1,0,0.00,0.00,0.00,0.00,0.00,Matches,Barcelona
+Lionel Messi,ar ARG,"FW,MF",30,6,6,508,5.6,4,4,8,4,0,1,1,0,0.71,0.71,1.42,0.71,1.42,Matches,Barcelona
+Sergi Roberto,es ESP,"DF,MF",25,8,5,509,5.7,0,1,1,0,0,0,1,0,0.00,0.18,0.18,0.00,0.18,Matches,Barcelona
+Ivan Rakitić,hr CRO,MF,29,8,5,498,5.5,2,0,2,2,0,0,1,0,0.36,0.00,0.36,0.36,0.36,Matches,Barcelona
+Luis Suárez,uy URU,FW,30,6,5,482,5.4,5,1,6,5,0,0,2,0,0.93,0.19,1.12,0.93,1.12,Matches,Barcelona
+Jordi Alba,es ESP,"DF,MF",28,5,5,450,5.0,1,2,3,1,0,0,2,0,0.20,0.40,0.60,0.20,0.60,Matches,Barcelona
+Aleix Vidal,es ESP,"DF,MF",27,5,5,374,4.2,1,2,3,1,0,0,0,0,0.24,0.48,0.72,0.24,0.72,Matches,Barcelona
+Andrés Iniesta,es ESP,MF,33,5,5,352,3.9,1,0,1,1,0,0,1,0,0.26,0.00,0.26,0.26,0.26,Matches,Barcelona
+Thomas Vermaelen,be BEL,DF,31,5,4,405,4.5,0,0,0,0,0,0,1,0,0.00,0.00,0.00,0.00,0.00,Matches,Barcelona
+Samuel Umtiti,fr FRA,DF,23,4,4,360,4.0,0,0,0,0,0,0,0,0,0.00,0.00,0.00,0.00,0.00,Matches,Barcelona
+Lucas Digne,fr FRA,"DF,MF",24,4,4,352,3.9,0,0,0,0,0,0,0,0,0.00,0.00,0.00,0.00,0.00,Matches,Barcelona
+Denis Suárez,es ESP,MF,23,5,4,350,3.9,1,2,3,1,0,0,0,0,0.26,0.51,0.77,0.26,0.77,Matches,Barcelona
+Nélson Semedo,pt POR,"DF,MF",23,4,4,332,3.7,0,1,1,0,0,0,0,0,0.00,0.27,0.27,0.00,0.27,Matches,Barcelona
+André Gomes,pt POR,MF,24,5,4,316,3.5,0,1,1,0,0,0,1,0,0.00,0.28,0.28,0.00,0.28,Matches,Barcelona
+Carles Aleñá,es ESP,MF,19,3,3,223,2.5,0,0,0,0,0,0,1,0,0.00,0.00,0.00,0.00,0.00,Matches,Barcelona
+José Arnaiz,es ESP,"FW,MF",22,4,2,217,2.4,3,0,3,3,0,0,0,0,1.24,0.00,1.24,1.24,1.24,Matches,Barcelona
+Paulinho,br BRA,MF,29,6,2,215,2.4,0,0,0,0,0,0,1,0,0.00,0.00,0.00,0.00,0.00,Matches,Barcelona
+Paco Alcácer,es ESP,FW,23,3,2,198,2.2,2,0,2,2,0,0,0,0,0.91,0.00,0.91,0.91,0.91,Matches,Barcelona
+,,,,,Playing Time,Playing Time,Playing Time,Performance,Performance,Performance,Performance,Performance,Performance,Performance,Performance,Per 90 Minutes,Per 90 Minutes,Per 90 Minutes,Per 90 Minutes,Per 90 Minutes,,Barcelona
+Player,Nation,Pos,Age,MP,Starts,Min,90s,Gls,Ast,G+A,G-PK,PK,PKatt,CrdY,CrdR,Gls,Ast,G+A,G-PK,G+A-PK,Matches,Barcelona
+Javier Mascherano,ar ARG,"DF,MF",33,2,2,180,2.0,0,0,0,0,0,0,0,0,0.00,0.00,0.00,0.00,0.00,Matches,Barcelona
+Gerard Deulofeu,es ESP,"FW,MF",23,2,2,165,1.8,1,1,2,1,0,0,0,0,0.55,0.55,1.09,0.55,1.09,Matches,Barcelona
+Philippe Coutinho,br BRA,"FW,MF",25,4,1,182,2.0,2,1,3,1,1,1,0,0,0.99,0.49,1.48,0.49,0.99,Matches,Barcelona
+Oriol Busquets,es ESP,MF,18,1,1,61,0.7,0,0,0,0,0,0,0,0,0.00,0.00,0.00,0.00,0.00,Matches,Barcelona
+Ousmane Dembélé,fr FRA,"FW,MF",20,3,0,60,0.7,0,1,1,0,0,0,0,0,0.00,1.50,1.50,0.00,1.50,Matches,Barcelona
+David Costas,es ESP,DF,22,1,0,34,0.4,0,0,0,0,0,0,0,0,0.00,0.00,0.00,0.00,0.00,Matches,Barcelona
+Rafinha,br BRA,MF,24,1,0,13,0.1,0,0,0,0,0,0,0,0,0.00,0.00,0.00,0.00,0.00,Matches,Barcelona
+Marc Cucurella,es ESP,"DF,MF",19,1,0,8,0.1,0,0,0,0,0,0,0,0,0.00,0.00,0.00,0.00,0.00,Matches,Barcelona
+Yerry Mina,co COL,DF,22,1,0,8,0.1,0,0,0,0,0,0,0,0,0.00,0.00,0.00,0.00,0.00,Matches,Barcelona
+Adrián Ortolá,es ESP,GK,23,0,0,,,,,,,,,,,,,,,,Matches,Barcelona
+Marc-André ter Stegen,de GER,GK,25,0,0,,,,,,,,,,,,,,,,Matches,Barcelona

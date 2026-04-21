@@ -1,0 +1,29 @@
+﻿Player,Nation,Pos,Age,MP,Starts,Min,90s,Gls,Ast,G+A,G-PK,PK,PKatt,CrdY,CrdR,Gls.1,Ast.1,G+A.1,G-PK.1,G+A-PK,Matches,Squad
+Víctor Valdés,es ESP,GK,25.0,35,35.0,3150,35.0,0.0,0.0,0.0,0.0,0.0,0.0,2.0,0.0,0.0,0.0,0.0,0.0,0.0,Matches,Barcelona
+Xavi,es ESP,MF,27.0,35,33.0,2907,32.3,7.0,5.0,12.0,7.0,0.0,0.0,5.0,1.0,0.22,0.15,0.37,0.22,0.37,Matches,Barcelona
+Carles Puyol,es ESP,DF,29.0,30,29.0,2513,27.9,0.0,0.0,0.0,0.0,0.0,0.0,8.0,0.0,0.0,0.0,0.0,0.0,0.0,Matches,Barcelona
+Andrés Iniesta,es ESP,MF,23.0,31,28.0,2616,29.1,3.0,2.0,5.0,3.0,0.0,0.0,6.0,0.0,0.1,0.07,0.17,0.1,0.17,Matches,Barcelona
+Éric Abidal,fr FRA,DF,27.0,30,28.0,2523,28.0,0.0,0.0,0.0,0.0,0.0,0.0,2.0,0.0,0.0,0.0,0.0,0.0,0.0,Matches,Barcelona
+Thierry Henry,fr FRA,FW,29.0,30,27.0,2337,26.0,12.0,7.0,19.0,12.0,0.0,0.0,2.0,0.0,0.46,0.27,0.73,0.46,0.73,Matches,Barcelona
+Gabriel Milito,ar ARG,DF,26.0,27,26.0,2221,24.7,1.0,0.0,1.0,1.0,0.0,0.0,7.0,1.0,0.04,0.0,0.04,0.04,0.04,Matches,Barcelona
+Gianluca Zambrotta,it ITA,DF,30.0,29,25.0,2108,23.4,0.0,0.0,0.0,0.0,0.0,0.0,7.0,1.0,0.0,0.0,0.0,0.0,0.0,Matches,Barcelona
+Yaya Touré,ci CIV,MF,24.0,26,25.0,2085,23.2,1.0,0.0,1.0,1.0,0.0,0.0,7.0,0.0,0.04,0.0,0.04,0.04,0.04,Matches,Barcelona
+Lionel Messi,ar ARG,"FW,MF",20.0,27,23.0,1973,21.9,10.0,12.0,22.0,6.0,4.0,4.0,2.0,0.0,0.46,0.55,1.0,0.27,0.82,Matches,Barcelona
+Samuel Eto'o,cm CMR,FW,26.0,18,18.0,1494,16.6,16.0,3.0,19.0,16.0,0.0,0.0,5.0,0.0,0.96,0.18,1.14,0.96,1.14,Matches,Barcelona
+Lilian Thuram,fr FRA,DF,35.0,18,17.0,1423,15.8,0.0,0.0,0.0,0.0,0.0,0.0,3.0,0.0,0.0,0.0,0.0,0.0,0.0,Matches,Barcelona
+Rafael Márquez,mx MEX,"DF,MF",28.0,24,15.0,1529,17.0,2.0,0.0,2.0,2.0,0.0,0.0,7.0,1.0,0.12,0.0,0.12,0.12,0.12,Matches,Barcelona
+Bojan Krkić,es ESP,"FW,MF",16.0,31,14.0,1453,16.1,10.0,3.0,13.0,10.0,0.0,0.0,1.0,0.0,0.62,0.19,0.81,0.62,0.81,Matches,Barcelona
+Deco,pt POR,MF,29.0,18,14.0,1221,13.6,1.0,5.0,6.0,1.0,0.0,0.0,10.0,0.0,0.07,0.37,0.44,0.07,0.44,Matches,Barcelona
+Ronaldinho,br BRA,"FW,MF",27.0,17,13.0,1168,13.0,8.0,2.0,10.0,6.0,2.0,2.0,0.0,0.0,0.62,0.15,0.77,0.46,0.62,Matches,Barcelona
+Eiður Guðjohnsen,is ISL,"FW,MF",28.0,23,12.0,990,11.0,2.0,1.0,3.0,2.0,0.0,0.0,2.0,0.0,0.18,0.09,0.27,0.18,0.27,Matches,Barcelona
+Giovani dos Santos,mx MEX,"FW,MF",18.0,28,10.0,1257,14.0,3.0,3.0,6.0,3.0,0.0,0.0,2.0,0.0,0.21,0.21,0.43,0.21,0.43,Matches,Barcelona
+Sylvinho,br BRA,DF,33.0,14,10.0,969,10.8,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,Matches,Barcelona
+Oleguer Presas,es ESP,DF,27.0,12,7.0,738,8.2,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,Matches,Barcelona
+Edmílson,br BRA,"DF,MF",31.0,11,5.0,449,5.0,0.0,0.0,0.0,0.0,0.0,0.0,4.0,1.0,0.0,0.0,0.0,0.0,0.0,Matches,Barcelona
+José Manuel Pinto,es ESP,GK,31.0,3,3.0,270,3.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,Matches,Barcelona
+Santiago Ezquerro,es ESP,FW,30.0,3,1.0,111,1.2,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,Matches,Barcelona
+Fali,es ESP,"DF,MF",21.0,1,0.0,21,0.2,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,Matches,Barcelona
+Pedro,es ESP,"FW,MF",20.0,2,0.0,19,0.2,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,Matches,Barcelona
+José Manuel Rueda,es ESP,MF,19.0,1,0.0,17,0.2,0.0,,,0.0,0.0,,0.0,0.0,0.0,,,0.0,,Matches,Barcelona
+Víctor Vázquez,es ESP,"FW,MF",20.0,1,0.0,14,0.2,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,Matches,Barcelona
+Víctor Sánchez,es ESP,"DF,MF",19.0,1,0.0,2,0.0,0.0,,,0.0,0.0,,0.0,0.0,0.0,,,0.0,,Matches,Barcelona

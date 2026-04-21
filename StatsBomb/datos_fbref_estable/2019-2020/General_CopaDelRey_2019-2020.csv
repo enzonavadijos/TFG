@@ -1,0 +1,24 @@
+﻿Player,Nation,Pos,Age,MP,Starts,Min,90s,Gls,Ast,G+A,G-PK,PK,PKatt,CrdY,CrdR,Gls.1,Ast.1,G+A.1,G-PK.1,G+A-PK,Matches,Squad
+Frenkie de Jong,nl NED,MF,22.0,3,3,270.0,3.0,0.0,1.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.33,0.33,0.0,0.33,Matches,Barcelona
+Clément Lenglet,fr FRA,DF,24.0,3,3,270.0,3.0,1.0,0.0,1.0,1.0,0.0,0.0,0.0,0.0,0.33,0.0,0.33,0.33,0.33,Matches,Barcelona
+Nélson Semedo,pt POR,"DF,MF",25.0,3,3,270.0,3.0,0.0,1.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.33,0.33,0.0,0.33,Matches,Barcelona
+Ansu Fati,es ESP,"FW,MF",16.0,3,3,236.0,2.6,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,Matches,Barcelona
+Antoine Griezmann,fr FRA,FW,28.0,3,2,195.0,2.2,3.0,0.0,3.0,3.0,0.0,0.0,0.0,0.0,1.38,0.0,1.38,1.38,1.38,Matches,Barcelona
+Jordi Alba,es ESP,DF,30.0,3,2,185.0,2.1,0.0,1.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.49,0.49,0.0,0.49,Matches,Barcelona
+Sergio Busquets,es ESP,MF,31.0,2,2,180.0,2.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,Matches,Barcelona
+Lionel Messi,ar ARG,FW,32.0,2,2,180.0,2.0,2.0,1.0,3.0,2.0,0.0,0.0,1.0,0.0,1.0,0.5,1.5,1.0,1.5,Matches,Barcelona
+Sergi Roberto,es ESP,"FW,DF",27.0,2,2,180.0,2.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,Matches,Barcelona
+Marc-André ter Stegen,de GER,GK,27.0,2,2,180.0,2.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,Matches,Barcelona
+Ivan Rakitić,hr CRO,MF,31.0,3,2,178.0,2.0,0.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.51,0.51,0.0,0.51,Matches,Barcelona
+Gerard Piqué,es ESP,DF,32.0,2,2,169.0,1.9,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,Matches,Barcelona
+Junior Firpo,do DOM,DF,22.0,2,1,117.0,1.3,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,Matches,Barcelona
+Neto,br BRA,GK,30.0,1,1,90.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,Matches,Barcelona
+Riqui Puig,es ESP,MF,19.0,1,1,70.0,0.8,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,Matches,Barcelona
+Arturo Vidal,cl CHI,MF,32.0,2,1,70.0,0.8,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,Matches,Barcelona
+Carles Pérez,es ESP,FW,21.0,1,1,58.0,0.6,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,Matches,Barcelona
+Arthur Melo,br BRA,MF,22.0,3,0,61.0,0.7,1.0,0.0,1.0,1.0,0.0,0.0,1.0,0.0,1.48,0.0,1.48,1.48,1.48,Matches,Barcelona
+Samuel Umtiti,fr FRA,DF,25.0,1,0,11.0,0.1,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,Matches,Barcelona
+Chumi,es ESP,DF,20.0,0,0,,,,,,,,,,,,,,,,Matches,Barcelona
+Álex Collado,es ESP,MF,20.0,0,0,,,,,,,,,,,,,,,,Matches,Barcelona
+Iñaki Peña,es ESP,GK,20.0,0,0,,,,,,,,,,,,,,,,Matches,Barcelona
+Abel Ruiz,es ESP,FW,19.0,0,0,,,,,,,,,,,,,,,,Matches,Barcelona
