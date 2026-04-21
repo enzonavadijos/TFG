@@ -1,0 +1,528 @@
+﻿season,player,nation,pos,age,mp,starts,min,goals,assists
+2005-2006,Ronaldinho,br BRA,"FW,MF",25.0,12,12,1078,7,4
+2005-2006,Samuel Eto'o,cm CMR,FW,24.0,11,11,978,6,0
+2005-2006,Deco,pt POR,MF,27.0,11,11,969,2,0
+2005-2006,Juliano Belletti,br BRA,"DF,MF",29.0,10,7,641,1,0
+2005-2006,Mark van Bommel,nl NED,MF,28.0,9,7,513,1,0
+2005-2006,Ludovic Giuly,fr FRA,"FW,MF",29.0,8,6,466,1,1
+2005-2006,Henrik Larsson,se SWE,FW,33.0,10,5,560,1,3
+2005-2006,Andrés Iniesta,es ESP,MF,21.0,10,5,519,1,2
+2005-2006,Lionel Messi,ar ARG,"FW,MF",18.0,6,4,322,1,1
+2005-2006,Gabri García,es ESP,"DF,MF",26.0,4,2,211,1,0
+2005-2006,Santiago Ezquerro,es ESP,FW,28.0,4,1,157,1,0
+2005-2006,Giovanni van Bronckhorst,nl NED,"DF,MF",30.0,13,13,1148,0,1
+2005-2006,Carles Puyol,es ESP,DF,27.0,12,12,1080,0,0
+2005-2006,Víctor Valdés,es ESP,GK,23.0,12,12,1080,0,0
+2005-2006,Oleguer Presas,es ESP,DF,25.0,11,11,954,0,0
+2005-2006,Rafael Márquez,mx MEX,"DF,MF",26.0,8,8,704,0,0
+2005-2006,Edmílson,br BRA,"DF,MF",29.0,9,7,637,0,0
+2005-2006,Thiago Motta,it ITA,MF,22.0,7,4,426,0,0
+2005-2006,Xavi,es ESP,MF,25.0,4,4,313,0,0
+2005-2006,Albert Jorquera,es ESP,GK,26.0,1,1,90,0,0
+2005-2006,Sylvinho,br BRA,DF,31.0,1,0,22,0,0
+2005-2006,Maxi López,ar ARG,FW,21.0,1,0,2,0,0
+2006-2007,Eiður Guðjohnsen,is ISL,"FW,MF",27.0,8,4,395,3,0
+2006-2007,Deco,pt POR,MF,28.0,8,8,720,2,3
+2006-2007,Ronaldinho,br BRA,"FW,MF",26.0,8,8,720,2,2
+2006-2007,Andrés Iniesta,es ESP,MF,22.0,8,5,482,2,0
+2006-2007,Ludovic Giuly,fr FRA,"FW,MF",30.0,8,4,368,2,1
+2006-2007,Carles Puyol,es ESP,DF,28.0,8,8,704,1,0
+2006-2007,Lionel Messi,ar ARG,"FW,MF",19.0,5,4,385,1,0
+2006-2007,Samuel Eto'o,cm CMR,FW,25.0,3,3,216,1,3
+2006-2007,Víctor Valdés,es ESP,GK,24.0,8,8,720,0,0
+2006-2007,Rafael Márquez,mx MEX,"DF,MF",27.0,6,6,513,0,0
+2006-2007,Thiago Motta,it ITA,MF,23.0,6,6,443,0,0
+2006-2007,Gianluca Zambrotta,it ITA,DF,29.0,6,5,457,0,0
+2006-2007,Xavi,es ESP,MF,26.0,7,4,395,0,1
+2006-2007,Giovanni van Bronckhorst,nl NED,"DF,MF",31.0,4,4,327,0,0
+2006-2007,Lilian Thuram,fr FRA,DF,34.0,4,3,269,0,0
+2006-2007,Oleguer Presas,es ESP,DF,26.0,5,2,233,0,0
+2006-2007,Juliano Belletti,br BRA,"DF,MF",30.0,2,2,180,0,0
+2006-2007,Sylvinho,br BRA,DF,32.0,2,2,173,0,0
+2006-2007,Edmílson,br BRA,"DF,MF",30.0,2,1,123,0,0
+2006-2007,Javier Saviola,ar ARG,FW,24.0,1,1,83,0,0
+2006-2007,Santiago Ezquerro,es ESP,FW,29.0,2,0,14,0,0
+2007-2008,Lionel Messi,ar ARG,"FW,MF",20.0,9,9,728,6,2
+2007-2008,Thierry Henry,fr FRA,FW,29.0,10,7,714,3,2
+2007-2008,Dani Alves,br BRA,"DF,MF",24.0,8,8,750,2,2
+2007-2008,Xavi,es ESP,MF,27.0,12,11,975,1,1
+2007-2008,Carles Puyol,es ESP,DF,29.0,10,9,862,1,0
+2007-2008,Andrés Iniesta,es ESP,MF,23.0,11,9,812,1,1
+2007-2008,Yaya Touré,ci CIV,MF,24.0,9,9,761,1,0
+2007-2008,Ronaldinho,br BRA,"FW,MF",27.0,8,7,586,1,1
+2007-2008,Samuel Eto'o,cm CMR,FW,26.0,7,6,504,1,0
+2007-2008,Bojan Krkić,es ESP,"FW,MF",16.0,9,3,356,1,1
+2007-2008,Giovani dos Santos,mx MEX,"FW,MF",18.0,5,2,134,1,0
+2007-2008,Víctor Valdés,es ESP,GK,25.0,11,11,990,0,0
+2007-2008,Éric Abidal,fr FRA,DF,27.0,10,10,900,0,0
+2007-2008,Gabriel Milito,ar ARG,DF,26.0,9,9,810,0,0
+2007-2008,Gianluca Zambrotta,it ITA,DF,30.0,7,7,622,0,0
+2007-2008,Lilian Thuram,fr FRA,DF,35.0,6,6,540,0,0
+2007-2008,Deco,pt POR,MF,29.0,6,6,503,0,1
+2007-2008,Rafael Márquez,mx MEX,"DF,MF",28.0,8,5,400,0,0
+2007-2008,Eiður Guðjohnsen,is ISL,"FW,MF",28.0,8,3,246,0,0
+2007-2008,Sylvinho,br BRA,DF,33.0,4,2,210,0,2
+2007-2008,Oleguer Presas,es ESP,DF,27.0,2,1,95,0,0
+2007-2008,Albert Jorquera,es ESP,GK,28.0,1,1,90,0,0
+2007-2008,Edmílson,br BRA,"DF,MF",31.0,1,0,22,0,0
+2007-2008,Marc Crosas,es ESP,MF,19.0,1,0,20,0,0
+2008-2009,Lionel Messi,ar ARG,"FW,MF",21.0,12,10,927,9,5
+2008-2009,Thierry Henry,fr FRA,FW,30.0,10,9,702,5,3
+2008-2009,Samuel Eto'o,cm CMR,FW,27.0,10,9,780,4,2
+2008-2009,Bojan Krkić,es ESP,"FW,MF",17.0,9,3,317,3,1
+2008-2009,Xavi,es ESP,MF,28.0,12,11,972,2,6
+2008-2009,Sergio Busquets,es ESP,MF,20.0,8,7,621,2,1
+2008-2009,Seydou Keita,ml MLI,MF,28.0,9,5,500,2,1
+2008-2009,Gerard Piqué,es ESP,DF,21.0,12,12,1080,1,0
+2008-2009,Andrés Iniesta,es ESP,MF,24.0,10,10,862,1,2
+2008-2009,Rafael Márquez,mx MEX,"DF,MF",29.0,9,9,735,1,2
+2008-2009,Sylvinho,br BRA,DF,34.0,7,5,452,1,0
+2008-2009,Víctor Valdés,es ESP,GK,26.0,12,12,1080,0,0
+2008-2009,Dani Alves,br BRA,"DF,MF",25.0,10,10,900,0,3
+2008-2009,Yaya Touré,ci CIV,MF,25.0,10,9,802,0,0
+2008-2009,Carles Puyol,es ESP,DF,30.0,9,8,757,0,0
+2008-2009,Alexander Hleb,by BLR,MF,27.0,7,4,376,0,0
+2008-2009,Éric Abidal,fr FRA,DF,28.0,3,3,246,0,0
+2008-2009,Martín Cáceres,uy URU,DF,21.0,3,2,217,0,0
+2008-2009,Víctor Sánchez,es ESP,"DF,MF",20.0,3,2,173,0,0
+2008-2009,Pedro,es ESP,"FW,MF",21.0,4,1,126,0,0
+2008-2009,Eiður Guðjohnsen,is ISL,"FW,MF",29.0,4,1,113,0,1
+2008-2009,Albert Jorquera,es ESP,GK,29.0,1,1,90,0,0
+2008-2009,Víctor Vázquez,es ESP,"FW,MF",21.0,1,1,90,0,0
+2009-2010,Lionel Messi,ar ARG,"FW,MF",22.0,11,11,987,8,0
+2009-2010,Zlatan Ibrahimović,se SWE,FW,27.0,10,9,761,4,2
+2009-2010,Pedro,es ESP,"FW,MF",22.0,9,7,650,4,1
+2009-2010,Gerard Piqué,es ESP,DF,22.0,11,11,988,2,1
+2009-2010,Xavi,es ESP,MF,29.0,11,11,990,1,3
+2009-2010,Bojan Krkić,es ESP,"FW,MF",18.0,5,1,114,1,0
+2009-2010,Víctor Valdés,es ESP,GK,27.0,12,12,1080,0,0
+2009-2010,Dani Alves,br BRA,"DF,MF",26.0,11,11,989,0,2
+2009-2010,Seydou Keita,ml MLI,MF,29.0,10,9,813,0,1
+2009-2010,Carles Puyol,es ESP,DF,31.0,9,9,804,0,0
+2009-2010,Sergio Busquets,es ESP,MF,21.0,10,8,692,0,0
+2009-2010,Éric Abidal,fr FRA,DF,29.0,8,7,620,0,1
+2009-2010,Yaya Touré,ci CIV,MF,26.0,8,7,605,0,2
+2009-2010,Andrés Iniesta,es ESP,MF,25.0,9,7,591,0,1
+2009-2010,Maxwell,br BRA,DF,27.0,7,4,443,0,1
+2009-2010,Thierry Henry,fr FRA,FW,31.0,6,3,302,0,1
+2009-2010,Rafael Márquez,mx MEX,"DF,MF",30.0,4,3,231,0,0
+2009-2010,Gabriel Milito,ar ARG,DF,28.0,5,2,181,0,0
+2009-2010,Jeffrén Suárez,ve VEN,"FW,MF",21.0,2,0,32,0,0
+2009-2010,Jonathan dos Santos,mx MEX,MF,19.0,1,0,1,0,0
+2010-2011,Lionel Messi,ar ARG,"FW,MF",23.0,13,11,1046,12,3
+2010-2011,Pedro,es ESP,"FW,MF",23.0,12,8,772,5,1
+2010-2011,David Villa,es ESP,"FW,MF",28.0,12,12,943,4,1
+2010-2011,Dani Alves,br BRA,"DF,MF",27.0,12,12,1078,2,2
+2010-2011,Xavi,es ESP,MF,30.0,12,11,952,2,3
+2010-2011,Gerard Piqué,es ESP,DF,23.0,12,12,1024,1,0
+2010-2011,Andrés Iniesta,es ESP,MF,26.0,10,10,898,1,6
+2010-2011,Seydou Keita,ml MLI,MF,30.0,10,4,425,1,0
+2010-2011,Andreu Fontàs,es ESP,DF,20.0,1,1,90,1,0
+2010-2011,Víctor Vázquez,es ESP,"FW,MF",23.0,1,0,77,1,0
+2010-2011,Sergio Busquets,es ESP,MF,22.0,12,12,1080,0,3
+2010-2011,Víctor Valdés,es ESP,GK,28.0,11,11,990,0,0
+2010-2011,Javier Mascherano,ar ARG,"DF,MF",26.0,11,10,880,0,0
+2010-2011,Carles Puyol,es ESP,DF,32.0,8,7,632,0,0
+2010-2011,Éric Abidal,fr FRA,DF,30.0,8,6,560,0,1
+2010-2011,Adriano,br BRA,"DF,MF",25.0,6,5,424,0,2
+2010-2011,Maxwell,br BRA,DF,28.0,7,4,370,0,0
+2010-2011,José Manuel Pinto,es ESP,GK,34.0,2,2,180,0,0
+2010-2011,Ibrahim Afellay,nl NED,"FW,MF",24.0,6,1,117,0,1
+2010-2011,Thiago Alcántara,es ESP,MF,19.0,1,1,90,0,1
+2010-2011,Jonathan dos Santos,mx MEX,MF,20.0,1,1,63,0,0
+2010-2011,Bojan Krkić,es ESP,"FW,MF",19.0,3,1,60,0,0
+2010-2011,Jeffrén Suárez,ve VEN,"FW,MF",22.0,2,1,28,0,0
+2010-2011,Gabriel Milito,ar ARG,DF,29.0,2,0,36,0,0
+2010-2011,Sergi Roberto,es ESP,"DF,MF",18.0,1,0,1,0,0
+2011-2012,Lionel Messi,ar ARG,"FW,MF",24.0,11,11,990,14,5
+2011-2012,Pedro,es ESP,"FW,MF",24.0,9,5,498,4,0
+2011-2012,Andrés Iniesta,es ESP,MF,27.0,8,8,572,3,1
+2011-2012,David Villa,es ESP,"FW,MF",29.0,4,4,330,3,1
+2011-2012,Alexis Sánchez,cl CHI,"FW,MF",22.0,6,4,356,2,0
+2011-2012,Cristian Tello,es ESP,"FW,MF",19.0,3,0,85,2,0
+2011-2012,Sergio Busquets,es ESP,MF,23.0,10,10,875,1,0
+2011-2012,Xavi,es ESP,MF,31.0,9,9,712,1,1
+2011-2012,Cesc Fàbregas,es ESP,"FW,MF",24.0,9,7,662,1,3
+2011-2012,Martín Montoya,es ESP,DF,20.0,1,1,90,1,0
+2011-2012,Sergi Roberto,es ESP,"DF,MF",19.0,1,1,80,1,0
+2011-2012,Víctor Valdés,es ESP,GK,29.0,11,11,990,0,0
+2011-2012,Javier Mascherano,ar ARG,"DF,MF",27.0,10,10,900,0,0
+2011-2012,Dani Alves,br BRA,"DF,MF",28.0,10,9,854,0,3
+2011-2012,Carles Puyol,es ESP,DF,33.0,9,8,743,0,0
+2011-2012,Éric Abidal,fr FRA,DF,31.0,6,6,494,0,0
+2011-2012,Adriano,br BRA,"DF,MF",26.0,7,5,445,0,1
+2011-2012,Gerard Piqué,es ESP,DF,24.0,5,5,371,0,1
+2011-2012,Seydou Keita,ml MLI,MF,31.0,9,4,432,0,1
+2011-2012,Thiago Alcántara,es ESP,MF,20.0,7,4,429,0,1
+2011-2012,Isaac Cuenca,es ESP,"FW,MF",20.0,7,4,347,0,4
+2011-2012,Maxwell,br BRA,DF,29.0,3,1,132,0,0
+2011-2012,Marc Bartra,es ESP,DF,20.0,1,1,90,0,0
+2011-2012,Andreu Fontàs,es ESP,DF,21.0,1,1,90,0,0
+2011-2012,José Manuel Pinto,es ESP,GK,35.0,1,1,90,0,0
+2011-2012,Rafinha,br BRA,MF,18.0,1,1,71,0,0
+2011-2012,Jonathan dos Santos,mx MEX,MF,21.0,2,1,59,0,0
+2011-2012,Marc Muniesa,es ESP,"DF,MF",19.0,2,0,58,0,0
+2011-2012,Gerard Deulofeu,es ESP,"FW,MF",17.0,1,0,19,0,0
+2011-2012,Martí Riverola,es ESP,MF,20.0,1,0,10,0,0
+2011-2012,Ibrahim Afellay,nl NED,"FW,MF",25.0,1,0,6,0,0
+2012-2013,Lionel Messi,ar ARG,"FW,MF",25.0,11,9,826,8,2
+2012-2013,Jordi Alba,es ESP,"DF,MF",23.0,9,9,808,2,0
+2012-2013,Xavi,es ESP,MF,32.0,11,11,947,1,4
+2012-2013,Dani Alves,br BRA,"DF,MF",29.0,10,10,874,1,1
+2012-2013,Pedro,es ESP,"FW,MF",25.0,10,10,860,1,1
+2012-2013,Andrés Iniesta,es ESP,MF,28.0,10,9,803,1,1
+2012-2013,Cesc Fàbregas,es ESP,"FW,MF",25.0,8,6,529,1,0
+2012-2013,Alexis Sánchez,cl CHI,"FW,MF",23.0,9,5,521,1,2
+2012-2013,David Villa,es ESP,"FW,MF",30.0,10,5,484,1,1
+2012-2013,Cristian Tello,es ESP,"FW,MF",20.0,4,2,175,1,1
+2012-2013,Víctor Valdés,es ESP,GK,30.0,11,11,990,0,0
+2012-2013,Sergio Busquets,es ESP,MF,24.0,8,8,718,0,0
+2012-2013,Gerard Piqué,es ESP,DF,25.0,10,8,684,0,0
+2012-2013,Javier Mascherano,ar ARG,"DF,MF",28.0,8,7,613,0,0
+2012-2013,Adriano,br BRA,"DF,MF",27.0,6,5,404,0,1
+2012-2013,Alexandre Song,cm CMR,"DF,MF",24.0,8,4,445,0,0
+2012-2013,Marc Bartra,es ESP,DF,21.0,6,4,373,0,0
+2012-2013,Carles Puyol,es ESP,DF,34.0,4,3,269,0,0
+2012-2013,Thiago Alcántara,es ESP,MF,21.0,2,1,115,0,0
+2012-2013,Martín Montoya,es ESP,DF,21.0,3,1,95,0,0
+2012-2013,José Manuel Pinto,es ESP,GK,36.0,1,1,90,0,0
+2012-2013,Carles Planas,es ESP,DF,21.0,1,1,90,0,0
+2012-2013,Sergi Roberto,es ESP,"DF,MF",20.0,1,1,90,0,0
+2012-2013,Rafinha,br BRA,MF,19.0,1,1,58,0,0
+2012-2013,Gerard Deulofeu,es ESP,"FW,MF",18.0,2,0,17,0,0
+2013-2014,Lionel Messi,ar ARG,"FW,MF",26.0,7,7,630,8,0
+2013-2014,Neymar,br BRA,"FW,MF",21.0,10,9,776,4,3
+2013-2014,Gerard Piqué,es ESP,DF,26.0,9,9,722,2,0
+2013-2014,Dani Alves,br BRA,"DF,MF",30.0,8,8,720,2,0
+2013-2014,Xavi,es ESP,MF,33.0,10,9,811,1,3
+2013-2014,Sergio Busquets,es ESP,MF,25.0,9,9,793,1,1
+2013-2014,Cesc Fàbregas,es ESP,"FW,MF",26.0,9,7,560,1,2
+2013-2014,Pedro,es ESP,"FW,MF",26.0,7,3,304,1,0
+2013-2014,Cristian Tello,es ESP,"FW,MF",21.0,2,0,39,1,0
+2013-2014,Javier Mascherano,ar ARG,"DF,MF",29.0,9,9,810,0,0
+2013-2014,Andrés Iniesta,es ESP,MF,29.0,9,9,779,0,3
+2013-2014,Víctor Valdés,es ESP,GK,31.0,6,6,540,0,0
+2013-2014,Alexis Sánchez,cl CHI,"FW,MF",24.0,9,5,467,0,2
+2013-2014,Adriano,br BRA,"DF,MF",28.0,5,5,450,0,1
+2013-2014,Jordi Alba,es ESP,"DF,MF",24.0,4,4,360,0,0
+2013-2014,José Manuel Pinto,es ESP,GK,37.0,4,4,360,0,0
+2013-2014,Marc Bartra,es ESP,DF,22.0,4,2,268,0,0
+2013-2014,Martín Montoya,es ESP,DF,22.0,2,2,180,0,1
+2013-2014,Sergi Roberto,es ESP,"DF,MF",21.0,4,1,114,0,0
+2013-2014,Alexandre Song,cm CMR,"DF,MF",25.0,4,1,110,0,0
+2013-2014,Carles Puyol,es ESP,DF,35.0,1,1,68,0,0
+2013-2014,Gil Patri,,,,1,0,22,0,0
+2013-2014,Jean Marie Dongou,cm CMR,FW,18.0,1,0,9,0,0
+2013-2014,Adama Traoré,es ESP,"FW,MF",17.0,1,0,8,0,0
+2014-2015,Lionel Messi,ar ARG,"FW,MF",27.0,13,13,1147,10,6
+2014-2015,Neymar,br BRA,"FW,MF",22.0,12,12,1027,10,1
+2014-2015,Luis Suárez,uy URU,FW,27.0,10,10,828,7,3
+2014-2015,Ivan Rakitić,hr CRO,MF,26.0,12,11,886,2,1
+2014-2015,Gerard Piqué,es ESP,DF,27.0,11,11,990,1,0
+2014-2015,Sandro Ramírez,es ESP,"FW,MF",19.0,3,0,57,1,0
+2014-2015,Marc-André ter Stegen,de GER,GK,22.0,13,13,1170,0,0
+2014-2015,Javier Mascherano,ar ARG,"DF,MF",30.0,12,12,1079,0,1
+2014-2015,Jordi Alba,es ESP,"DF,MF",25.0,11,11,962,0,1
+2014-2015,Dani Alves,br BRA,"DF,MF",31.0,11,11,961,0,4
+2014-2015,Andrés Iniesta,es ESP,MF,30.0,11,10,787,0,5
+2014-2015,Sergio Busquets,es ESP,MF,26.0,10,9,788,0,0
+2014-2015,Marc Bartra,es ESP,DF,23.0,6,5,451,0,1
+2014-2015,Pedro,es ESP,"FW,MF",27.0,9,4,394,0,2
+2014-2015,Jérémy Mathieu,fr FRA,DF,30.0,7,3,323,0,0
+2014-2015,Xavi,es ESP,MF,34.0,10,2,333,0,0
+2014-2015,Adriano,br BRA,"DF,MF",29.0,7,1,150,0,0
+2014-2015,Munir El Haddadi,ma MAR,"FW,MF",18.0,3,1,119,0,0
+2014-2015,Rafinha,br BRA,MF,21.0,6,1,114,0,1
+2014-2015,Sergi Roberto,es ESP,"DF,MF",22.0,2,1,114,0,0
+2014-2015,Sergi Samper,es ESP,MF,19.0,1,1,90,0,0
+2014-2015,Martín Montoya,es ESP,DF,23.0,1,1,80,0,0
+2014-2015,Claudio Bravo,cl CHI,GK,31.0,0,0,0,0,0
+2014-2015,Douglas,br BRA,DF,23.0,0,0,0,0,0
+2014-2015,Thomas Vermaelen,be BEL,DF,28.0,0,0,0,0,0
+2015-2016,Luis Suárez,uy URU,FW,28.0,9,9,810,8,3
+2015-2016,Lionel Messi,ar ARG,FW,28.0,7,7,630,6,1
+2015-2016,Neymar,br BRA,FW,23.0,9,9,810,3,5
+2015-2016,Ivan Rakitić,hr CRO,MF,27.0,10,9,699,2,2
+2015-2016,Gerard Piqué,es ESP,DF,28.0,7,7,596,1,0
+2015-2016,Sergi Roberto,es ESP,"MF,DF",23.0,8,4,334,1,0
+2015-2016,Adriano,br BRA,DF,30.0,3,2,206,1,0
+2015-2016,Marc-André ter Stegen,de GER,GK,23.0,10,10,900,0,0
+2015-2016,Sergio Busquets,es ESP,MF,27.0,9,9,724,0,0
+2015-2016,Jordi Alba,es ESP,DF,26.0,9,8,734,0,1
+2015-2016,Dani Alves,br BRA,DF,32.0,8,8,694,0,3
+2015-2016,Javier Mascherano,ar ARG,"DF,MF",31.0,8,7,655,0,0
+2015-2016,Andrés Iniesta,es ESP,"MF,FW",31.0,7,7,553,0,0
+2015-2016,Jérémy Mathieu,fr FRA,DF,31.0,3,3,270,0,0
+2015-2016,Thomas Vermaelen,be BEL,DF,29.0,3,3,270,0,0
+2015-2016,Munir El Haddadi,ma MAR,FW,19.0,4,2,257,0,2
+2015-2016,Marc Bartra,es ESP,DF,24.0,4,2,236,0,0
+2015-2016,Sandro Ramírez,,,,3,2,173,0,0
+2015-2016,Sandro Ramírez,es ESP,FW,20.0,3,2,173,0,0
+2015-2016,Sergi Samper,es ESP,MF,20.0,2,1,134,0,0
+2015-2016,Wilfrid Kaptoum,cm CMR,MF,19.0,1,1,62,0,0
+2015-2016,Gerard Gumbau,es ESP,MF,20.0,3,0,60,0,0
+2015-2016,Arda Turan,tr TUR,"FW,MF",28.0,3,0,46,0,0
+2015-2016,Rafinha,br BRA,MF,22.0,2,0,31,0,0
+2015-2016,Juan Cámara,es ESP,MF,21.0,1,0,16,0,0
+2015-2016,Claudio Bravo,cl CHI,GK,32.0,0,0,0,0,0
+2015-2016,Douglas,br BRA,DF,24.0,0,0,0,0,0
+2015-2016,Jordi Masip,es ESP,GK,26.0,0,0,0,0,0
+2015-2016,Aleix Vidal,es ESP,"DF,MF",25.0,0,0,0,0,0
+2016-2017,Lionel Messi,ar ARG,FW,29.0,9,9,810,11,2
+2016-2017,Neymar,br BRA,FW,24.0,9,9,797,4,8
+2016-2017,Arda Turan,tr TUR,FW,29.0,5,1,172,4,1
+2016-2017,Luis Suárez,uy URU,FW,29.0,9,9,810,3,3
+2016-2017,Gerard Piqué,es ESP,DF,29.0,8,8,651,1,0
+2016-2017,Sergi Roberto,es ESP,DF,24.0,8,7,632,1,0
+2016-2017,Andrés Iniesta,es ESP,MF,32.0,8,7,593,1,3
+2016-2017,Marc-André ter Stegen,de GER,GK,24.0,9,9,810,0,0
+2016-2017,Samuel Umtiti,fr FRA,DF,22.0,8,8,720,0,0
+2016-2017,Sergio Busquets,es ESP,MF,28.0,8,8,691,0,0
+2016-2017,Ivan Rakitić,hr CRO,MF,28.0,9,8,595,0,0
+2016-2017,Javier Mascherano,ar ARG,"DF,MF",32.0,8,7,642,0,0
+2016-2017,Jordi Alba,es ESP,DF,27.0,6,6,436,0,0
+2016-2017,André Gomes,pt POR,MF,23.0,8,5,464,0,0
+2016-2017,Lucas Digne,fr FRA,DF,23.0,4,2,284,0,0
+2016-2017,Paco Alcácer,es ESP,FW,22.0,3,2,176,0,0
+2016-2017,Rafinha,br BRA,MF,23.0,6,1,216,0,0
+2016-2017,Jasper Cillessen,nl NED,GK,27.0,1,1,90,0,0
+2016-2017,Denis Suárez,es ESP,MF,22.0,1,1,90,0,0
+2016-2017,Aleix Vidal,es ESP,DF,26.0,1,1,90,0,0
+2016-2017,Jérémy Mathieu,fr FRA,DF,32.0,2,1,80,0,0
+2016-2017,Marlon,br BRA,"DF,MF",20.0,1,0,18,0,0
+2016-2017,Marc Cardona,es ESP,FW,21.0,1,0,16,0,0
+2016-2017,Carles Aleñá,es ESP,MF,18.0,0,0,0,0,0
+2016-2017,Jordi Masip,es ESP,GK,27.0,0,0,0,0,0
+2016-2017,Nili,es ESP,DF,22.0,0,0,0,0,0
+2017-2018,Lionel Messi,ar ARG,FW,30.0,10,8,783,6,2
+2017-2018,Luis Suárez,uy URU,FW,30.0,10,10,884,1,5
+2017-2018,Gerard Piqué,es ESP,DF,30.0,9,9,736,1,0
+2017-2018,Ivan Rakitić,hr CRO,MF,29.0,10,8,758,1,0
+2017-2018,Lucas Digne,fr FRA,DF,24.0,3,3,270,1,0
+2017-2018,Ousmane Dembélé,fr FRA,"MF,FW",20.0,3,2,143,1,0
+2017-2018,Paco Alcácer,es ESP,FW,23.0,2,1,95,1,0
+2017-2018,Marc-André ter Stegen,de GER,GK,25.0,9,9,810,0,0
+2017-2018,Samuel Umtiti,fr FRA,DF,23.0,9,9,810,0,0
+2017-2018,Sergio Busquets,es ESP,MF,29.0,10,9,768,0,0
+2017-2018,Andrés Iniesta,es ESP,MF,33.0,8,8,624,0,3
+2017-2018,Jordi Alba,es ESP,DF,28.0,8,7,638,0,0
+2017-2018,Nélson Semedo,pt POR,DF,23.0,7,7,625,0,0
+2017-2018,Sergi Roberto,es ESP,"MF,DF",25.0,8,7,594,0,0
+2017-2018,Paulinho,br BRA,MF,29.0,9,4,401,0,0
+2017-2018,Denis Suárez,es ESP,MF,23.0,3,2,170,0,1
+2017-2018,Gerard Deulofeu,es ESP,"MF,FW",23.0,3,2,147,0,0
+2017-2018,André Gomes,pt POR,MF,24.0,9,1,170,0,0
+2017-2018,Javier Mascherano,ar ARG,DF,33.0,2,1,134,0,0
+2017-2018,Aleix Vidal,es ESP,FW,27.0,4,1,112,0,0
+2017-2018,Jasper Cillessen,nl NED,GK,28.0,1,1,90,0,0
+2017-2018,Thomas Vermaelen,be BEL,DF,31.0,1,1,90,0,0
+2018-2019,Lionel Messi,ar ARG,FW,31.0,10,9,838,12,3
+2018-2019,Philippe Coutinho,br BRA,"FW,MF",26.0,12,11,852,3,3
+2018-2019,Ousmane Dembélé,fr FRA,FW,21.0,8,5,414,3,1
+2018-2019,Gerard Piqué,es ESP,DF,31.0,11,11,990,2,0
+2018-2019,Ivan Rakitić,hr CRO,MF,30.0,12,12,1018,1,2
+2018-2019,Jordi Alba,es ESP,DF,29.0,11,11,990,1,5
+2018-2019,Luis Suárez,uy URU,FW,31.0,10,10,899,1,4
+2018-2019,Rafinha,br BRA,FW,25.0,2,1,79,1,0
+2018-2019,Malcom,br BRA,"FW,MF",21.0,3,0,42,1,0
+2018-2019,Sergio Busquets,es ESP,MF,30.0,12,11,1033,0,0
+2018-2019,Clément Lenglet,fr FRA,DF,23.0,12,11,1001,0,0
+2018-2019,Marc-André ter Stegen,de GER,GK,26.0,11,11,990,0,0
+2018-2019,Sergi Roberto,es ESP,"DF,MF",26.0,9,8,706,0,0
+2018-2019,Arthur Melo,br BRA,MF,21.0,9,7,562,0,0
+2018-2019,Nélson Semedo,pt POR,DF,24.0,10,5,559,0,0
+2018-2019,Arturo Vidal,cl CHI,MF,31.0,11,3,363,0,0
+2018-2019,Carles Aleñá,es ESP,MF,20.0,3,1,92,0,0
+2018-2019,Thomas Vermaelen,be BEL,DF,32.0,2,1,91,0,0
+2018-2019,Jasper Cillessen,nl NED,GK,29.0,1,1,90,0,0
+2018-2019,Juan Miranda,es ESP,DF,18.0,1,1,90,0,0
+2018-2019,Samuel Umtiti,fr FRA,DF,24.0,1,1,78,0,0
+2018-2019,Munir El Haddadi,ma MAR,FW,22.0,2,1,65,0,0
+2018-2019,Denis Suárez,es ESP,MF,24.0,2,0,26,0,0
+2018-2019,Chumi,es ESP,DF,19.0,0,0,0,0,0
+2018-2019,Jeison Murillo,co COL,DF,26.0,0,0,0,0,0
+2018-2019,Iñaki Peña,es ESP,GK,19.0,0,0,0,0,0
+2019-2020,Luis Suárez,uy URU,FW,32.0,7,6,567,5,2
+2019-2020,Lionel Messi,ar ARG,FW,32.0,8,7,662,3,3
+2019-2020,Antoine Griezmann,fr FRA,"FW,MF",28.0,9,7,653,2,0
+2019-2020,Clément Lenglet,fr FRA,DF,24.0,9,8,721,1,0
+2019-2020,Ansu Fati,es ESP,FW,16.0,5,1,115,1,0
+2019-2020,Carles Pérez,es ESP,FW,21.0,1,1,84,1,0
+2019-2020,Frenkie de Jong,nl NED,MF,22.0,9,8,748,0,0
+2019-2020,Marc-André ter Stegen,de GER,GK,27.0,8,8,720,0,0
+2019-2020,Nélson Semedo,pt POR,DF,25.0,7,7,630,0,1
+2019-2020,Gerard Piqué,es ESP,DF,32.0,7,7,629,0,0
+2019-2020,Sergio Busquets,es ESP,MF,31.0,7,7,504,0,0
+2019-2020,Jordi Alba,es ESP,DF,30.0,5,5,354,0,1
+2019-2020,Arturo Vidal,cl CHI,"MF,FW",32.0,7,4,422,0,1
+2019-2020,Sergi Roberto,es ESP,"MF,DF",27.0,6,4,411,0,0
+2019-2020,Ivan Rakitić,hr CRO,MF,31.0,7,4,345,0,1
+2019-2020,Arthur Melo,br BRA,MF,22.0,4,3,298,0,1
+2019-2020,Junior Firpo,do DOM,"DF,MF",22.0,4,3,271,0,0
+2019-2020,Samuel Umtiti,fr FRA,DF,25.0,3,3,270,0,0
+2019-2020,Ousmane Dembélé,fr FRA,"MF,FW",22.0,4,2,136,0,0
+2019-2020,Moussa Wagué,sn SEN,MF,20.0,2,1,91,0,0
+2019-2020,Carles Aleñá,es ESP,MF,21.0,1,1,90,0,0
+2019-2020,Neto,br BRA,GK,30.0,1,1,90,0,0
+2019-2020,Jean-Clair Todibo,fr FRA,DF,19.0,1,1,90,0,0
+2019-2020,Monchu,es ESP,MF,19.0,1,0,7,0,0
+2019-2020,Sergio Akieme,es ESP,DF,21.0,0,0,0,0,0
+2019-2020,Ronald Araújo,uy URU,DF,20.0,0,0,0,0,0
+2019-2020,Konrad De La Fuente,us USA,FW,18.0,0,0,0,0,0
+2019-2020,Óscar Mingueza,es ESP,"DF,MF",20.0,0,0,0,0,0
+2019-2020,Dani Morer,es ESP,DF,21.0,0,0,0,0,0
+2019-2020,Jandro Orellana,es ESP,MF,18.0,0,0,0,0,0
+2019-2020,Iñaki Peña,es ESP,GK,20.0,0,0,0,0,0
+2019-2020,Riqui Puig,es ESP,MF,19.0,0,0,0,0,0
+2019-2020,Ludovit Reis,nl NED,MF,19.0,0,0,0,0,0
+2020-2021,Lionel Messi,ar ARG,"MF,FW",33.0,6,6,540,5,2
+2020-2021,Ousmane Dembélé,fr FRA,"MF,FW",23.0,6,4,382,3,2
+2020-2021,Martin Braithwaite,dk DEN,FW,29.0,6,2,233,3,1
+2020-2021,Antoine Griezmann,fr FRA,"FW,MF",29.0,7,6,501,2,0
+2020-2021,Sergiño Dest,us USA,"DF,MF",19.0,7,7,585,1,0
+2020-2021,Pedri,es ESP,MF,17.0,7,6,491,1,1
+2020-2021,Gerard Piqué,es ESP,DF,33.0,3,3,235,1,0
+2020-2021,Ansu Fati,es ESP,MF,17.0,3,2,160,1,2
+2020-2021,Philippe Coutinho,br BRA,MF,28.0,2,2,133,1,0
+2020-2021,Clément Lenglet,fr FRA,DF,25.0,8,7,559,0,0
+2020-2021,Frenkie de Jong,nl NED,"MF,DF",23.0,7,6,585,0,1
+2020-2021,Miralem Pjanić,ba BIH,MF,30.0,8,6,492,0,0
+2020-2021,Jordi Alba,es ESP,"DF,MF",31.0,7,6,485,0,2
+2020-2021,Marc-André ter Stegen,de GER,GK,28.0,5,5,450,0,0
+2020-2021,Sergio Busquets,es ESP,MF,32.0,6,4,334,0,0
+2020-2021,Francisco Trincão,pt POR,MF,20.0,7,4,334,0,0
+2020-2021,Neto,br BRA,GK,31.0,3,3,270,0,0
+2020-2021,Óscar Mingueza,es ESP,DF,21.0,5,3,243,0,1
+2020-2021,Sergi Roberto,es ESP,DF,28.0,3,2,182,0,0
+2020-2021,Ronald Araújo,uy URU,DF,21.0,3,2,147,0,0
+2020-2021,Junior Firpo,do DOM,DF,23.0,6,1,258,0,0
+2020-2021,Carles Aleñá,es ESP,MF,22.0,3,1,124,0,0
+2020-2021,Riqui Puig,es ESP,MF,20.0,4,0,89,0,0
+2020-2021,Samuel Umtiti,fr FRA,DF,26.0,1,0,36,0,0
+2020-2021,Konrad De La Fuente,us USA,FW,19.0,2,0,19,0,0
+2020-2021,Matheus Fernandes,br BRA,MF,22.0,1,0,18,0,0
+2020-2021,Ilaix Moriba,gn GUI,MF,17.0,1,0,12,0,0
+2020-2021,Iñaki Peña,es ESP,GK,21.0,0,0,0,0,0
+2020-2021,Arnau Tenas,es ESP,GK,19.0,0,0,0,0,0
+2021-2022,Gerard Piqué,es ESP,DF,34.0,5,5,392,1,0
+2021-2022,Ansu Fati,es ESP,FW,18.0,3,1,154,1,0
+2021-2022,Marc-André ter Stegen,de GER,GK,29.0,6,6,540,0,0
+2021-2022,Memphis,nl NED,FW,27.0,6,6,524,0,0
+2021-2022,Frenkie de Jong,nl NED,MF,24.0,6,6,522,0,0
+2021-2022,Sergio Busquets,es ESP,MF,33.0,6,6,485,0,0
+2021-2022,Jordi Alba,es ESP,"DF,MF",32.0,5,5,373,0,1
+2021-2022,Gavi,es ESP,"MF,FW",16.0,6,4,397,0,0
+2021-2022,Ronald Araújo,uy URU,DF,22.0,5,4,367,0,0
+2021-2022,Clément Lenglet,fr FRA,DF,26.0,4,4,343,0,0
+2021-2022,Eric García,es ESP,DF,20.0,4,3,246,0,0
+2021-2022,Sergiño Dest,us USA,"FW,MF",20.0,4,3,230,0,0
+2021-2022,Luuk de Jong,nl NED,FW,30.0,3,3,177,0,0
+2021-2022,Nicolás González,es ESP,MF,19.0,4,2,248,0,0
+2021-2022,Óscar Mingueza,es ESP,DF,22.0,5,2,222,0,0
+2021-2022,Sergi Roberto,es ESP,MF,29.0,3,2,168,0,0
+2021-2022,Pedri,es ESP,MF,18.0,2,2,157,0,0
+2021-2022,Ousmane Dembélé,fr FRA,FW,24.0,3,1,123,0,0
+2021-2022,Yusuf Demir,at AUT,FW,18.0,3,1,102,0,0
+2021-2022,Philippe Coutinho,br BRA,"FW,MF",29.0,4,0,111,0,0
+2021-2022,Alejandro Balde,es ESP,DF,17.0,2,0,21,0,0
+2021-2022,Riqui Puig,es ESP,MF,21.0,1,0,18,0,0
+2021-2022,Sergio Agüero,ar ARG,FW,33.0,1,0,16,0,0
+2021-2022,Ilias Akhomach,ma MAR,MF,17.0,0,0,0,0,0
+2021-2022,Neto,br BRA,GK,32.0,0,0,0,0,0
+2021-2022,Iñaki Peña,es ESP,GK,22.0,0,0,0,0,0
+2021-2022,Alvaro Sanz,es ESP,MF,20.0,0,0,0,0,0
+2021-2022,Samuel Umtiti,fr FRA,DF,27.0,0,0,0,0,0
+2022-2023,Robert Lewandowski,pl POL,FW,33.0,5,5,441,5,0
+2022-2023,Ferrán Torres,es ESP,FW,22.0,5,1,188,3,1
+2022-2023,Ousmane Dembélé,fr FRA,FW,25.0,6,5,413,1,2
+2022-2023,Marcos Alonso,es ESP,DF,31.0,5,5,403,1,0
+2022-2023,Franck Kessié,ci CIV,MF,25.0,6,3,274,1,0
+2022-2023,Pablo Torre,es ESP,MF,19.0,3,1,95,1,0
+2022-2023,Marc-André ter Stegen,de GER,GK,30.0,5,5,450,0,0
+2022-2023,Pedri,es ESP,"MF,FW",19.0,5,5,401,0,0
+2022-2023,Gavi,es ESP,MF,17.0,5,4,329,0,0
+2022-2023,Raphinha,br BRA,FW,25.0,5,4,294,0,2
+2022-2023,Sergio Busquets,es ESP,MF,34.0,4,4,289,0,0
+2022-2023,Jules Koundé,fr FRA,DF,23.0,3,3,246,0,1
+2022-2023,Andreas Christensen,dk DEN,DF,26.0,3,3,216,0,0
+2022-2023,Sergi Roberto,es ESP,DF,30.0,3,3,206,0,2
+2022-2023,Gerard Piqué,es ESP,DF,35.0,4,2,258,0,0
+2022-2023,Ansu Fati,es ESP,FW,19.0,6,2,244,0,1
+2022-2023,Frenkie de Jong,nl NED,MF,25.0,4,2,237,0,0
+2022-2023,Eric García,es ESP,DF,21.0,4,2,225,0,0
+2022-2023,Héctor Bellerín,es ESP,DF,27.0,2,2,180,0,0
+2022-2023,Jordi Alba,es ESP,DF,33.0,2,2,146,0,1
+2022-2023,Alejandro Balde,es ESP,DF,18.0,4,1,171,0,0
+2022-2023,Ronald Araújo,uy URU,DF,23.0,1,1,90,0,0
+2022-2023,Iñaki Peña,es ESP,GK,23.0,1,1,90,0,0
+2022-2023,Marc Casado,es ESP,MF,18.0,1,0,24,0,0
+2022-2023,Memphis,nl NED,"FW,MF",28.0,1,0,16,0,0
+2022-2023,Alvaro Sanz,es ESP,MF,21.0,1,0,14,0,0
+2022-2023,Ilias Akhomach,ma MAR,MF,18.0,0,0,0,0,0
+2022-2023,Arnau Tenas,es ESP,GK,21.0,0,0,0,0,0
+2022-2023,Álex Valle,es ESP,DF,18.0,0,0,0,0,0
+2023-2024,Robert Lewandowski,pl POL,FW,34.0,9,9,734,3,1
+2023-2024,Raphinha,br BRA,"FW,MF",26.0,7,6,470,3,2
+2023-2024,João Félix,pt POR,FW,23.0,9,4,369,3,1
+2023-2024,Ferrán Torres,es ESP,FW,23.0,8,3,378,3,1
+2023-2024,João Cancelo,pt POR,DF,29.0,10,9,808,2,1
+2023-2024,Fermin López,es ESP,MF,20.0,8,3,278,2,1
+2023-2024,Andreas Christensen,dk DEN,"DF,MF",27.0,7,5,439,1,0
+2023-2024,Gavi,es ESP,MF,18.0,3,3,226,1,0
+2023-2024,Marc Guiu,es ESP,FW,17.0,2,0,35,1,0
+2023-2024,İlkay Gündoğan,de GER,MF,32.0,10,9,836,0,4
+2023-2024,Jules Koundé,fr FRA,DF,24.0,8,8,720,0,0
+2023-2024,Marc-André ter Stegen,de GER,GK,31.0,8,8,720,0,0
+2023-2024,Ronald Araújo,uy URU,DF,24.0,8,8,658,0,0
+2023-2024,Lamine Yamal,es ESP,"FW,MF",16.0,10,7,577,0,2
+2023-2024,Frenkie de Jong,nl NED,MF,26.0,5,5,393,0,0
+2023-2024,Oriol Romeu,es ESP,MF,31.0,7,4,343,0,0
+2023-2024,Alejandro Balde,es ESP,DF,19.0,6,3,331,0,0
+2023-2024,Pedri,es ESP,"MF,FW",20.0,6,3,329,0,3
+2023-2024,Iñigo Martínez,es ESP,DF,32.0,4,3,318,0,0
+2023-2024,Pau Cubarsí,es ESP,DF,16.0,3,3,270,0,0
+2023-2024,Sergi Roberto,es ESP,MF,31.0,5,2,203,0,1
+2023-2024,Iñaki Peña,es ESP,GK,24.0,2,2,180,0,0
+2023-2024,Marcos Alonso,es ESP,DF,32.0,3,2,139,0,0
+2023-2024,Héctor Fort,es ESP,DF,16.0,1,1,59,0,0
+2023-2024,Marc Casado,es ESP,MF,19.0,2,0,24,0,0
+2023-2024,Ángel Alarcón,es ESP,FW,19.0,0,0,0,0,0
+2023-2024,Ander Astralaga,es ESP,GK,19.0,0,0,0,0,0
+2023-2024,Aleix Garrido,es ESP,MF,19.0,0,0,0,0,0
+2023-2024,Unai Hernandez,es ESP,MF,18.0,0,0,0,0,0
+2023-2024,Diego Kochen,us USA,GK,17.0,0,0,0,0,0
+2023-2024,Vitor Roque,br BRA,FW,18.0,0,0,0,0,0
+2024-2025,Raphinha,br BRA,MF,27.0,14,14,1222,13,8
+2024-2025,Robert Lewandowski,pl POL,FW,35.0,13,12,975,11,0
+2024-2025,Lamine Yamal,es ESP,MF,17.0,13,13,1094,5,3
+2024-2025,Ferrán Torres,es ESP,FW,24.0,11,3,426,3,1
+2024-2025,Iñigo Martínez,es ESP,DF,33.0,11,11,954,2,1
+2024-2025,Dani Olmo,es ESP,MF,26.0,9,6,435,2,1
+2024-2025,Eric García,es ESP,"DF,MF",23.0,9,3,276,2,0
+2024-2025,Ronald Araújo,uy URU,DF,25.0,8,4,523,1,0
+2024-2025,Fermin López,es ESP,MF,21.0,11,4,453,1,3
+2024-2025,Pedri,es ESP,MF,21.0,14,13,1109,0,2
+2024-2025,Jules Koundé,fr FRA,DF,25.0,13,13,1104,0,3
+2024-2025,Pau Cubarsí,es ESP,DF,17.0,13,12,977,0,1
+2024-2025,Alejandro Balde,es ESP,DF,20.0,10,9,803,0,2
+2024-2025,Frenkie de Jong,nl NED,MF,27.0,13,8,804,0,0
+2024-2025,Wojciech Szczęsny,pl POL,GK,34.0,8,8,750,0,0
+2024-2025,Marc Casado,es ESP,MF,20.0,10,7,633,0,2
+2024-2025,Iñaki Peña,es ESP,GK,25.0,5,5,450,0,0
+2024-2025,Gerard Martín,es ESP,DF,22.0,8,5,446,0,3
+2024-2025,Gavi,es ESP,MF,19.0,10,3,301,0,0
+2024-2025,Marc-André ter Stegen,de GER,GK,32.0,1,1,90,0,0
+2024-2025,Pau Victor,es ESP,FW,22.0,6,0,53,0,0
+2024-2025,Héctor Fort,es ESP,DF,17.0,2,0,50,0,0
+2024-2025,Ansu Fati,es ESP,"FW,MF",21.0,4,0,41,0,0
+2024-2025,Sergi Dominguez,es ESP,DF,19.0,2,0,35,0,0
+2024-2025,Pablo Torre,es ESP,MF,21.0,2,0,21,0,0
+2024-2025,Andreas Christensen,dk DEN,"DF,MF",28.0,1,0,8,0,0
+2024-2025,Andres Cuenca,es ESP,DF,17.0,1,0,7,0,0
+2024-2025,Ander Astralaga,es ESP,GK,20.0,0,0,0,0,0
+2024-2025,Noah Darvich,de GER,MF,17.0,0,0,0,0,0
+2024-2025,Landry Farré,es ESP,DF,17.0,0,0,0,0,0
+2024-2025,Guillermo Fernandez,es ESP,MF,16.0,0,0,0,0,0
+2024-2025,Toni Fernández,es ESP,MF,16.0,0,0,0,0,0
+2024-2025,Diego Kochen,us USA,GK,18.0,0,0,0,0,0
+2024-2025,Áron Yaakobishvili,hu HUN,GK,18.0,0,0,0,0,0

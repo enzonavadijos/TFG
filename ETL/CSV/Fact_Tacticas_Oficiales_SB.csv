@@ -1,0 +1,530 @@
+id_partido_sb,fecha,rival,competicion,formacion_oficial
+18242,2015-06-06,Juventus,Champions League,4-3-3
+18236,2011-05-28,Manchester United,Champions League,4-3-3
+3750201,2009-05-27,Manchester United,Champions League,4-3-3
+3773386,2020-10-31,Deportivo Alavés,La Liga,4-2-3-1
+3773565,2021-01-09,Granada,La Liga,4-3-3
+3773457,2021-05-16,Celta Vigo,La Liga,3-5-2
+3773631,2021-02-07,Real Betis,La Liga,4-3-3
+3773665,2021-03-06,Osasuna,La Liga,3-5-2
+3773497,2021-04-10,Real Madrid,La Liga,3-4-3
+3773660,2020-12-13,Levante UD,La Liga,4-2-3-1
+3773593,2020-09-27,Villarreal,La Liga,4-2-3-1
+3773466,2020-10-01,Celta Vigo,La Liga,4-2-3-1
+3773585,2020-10-24,Real Madrid,La Liga,4-4-2
+3773552,2021-01-03,Huesca,La Liga,4-3-3
+3773672,2020-10-04,Sevilla,La Liga,4-2-3-1
+3773587,2020-10-17,Getafe,La Liga,4-2-3-1
+3773656,2020-11-21,Atlético Madrid,La Liga,4-2-3-1
+3773377,2020-12-19,Valencia,La Liga,4-1-4-1
+3773586,2021-04-29,Granada,La Liga,3-5-2
+3773372,2021-05-08,Atlético Madrid,La Liga,3-5-2
+3773387,2021-05-11,Levante UD,La Liga,3-5-2
+3773695,2021-05-02,Valencia,La Liga,3-5-2
+3773369,2021-03-15,Huesca,La Liga,3-4-2-1
+3773661,2021-04-22,Getafe,La Liga,3-5-2
+3773597,2021-03-21,Real Sociedad,La Liga,3-4-2-1
+3773523,2020-12-16,Real Sociedad,La Liga,4-2-3-1
+3773571,2020-12-22,Real Valladolid,La Liga,3-4-2-1
+3773428,2020-12-05,Cádiz,La Liga,4-2-3-1
+3764661,2021-01-06,Athletic Club,La Liga,4-3-3
+3773526,2021-02-13,Deportivo Alavés,La Liga,4-3-3
+3773474,2021-04-05,Real Valladolid,La Liga,3-4-2-1
+3773625,2021-02-27,Sevilla,La Liga,3-5-2
+3773403,2021-01-31,Athletic Club,La Liga,4-2-3-1
+3773547,2020-11-29,Osasuna,La Liga,4-3-3
+3773415,2021-02-21,Cádiz,La Liga,4-3-3
+3764440,2021-02-24,Elche,La Liga,4-3-3
+3773689,2021-04-25,Villarreal,La Liga,3-5-2
+3773477,2020-11-07,Real Betis,La Liga,4-4-2
+303731,2020-02-22,Eibar,La Liga,4-3-3
+303532,2020-06-16,Leganés,La Liga,4-3-3
+303516,2020-06-27,Celta Vigo,La Liga,4-3-3
+303596,2019-12-18,Real Madrid,La Liga,4-3-3
+303430,2019-09-24,Villarreal,La Liga,4-3-3
+303725,2020-07-05,Villarreal,La Liga,4-1-2-1-2
+303504,2019-11-02,Levante UD,La Liga,4-3-3
+303451,2019-12-07,Mallorca,La Liga,4-3-3
+303664,2019-12-14,Real Sociedad,La Liga,4-3-3
+303682,2020-02-02,Levante UD,La Liga,4-3-3
+303400,2020-01-25,Valencia,La Liga,3-5-2
+303634,2020-07-16,Osasuna,La Liga,4-3-3
+303421,2020-07-19,Deportivo Alavés,La Liga,4-3-3
+303493,2020-06-23,Athletic Club,La Liga,4-3-3
+303680,2020-07-11,Real Valladolid,La Liga,4-1-2-1-2
+303479,2020-03-07,Real Sociedad,La Liga,4-3-3
+303615,2020-07-08,Espanyol,La Liga,4-1-2-1-2
+303696,2020-06-30,Atlético Madrid,La Liga,4-1-2-1-2
+303487,2019-11-09,Celta Vigo,La Liga,4-3-3
+303600,2019-10-29,Real Valladolid,La Liga,4-3-3
+303548,2020-06-13,Mallorca,La Liga,4-3-3
+303652,2020-01-04,Espanyol,La Liga,4-3-3
+303674,2020-06-19,Sevilla,La Liga,4-4-2
+303470,2020-03-01,Real Madrid,La Liga,4-4-2
+303700,2019-10-19,Eibar,La Liga,4-3-3
+303707,2020-02-09,Real Betis,La Liga,4-1-2-1-2
+303666,2019-09-21,Granada,La Liga,4-3-3
+303715,2019-11-23,Leganés,La Liga,4-2-3-1
+303377,2020-02-15,Getafe,La Liga,4-3-3
+303524,2019-12-01,Atlético Madrid,La Liga,4-3-3
+303517,2019-12-21,Deportivo Alavés,La Liga,4-3-3
+303610,2020-01-19,Granada,La Liga,3-5-2
+303473,2019-10-06,Sevilla,La Liga,4-3-3
+15978,2018-09-15,Real Sociedad,La Liga,4-3-3
+15998,2018-09-26,Leganés,La Liga,4-3-3
+16029,2018-10-20,Sevilla,La Liga,4-3-3
+16073,2018-11-24,Atlético Madrid,La Liga,4-4-2
+16086,2018-12-08,Espanyol,La Liga,4-3-3
+16190,2019-02-23,Sevilla,La Liga,4-3-3
+16109,2018-12-22,Celta Vigo,La Liga,4-3-3
+16120,2019-01-06,Getafe,La Liga,4-3-3
+16182,2019-02-16,Real Valladolid,La Liga,4-3-3
+16215,2019-03-17,Real Betis,La Liga,4-4-2
+16173,2019-02-10,Athletic Club,La Liga,4-3-3
+16265,2019-04-20,Real Sociedad,La Liga,4-3-3
+15946,2018-08-18,Deportivo Alavés,La Liga,4-4-2
+16157,2019-02-02,Valencia,La Liga,4-3-3
+16136,2019-01-20,Leganés,La Liga,4-3-3
+16248,2019-04-06,Atlético Madrid,La Liga,4-3-3
+16056,2018-11-11,Real Betis,La Liga,4-3-3
+16289,2019-04-27,Levante UD,La Liga,4-3-3
+16079,2018-12-02,Villarreal,La Liga,4-1-4-1
+16149,2019-01-27,Girona,La Liga,4-3-3
+16275,2019-04-23,Deportivo Alavés,La Liga,4-3-3
+15973,2018-09-02,Huesca,La Liga,4-3-3
+16317,2019-05-19,Eibar,La Liga,4-3-3
+16131,2019-01-13,Eibar,La Liga,4-3-3
+16205,2019-03-09,Rayo Vallecano,La Liga,4-3-3
+16095,2018-12-16,Levante UD,La Liga,3-5-1-1
+16306,2019-05-12,Getafe,La Liga,4-3-3
+16010,2018-09-29,Athletic Club,La Liga,4-3-3
+15986,2018-09-23,Girona,La Liga,4-3-3
+16240,2019-04-02,Villarreal,La Liga,4-3-3
+16023,2018-10-07,Valencia,La Liga,4-3-3
+16196,2019-03-02,Real Madrid,La Liga,4-3-3
+15956,2018-08-25,Real Valladolid,La Liga,4-3-3
+16231,2019-03-30,Espanyol,La Liga,4-3-3
+9880,2018-04-14,Valencia,La Liga,4-4-2
+9912,2018-04-29,RC Deportivo La Coruña,La Liga,4-3-3
+9924,2018-05-06,Real Madrid,La Liga,4-4-2
+9855,2018-03-18,Athletic Club,La Liga,4-4-2
+9827,2018-03-01,Las Palmas,La Liga,4-4-2
+9799,2018-02-17,Eibar,La Liga,4-1-2-1-2
+9636,2017-10-01,Las Palmas,La Liga,4-4-2
+9609,2017-09-19,Eibar,La Liga,4-3-3
+9575,2017-08-20,Real Betis,La Liga,4-4-1-1
+9928,2018-05-09,Villarreal,La Liga,4-3-2-1
+9736,2017-12-23,Real Madrid,La Liga,4-4-2
+9742,2018-01-07,Levante UD,La Liga,4-4-2
+9765,2018-01-21,Real Betis,La Liga,4-2-2-2
+9661,2017-10-28,Athletic Club,La Liga,4-4-2
+9592,2017-09-09,Espanyol,La Liga,4-4-2
+9870,2018-04-07,Leganés,La Liga,4-2-3-1
+9783,2018-02-04,Espanyol,La Liga,4-3-3
+9700,2017-12-02,Celta Vigo,La Liga,4-1-2-1-2
+9860,2018-03-31,Sevilla,La Liga,4-3-3
+9695,2017-11-26,Valencia,La Liga,4-4-2
+9794,2018-02-11,Getafe,La Liga,4-4-2
+9717,2017-12-10,Villarreal,La Liga,4-4-2
+9673,2017-11-04,Sevilla,La Liga,4-4-2
+9650,2017-10-21,Málaga,La Liga,4-4-2
+9620,2017-09-23,Girona,La Liga,4-4-2
+9837,2018-03-04,Atlético Madrid,La Liga,4-4-2
+9811,2018-02-24,Girona,La Liga,4-4-2
+9642,2017-10-14,Atlético Madrid,La Liga,4-4-2
+9774,2018-01-28,Deportivo Alavés,La Liga,4-4-2
+9602,2017-09-16,Getafe,La Liga,4-3-3
+9948,2018-05-20,Real Sociedad,La Liga,4-3-3
+9682,2017-11-18,Leganés,La Liga,4-4-2
+9581,2017-08-26,Deportivo Alavés,La Liga,4-3-3
+9726,2017-12-17,RC Deportivo La Coruña,La Liga,4-4-2
+9754,2018-01-14,Real Sociedad,La Liga,4-2-2-2
+9889,2018-04-17,Celta Vigo,La Liga,4-2-3-1
+266989,2016-11-06,Sevilla,La Liga,4-3-3
+266357,2016-12-10,Osasuna,La Liga,4-3-3
+267569,2017-04-23,Real Madrid,La Liga,4-1-2-1-2
+267212,2016-09-17,Leganés,La Liga,3-4-3
+266669,2016-09-10,Deportivo Alavés,La Liga,4-3-3
+266892,2016-08-28,Athletic Club,La Liga,4-3-3
+267220,2016-09-21,Atlético Madrid,La Liga,4-3-3
+267670,2016-08-20,Real Betis,La Liga,4-3-3
+266516,2017-01-29,Real Betis,La Liga,4-3-3
+267039,2017-05-14,Las Palmas,La Liga,4-3-3
+266477,2017-01-08,Villarreal,La Liga,4-3-3
+267101,2017-04-26,Osasuna,La Liga,3-5-2
+266440,2017-03-19,Valencia,La Liga,3-4-3
+266033,2016-10-22,Valencia,La Liga,4-3-3
+267660,2017-03-12,RC Deportivo La Coruña,La Liga,3-4-3
+266273,2017-02-11,Deportivo Alavés,La Liga,4-3-3
+267395,2017-01-14,Las Palmas,La Liga,4-3-3
+266874,2017-02-04,Athletic Club,La Liga,4-3-3
+266731,2017-01-22,Eibar,La Liga,4-3-3
+266528,2016-12-18,Espanyol,La Liga,4-3-3
+266280,2017-04-05,Sevilla,La Liga,3-5-1-1
+267432,2017-05-21,Eibar,La Liga,4-3-3
+267076,2016-12-03,Real Madrid,La Liga,4-3-3
+267590,2017-04-08,Málaga,La Liga,4-3-3
+267373,2017-04-15,Real Sociedad,La Liga,4-1-2-1-2
+267077,2017-04-29,Espanyol,La Liga,4-3-3
+266952,2017-05-06,Villarreal,La Liga,4-3-3
+267464,2017-02-26,Atlético Madrid,La Liga,4-3-3
+266299,2017-03-04,Celta Vigo,La Liga,3-4-3
+266191,2016-11-27,Real Sociedad,La Liga,4-3-3
+265952,2017-03-01,Sporting Gijón,La Liga,3-4-3
+267492,2016-10-15,RC Deportivo La Coruña,La Liga,3-4-3
+267596,2017-02-19,Leganés,La Liga,4-3-3
+267058,2016-10-29,Granada,La Liga,4-3-3
+3825660,2015-11-08,Villarreal,La Liga,4-3-3
+3825637,2015-10-25,Eibar,La Liga,4-3-3
+3825645,2015-10-31,Getafe,La Liga,4-3-3
+3825627,2015-10-17,Rayo Vallecano,La Liga,4-3-3
+3825617,2015-10-03,Sevilla,La Liga,4-3-3
+266498,2016-03-12,Getafe,La Liga,4-3-3
+266986,2016-04-30,Real Betis,La Liga,4-3-3
+267533,2016-04-02,Real Madrid,La Liga,4-3-3
+266310,2016-04-20,RC Deportivo La Coruña,La Liga,4-3-3
+267576,2016-01-30,Atlético Madrid,La Liga,4-3-3
+266653,2016-03-03,Rayo Vallecano,La Liga,4-3-3
+265944,2016-04-23,Sporting Gijón,La Liga,4-3-3
+265894,2016-01-23,Málaga,La Liga,4-3-3
+265958,2016-05-08,Espanyol,La Liga,4-3-3
+267611,2015-09-26,Las Palmas,La Liga,4-3-3
+267422,2015-08-29,Málaga,La Liga,4-3-3
+266236,2015-08-23,Athletic Club,La Liga,4-3-3
+267274,2015-12-05,Valencia,La Liga,4-3-3
+266961,2015-12-12,RC Deportivo La Coruña,La Liga,4-3-3
+266885,2015-11-28,Real Sociedad,La Liga,4-3-3
+266815,2016-02-17,Sporting Gijón,La Liga,4-3-3
+267506,2016-05-14,Granada,La Liga,4-3-3
+266664,2016-04-09,Real Sociedad,La Liga,4-3-3
+266106,2016-03-20,Villarreal,La Liga,4-3-3
+266670,2016-01-02,Espanyol,La Liga,4-3-3
+266149,2016-01-17,Athletic Club,La Liga,4-3-3
+266620,2016-01-09,Granada,La Liga,4-3-3
+266056,2016-03-06,Eibar,La Liga,4-3-3
+267327,2015-12-30,Real Betis,La Liga,4-3-3
+266166,2015-09-12,Atlético Madrid,La Liga,4-3-3
+266160,2016-02-07,Levante UD,La Liga,4-3-3
+265839,2016-02-28,Sevilla,La Liga,4-3-3
+266424,2015-11-21,Real Madrid,La Liga,4-3-3
+266467,2015-09-23,Celta Vigo,La Liga,4-3-3
+267273,2016-02-20,Las Palmas,La Liga,4-3-3
+266490,2015-09-20,Levante UD,La Liga,4-2-3-1
+266254,2016-02-14,Celta Vigo,La Liga,4-3-3
+266557,2016-04-17,Valencia,La Liga,4-3-3
+267183,2015-03-22,Real Madrid,La Liga,4-3-3
+265835,2014-11-22,Sevilla,La Liga,4-3-3
+266838,2014-09-24,Málaga,La Liga,4-3-3
+265963,2015-04-28,Getafe,La Liga,4-3-3
+266117,2014-09-27,Granada,La Liga,4-3-3
+266916,2015-03-08,Rayo Vallecano,La Liga,4-3-3
+267197,2015-05-23,RC Deportivo La Coruña,La Liga,4-3-3
+70264,2014-12-13,Getafe,La Liga,4-3-3
+70273,2014-09-13,Athletic Club,La Liga,4-3-3
+267301,2014-11-01,Celta Vigo,La Liga,4-3-3
+265896,2014-10-18,Eibar,La Liga,4-3-3
+265866,2015-05-02,Córdoba CF,La Liga,4-3-3
+267400,2015-04-08,Almería,La Liga,4-3-3
+266406,2014-08-31,Villarreal,La Liga,4-3-3
+267085,2014-10-25,Real Madrid,La Liga,4-3-3
+267561,2014-10-04,Rayo Vallecano,La Liga,4-3-3
+266148,2015-02-21,Málaga,La Liga,4-3-3
+266045,2015-05-09,Real Sociedad,La Liga,4-3-3
+70303,2015-01-11,Atlético Madrid,La Liga,4-3-3
+266240,2015-01-04,Real Sociedad,La Liga,4-3-3
+267597,2015-02-01,Villarreal,La Liga,4-3-3
+266794,2015-01-24,Elche,La Liga,4-3-3
+267343,2015-02-28,Granada,La Liga,4-3-3
+266631,2015-05-17,Atlético Madrid,La Liga,4-3-3
+266320,2014-12-07,Espanyol,La Liga,4-3-3
+266230,2015-01-18,RC Deportivo La Coruña,La Liga,4-3-3
+266525,2015-04-18,Valencia,La Liga,4-3-3
+266560,2014-11-30,Valencia,La Liga,4-3-3
+266846,2014-12-20,Córdoba CF,La Liga,4-3-3
+266531,2015-04-25,Espanyol,La Liga,4-3-3
+266921,2014-08-24,Elche,La Liga,4-3-3
+267499,2014-11-08,Almería,La Liga,4-3-3
+266741,2015-02-15,Levante UD,La Liga,4-3-3
+266871,2015-02-08,Athletic Club,La Liga,4-3-3
+266967,2015-03-14,Eibar,La Liga,4-3-3
+266929,2015-04-05,Celta Vigo,La Liga,4-3-3
+266770,2014-09-21,Levante UD,La Liga,4-3-3
+266142,2015-04-11,Sevilla,La Liga,4-3-3
+267368,2014-04-05,Real Betis,La Liga,4-3-3
+70301,2013-09-14,Sevilla,La Liga,4-3-3
+70298,2013-09-01,Valencia,La Liga,4-3-3
+70302,2013-09-21,Rayo Vallecano,La Liga,4-3-3
+70291,2014-01-26,Málaga,La Liga,4-3-3
+267138,2014-04-12,Granada,La Liga,4-3-3
+267520,2013-09-24,Real Sociedad,La Liga,4-3-3
+70289,2014-04-27,Villarreal,La Liga,4-3-3
+266066,2014-03-02,Almería,La Liga,4-3-3
+267675,2014-02-09,Sevilla,La Liga,4-3-3
+70288,2014-01-19,Levante UD,La Liga,4-3-3
+266074,2014-03-16,Osasuna,La Liga,4-3-3
+267567,2014-04-20,Athletic Club,La Liga,4-3-3
+266201,2014-05-11,Elche,La Liga,4-3-3
+266274,2014-03-26,Celta Vigo,La Liga,4-3-3
+70293,2013-10-26,Real Madrid,La Liga,4-3-3
+265918,2014-02-15,Rayo Vallecano,La Liga,4-3-3
+70277,2013-08-18,Levante UD,La Liga,4-3-3
+70283,2013-11-01,Espanyol,La Liga,4-3-3
+70306,2014-03-29,Espanyol,La Liga,4-3-3
+266256,2014-05-17,Atlético Madrid,La Liga,4-3-3
+266613,2014-02-01,Valencia,La Liga,4-3-3
+266491,2014-05-03,Getafe,La Liga,4-3-3
+265830,2014-01-11,Atlético Madrid,La Liga,4-1-2-1-2
+265857,2014-03-23,Real Madrid,La Liga,4-3-3
+266883,2013-11-10,Real Betis,La Liga,4-3-3
+266603,2014-03-08,Real Valladolid,La Liga,4-3-3
+265837,2014-02-22,Real Sociedad,La Liga,4-3-3
+266462,2013-10-19,Osasuna,La Liga,4-3-3
+267192,2013-10-29,Celta Vigo,La Liga,4-3-3
+266420,2013-09-28,Almería,La Liga,4-3-3
+266015,2012-12-22,Real Valladolid,La Liga,4-3-3
+70270,2012-09-22,Granada,La Liga,4-3-3
+70281,2013-05-05,Real Betis,La Liga,4-3-3
+70308,2012-11-03,Celta Vigo,La Liga,4-3-3
+70282,2013-02-03,Valencia,La Liga,4-3-3
+266724,2012-11-11,Mallorca,La Liga,4-3-3
+70272,2013-03-02,Real Madrid,La Liga,4-3-3
+70304,2012-10-20,RC Deportivo La Coruña,La Liga,4-3-3
+70280,2012-11-25,Levante UD,La Liga,4-3-3
+70296,2012-12-16,Atlético Madrid,La Liga,4-3-3
+70297,2013-02-10,Getafe,La Liga,4-3-3
+266433,2013-01-06,Espanyol,La Liga,4-3-3
+70256,2013-03-30,Celta Vigo,La Liga,4-3-3
+70259,2012-08-19,Real Sociedad,La Liga,4-3-3
+70260,2013-01-27,Osasuna,La Liga,4-3-3
+70263,2012-12-01,Athletic Club,La Liga,4-3-3
+70276,2012-10-27,Rayo Vallecano,La Liga,4-3-3
+70287,2013-01-19,Real Sociedad,La Liga,4-3-3
+70284,2013-05-12,Atlético Madrid,La Liga,4-3-3
+70275,2012-09-29,Sevilla,La Liga,4-3-3
+70286,2012-09-02,Valencia,La Liga,4-3-3
+70309,2012-11-17,Real Zaragoza,La Liga,4-3-3
+70300,2012-10-07,Real Madrid,La Liga,4-3-3
+70295,2012-12-09,Real Betis,La Liga,4-3-3
+70307,2013-03-17,Rayo Vallecano,La Liga,4-3-3
+70305,2013-03-09,RC Deportivo La Coruña,La Liga,4-3-3
+266827,2013-01-13,Málaga,La Liga,4-3-3
+267502,2013-04-27,Athletic Club,La Liga,4-3-3
+70271,2013-02-23,Sevilla,La Liga,4-3-3
+70294,2013-02-16,Granada,La Liga,4-3-3
+70262,2012-08-26,Osasuna,La Liga,4-3-3
+70292,2012-09-15,Getafe,La Liga,4-3-3
+69328,2012-02-19,Valencia,La Liga,4-3-3
+69329,2011-10-22,Sevilla,La Liga,4-3-3
+70219,2012-04-07,Real Zaragoza,La Liga,4-3-3
+69331,2011-11-19,Real Zaragoza,La Liga,4-3-3
+69337,2012-02-26,Atlético Madrid,La Liga,4-3-3
+69322,2012-03-11,Racing Santander,La Liga,3-5-1-1
+69316,2012-02-04,Real Sociedad,La Liga,4-3-3
+69332,2011-11-29,Rayo Vallecano,La Liga,4-3-3
+69335,2012-01-22,Málaga,La Liga,4-3-3
+69330,2011-11-06,Athletic Club,La Liga,3-5-1-1
+69297,2011-09-24,Atlético Madrid,La Liga,4-3-3
+69325,2012-03-24,Mallorca,La Liga,3-4-1-2
+69324,2012-04-21,Real Madrid,La Liga,3-5-1-1
+70225,2012-03-20,Granada,La Liga,4-3-3
+69293,2011-10-15,Racing Santander,La Liga,4-3-3
+70223,2011-09-21,Valencia,La Liga,3-4-2-1
+69333,2011-12-03,Levante UD,La Liga,3-5-1-1
+69264,2011-09-10,Real Sociedad,La Liga,4-3-3
+69343,2012-04-10,Getafe,La Liga,3-5-2
+69340,2012-05-02,Málaga,La Liga,4-3-3
+69265,2011-10-02,Sporting Gijón,La Liga,4-3-3
+69319,2012-05-12,Real Betis,La Liga,4-3-3
+69334,2011-12-10,Real Madrid,La Liga,4-3-3
+69327,2012-01-15,Real Betis,La Liga,3-4-2-1
+69315,2011-11-26,Getafe,La Liga,4-3-3
+69336,2012-02-11,Osasuna,La Liga,4-3-3
+69326,2012-03-17,Sevilla,La Liga,4-3-3
+69268,2011-08-29,Villarreal,La Liga,3-4-3
+69320,2012-05-05,Espanyol,La Liga,4-3-3
+69312,2012-01-08,Espanyol,La Liga,4-3-3
+69314,2011-10-29,Mallorca,La Liga,4-4-1-1
+69318,2011-10-25,Granada,La Liga,4-3-3
+69338,2012-01-28,Villarreal,La Liga,3-5-1-1
+70220,2011-09-17,Osasuna,La Liga,4-1-2-1-2
+70224,2012-04-29,Rayo Vallecano,La Liga,4-3-3
+70221,2012-04-14,Levante UD,La Liga,3-5-1-1
+69323,2012-03-31,Athletic Club,La Liga,4-3-3
+69276,2011-02-05,Atlético Madrid,La Liga,4-3-3
+69304,2011-04-02,Villarreal,La Liga,4-3-3
+69307,2010-12-04,Osasuna,La Liga,4-3-3
+69271,2011-04-23,Osasuna,La Liga,4-3-3
+69305,2011-04-09,Almería,La Liga,4-3-3
+69278,2011-01-16,Málaga,La Liga,4-3-3
+69275,2010-12-18,Espanyol,La Liga,4-3-3
+69295,2011-01-22,Racing Santander,La Liga,4-3-3
+69270,2010-11-07,Getafe,La Liga,4-3-3
+69303,2011-03-19,Getafe,La Liga,4-3-3
+69245,2011-04-16,Real Madrid,La Liga,4-3-3
+69287,2010-09-11,Hércules,La Liga,4-3-3
+69296,2011-01-29,Hércules,La Liga,4-3-3
+69260,2010-10-16,Valencia,La Liga,4-3-3
+69269,2010-09-19,Atlético Madrid,La Liga,4-1-2-1-2
+69246,2011-04-30,Real Sociedad,La Liga,4-3-3
+69302,2010-12-12,Real Sociedad,La Liga,4-3-3
+69282,2011-02-20,Athletic Club,La Liga,4-3-3
+69274,2011-03-02,Valencia,La Liga,3-5-1-1
+69283,2011-02-26,Mallorca,La Liga,4-3-3
+69280,2011-01-08,RC Deportivo La Coruña,La Liga,4-3-3
+69286,2010-08-29,Racing Santander,La Liga,4-3-3
+69291,2011-03-13,Sevilla,La Liga,4-3-3
+69236,2010-10-03,Mallorca,La Liga,4-3-3
+69234,2011-05-08,Espanyol,La Liga,4-3-3
+69272,2011-05-11,Levante UD,La Liga,4-3-3
+69308,2010-11-13,Villarreal,La Liga,4-3-3
+69299,2010-11-29,Real Madrid,La Liga,4-3-3
+69300,2011-03-05,Real Zaragoza,La Liga,4-3-3
+69289,2010-10-30,Sevilla,La Liga,4-3-3
+69263,2010-10-23,Real Zaragoza,La Liga,3-4-1-2
+69306,2010-11-20,Almería,La Liga,4-3-3
+69248,2011-02-12,Sporting Gijón,La Liga,4-3-3
+69243,2010-01-16,Sevilla,La Liga,4-3-3
+69241,2010-05-04,Tenerife,La Liga,4-3-3
+69239,2010-05-08,Sevilla,La Liga,4-3-3
+69257,2010-03-24,Osasuna,La Liga,4-3-3
+69253,2009-10-25,Real Zaragoza,La Liga,4-3-3
+69244,2010-05-01,Villarreal,La Liga,4-3-3
+69277,2009-10-31,Osasuna,La Liga,4-3-3
+69229,2009-09-12,Getafe,La Liga,4-3-3
+69219,2010-01-10,Tenerife,La Liga,4-3-3
+69218,2009-12-05,RC Deportivo La Coruña,La Liga,4-3-3
+69250,2009-11-07,Mallorca,La Liga,4-3-3
+69242,2010-05-16,Real Valladolid,La Liga,4-3-3
+69256,2009-10-03,Almería,La Liga,4-3-3
+69298,2010-03-27,Mallorca,La Liga,4-3-3
+69259,2010-04-10,Real Madrid,La Liga,4-3-3
+69224,2010-03-14,Valencia,La Liga,4-3-3
+69210,2010-01-23,Real Valladolid,La Liga,4-3-3
+69220,2010-01-30,Sporting Gijón,La Liga,4-3-3
+69237,2010-02-14,Atlético Madrid,La Liga,4-3-3
+69226,2010-03-06,Almería,La Liga,4-3-3
+69252,2009-10-17,Valencia,La Liga,4-3-3
+69255,2009-09-26,Málaga,La Liga,4-3-3
+69214,2010-04-24,Xerez,La Liga,4-3-3
+69262,2009-11-29,Real Madrid,La Liga,4-3-3
+69240,2010-02-06,Getafe,La Liga,4-3-3
+69233,2010-02-20,Racing Santander,La Liga,4-3-3
+69213,2010-04-17,Espanyol,La Liga,4-3-3
+69238,2010-02-27,Málaga,La Liga,4-2-3-1
+69267,2009-12-02,Xerez,La Liga,4-3-3
+69288,2009-11-21,Athletic Club,La Liga,4-3-3
+69254,2009-09-22,Racing Santander,La Liga,4-3-3
+69292,2009-09-19,Atlético Madrid,La Liga,4-3-3
+69227,2010-03-21,Real Zaragoza,La Liga,4-3-3
+69247,2010-04-03,Athletic Club,La Liga,4-4-2
+69221,2010-04-14,RC Deportivo La Coruña,La Liga,4-3-3
+69225,2008-12-13,Real Madrid,La Liga,4-3-3
+69212,2008-10-04,Atlético Madrid,La Liga,4-3-3
+69235,2008-11-01,Málaga,La Liga,4-3-3
+69232,2008-10-25,Almería,La Liga,4-3-3
+69216,2009-03-07,Athletic Club,La Liga,4-3-3
+69209,2009-02-01,Racing Santander,La Liga,4-3-3
+69231,2009-02-08,Sporting Gijón,La Liga,4-3-3
+69217,2009-05-10,Villarreal,La Liga,4-3-3
+69273,2009-04-04,Real Valladolid,La Liga,4-3-3
+69222,2009-04-11,Recreativo Huelva,La Liga,4-3-3
+69223,2009-04-18,Getafe,La Liga,4-3-3
+69195,2009-02-14,Real Betis,La Liga,4-3-3
+69251,2009-04-25,Valencia,La Liga,4-3-3
+69185,2009-03-01,Atlético Madrid,La Liga,4-3-3
+69142,2009-03-22,Málaga,La Liga,4-3-3
+69139,2009-02-21,Espanyol,La Liga,4-3-3
+69189,2009-01-24,CD Numancia de Soria,La Liga,4-3-3
+69171,2008-11-29,Sevilla,La Liga,4-3-3
+69249,2009-05-02,Real Madrid,La Liga,4-3-3
+69215,2008-09-13,Racing Santander,La Liga,4-3-3
+69138,2008-09-21,Sporting Gijón,La Liga,4-3-3
+69147,2008-08-31,CD Numancia de Soria,La Liga,4-3-3
+69177,2009-03-15,Almería,La Liga,4-3-3
+69207,2008-09-24,Real Betis,La Liga,4-3-3
+69228,2008-12-21,Villarreal,La Liga,4-3-3
+69183,2009-01-17,RC Deportivo La Coruña,La Liga,4-3-3
+69279,2008-11-08,Real Valladolid,La Liga,4-3-3
+69285,2008-11-16,Recreativo Huelva,La Liga,4-3-3
+69211,2008-09-27,Espanyol,La Liga,4-3-3
+69230,2009-01-11,Osasuna,La Liga,4-3-3
+69149,2008-12-06,Valencia,La Liga,4-3-3
+69151,2007-09-29,Levante UD,La Liga,4-3-3
+69144,2007-10-07,Atlético Madrid,La Liga,4-3-3
+69169,2007-09-02,Athletic Club,La Liga,4-3-3
+68360,2008-02-24,Levante UD,La Liga,4-3-3
+69186,2008-05-17,Real Murcia CF,La Liga,4-3-3
+69180,2007-08-26,Racing Santander,La Liga,4-3-3
+69143,2007-09-26,Real Zaragoza,La Liga,4-3-3
+69181,2008-01-27,Athletic Club,La Liga,4-3-3
+68365,2008-03-01,Atlético Madrid,La Liga,4-3-3
+69178,2007-11-10,Getafe,La Liga,4-3-3
+68364,2007-10-20,Villarreal,La Liga,4-3-3
+69170,2007-12-09,RC Deportivo La Coruña,La Liga,4-3-3
+68359,2008-04-19,Espanyol,La Liga,4-3-3
+68356,2007-12-01,Espanyol,La Liga,4-3-3
+69158,2007-10-28,Almería,La Liga,4-3-3
+69187,2008-02-03,Osasuna,La Liga,4-3-3
+68363,2007-11-01,Real Valladolid,La Liga,4-3-3
+69166,2007-11-04,Real Betis,La Liga,4-3-3
+68366,2008-05-11,Mallorca,La Liga,4-3-3
+69148,2007-09-22,Sevilla,La Liga,4-3-3
+69184,2007-11-24,Recreativo Huelva,La Liga,4-3-3
+69173,2008-01-20,Racing Santander,La Liga,4-3-3
+69146,2008-02-09,Sevilla,La Liga,4-3-3
+69182,2008-02-16,Real Zaragoza,La Liga,4-3-3
+68358,2008-04-12,Recreativo Huelva,La Liga,4-3-3
+68361,2008-05-07,Real Madrid,La Liga,4-3-3
+69141,2008-05-04,Valencia,La Liga,4-3-3
+69145,2007-12-15,Valencia,La Liga,4-3-3
+69176,2007-05-20,Atlético Madrid,La Liga,4-3-3
+69179,2007-04-07,Real Zaragoza,La Liga,3-4-3
+68334,2007-03-03,Sevilla,La Liga,3-4-3
+68333,2007-02-25,Athletic Club,La Liga,4-3-3
+68336,2007-06-17,Gimnàstic Tarragona,La Liga,4-3-3
+68326,2006-08-28,Celta Vigo,La Liga,4-3-3
+69162,2007-05-13,Real Betis,La Liga,4-3-3
+68335,2007-03-10,Real Madrid,La Liga,3-4-3
+68332,2007-02-18,Valencia,La Liga,4-3-3
+68330,2006-10-22,Real Madrid,La Liga,4-3-3
+68329,2006-10-15,Sevilla,La Liga,4-3-3
+68341,2007-03-17,Recreativo Huelva,La Liga,4-3-3
+69165,2007-06-09,Espanyol,La Liga,4-3-3
+69155,2007-04-22,Villarreal,La Liga,4-3-3
+69154,2007-02-11,Racing Santander,La Liga,4-3-3
+69156,2007-04-29,Levante UD,La Liga,4-3-3
+69159,2007-04-15,Mallorca,La Liga,4-3-3
+69175,2007-03-31,RC Deportivo La Coruña,La Liga,4-3-3
+69160,2007-05-05,Real Sociedad,La Liga,4-3-3
+68331,2006-11-12,Real Zaragoza,La Liga,4-3-3
+68328,2006-09-24,Valencia,La Liga,4-3-3
+68340,2006-09-17,Racing Santander,La Liga,4-3-3
+69174,2006-11-04,RC Deportivo La Coruña,La Liga,4-3-3
+68347,2006-09-30,Athletic Club,La Liga,4-3-3
+68327,2006-09-09,Osasuna,La Liga,4-3-3
+69157,2007-05-26,Getafe,La Liga,4-3-3
+69164,2005-10-26,Málaga,La Liga,4-3-3
+68324,2006-01-22,Deportivo Alavés,La Liga,4-3-3
+68320,2005-12-04,Villarreal,La Liga,4-3-3
+68323,2005-12-20,Celta Vigo,La Liga,4-3-3
+69172,2006-02-18,Real Betis,La Liga,4-3-3
+68339,2005-11-06,Getafe,La Liga,4-3-3
+68348,2006-01-07,Espanyol,La Liga,4-3-3
+68354,2005-11-27,Racing Santander,La Liga,4-3-3
+68351,2006-02-25,Real Zaragoza,La Liga,4-3-3
+68317,2005-10-01,Real Zaragoza,La Liga,4-3-3
+68350,2006-02-05,Atlético Madrid,La Liga,4-3-3
+68325,2006-01-29,Mallorca,La Liga,4-3-3
+68321,2005-12-11,Sevilla,La Liga,4-3-3
+68319,2005-11-19,Real Madrid,La Liga,4-3-3
+68342,2006-01-15,Athletic Club,La Liga,4-3-3
+68322,2005-12-17,Cádiz,La Liga,4-3-3
+68318,2005-10-22,Osasuna,La Liga,4-3-3
+68314,2004-12-04,Málaga,La Liga,4-3-3
+68313,2004-10-24,Osasuna,La Liga,4-3-3
+68316,2005-05-01,Albacete,La Liga,4-3-3
+68315,2004-12-21,Levante UD,La Liga,4-3-3
+69153,2004-12-11,Albacete,La Liga,4-3-3
+68352,2005-04-17,Getafe,La Liga,4-3-3
+68353,2004-10-16,Espanyol,La Liga,4-3-3
+3888713,1974-02-17,Real Madrid,La Liga,4-3-3
