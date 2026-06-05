@@ -3,184 +3,202 @@ import os
 import re
 from io import StringIO
 
-# --- CONFIGURACIÓN ---
-INPUT_FOLDER = r"C:\Users\enson\Desktop\TFG\HTML_Champions"
-OUTPUT_FOLDER = r"C:\Users\enson\Desktop\TFG\ETL"
+# --- CONFIGURACIÓN DE RUTAS Y ARCHIVOS ---
+DIR_ENTRADA = r"C:\Users\enson\Desktop\TFG\HTML_Champions"
+DIR_SALIDA = r"C:\Users\enson\Desktop\TFG\ETL"
 
-# Nombres de los archivos de salida
-FILE_SCORES = "scores_and_fixtures_champions.csv"
-FILE_STATS = "stats_champions.csv"
+# Nomenclatura estricta para los datasets resultantes
+ARCHIVO_SCORES = "scores_and_fixtures_champions.csv"
+ARCHIVO_STATS = "stats_champions.csv"
 
-def extraer_temporada(filename):
-    match = re.search(r'(\d{4}-\d{4})', filename)
-    if match:
-        return match.group(1)
+def inferir_temporada(nombre_archivo):
+    """
+    Aplica Expresiones Regulares (Regex) sobre la nomenclatura del archivo 
+    para extraer el identificador temporal (ej. '2010-2011').
+    """
+    coincidencia = re.search(r'(\d{4}-\d{4})', nombre_archivo)
+    if coincidencia:
+        return coincidencia.group(1)
     return "Desconocida"
 
-def limpiar_columnas(df):
-    # 1. Aplanar MultiIndex
+def normalizar_columnas_dataframe(df):
+    """
+    Procesa las cabeceras del DataFrame. Aplica un aplanamiento (flattening) 
+    a las estructuras MultiIndex jerárquicas comunes en FBref y estandariza 
+    la sintaxis de las variables (minúsculas, guiones bajos).
+    """
+    # 1. Aplanamiento de estructuras MultiIndex
     if isinstance(df.columns, pd.MultiIndex):
-        new_cols = []
+        nuevas_columnas = []
         for col in df.columns.values:
-            # Si el nivel 1 tiene texto, úsalo. Si no, usa el nivel 0.
+            # Resolución de jerarquía: Prioriza el subnivel (nivel 1) si contiene información descriptiva
             if str(col[1]).strip() != "" and "Unnamed" not in str(col[1]):
-                new_cols.append(str(col[1]))
+                nuevas_columnas.append(str(col[1]))
             else:
-                new_cols.append(str(col[0]))
-        df.columns = new_cols
+                nuevas_columnas.append(str(col[0]))
+        df.columns = nuevas_columnas
 
-    # 2. Limpieza estándar
+    # 2. Normalización sintáctica (Snake Case)
     df.columns = [str(c).lower().strip().replace(" ", "_").replace("/", "_") for c in df.columns]
     return df
 
-def clasificar_y_procesar(filepath):
-    filename = os.path.basename(filepath)
-    season = extraer_temporada(filename)
+def clasificar_y_parsear_html(ruta_archivo):
+    """
+    Lee el documento HTML, extrae las tablas tabulares en memoria y emplea un 
+    algoritmo heurístico para clasificar su tipología ('Scores & Fixtures' vs 'Standard Stats').
+    Aplica transformaciones de limpieza estructural dependiendo del dominio de datos.
+    """
+    nombre_archivo = os.path.basename(ruta_archivo)
+    temporada = inferir_temporada(nombre_archivo)
     
     try:
-        with open(filepath, "r", encoding="utf-8") as f:
-            html = f.read()
+        with open(ruta_archivo, "r", encoding="utf-8") as f:
+            html_content = f.read()
         
-        dfs = pd.read_html(StringIO(html))
+        # Ingesta mediante StringIO para optimizar memoria y evitar avisos de deprecación en Pandas
+        dataframes_html = pd.read_html(StringIO(html_content))
         
-        # --- DETECTIVES DE TABLAS ---
-        df_scores = None
-        df_stats = None
+        # --- CLASIFICACIÓN HEURÍSTICA DE ESTRUCTURAS TABULARES ---
+        df_resultados = None
+        df_estadisticas = None
         
-        for df in dfs:
-            df_temp = limpiar_columnas(df.copy())
-            cols = " ".join(df_temp.columns)
+        for df in dataframes_html:
+            df_temporal = normalizar_columnas_dataframe(df.copy())
+            firma_columnas = " ".join(df_temporal.columns)
             
-            # CRITERIO 1: Es tabla de PARTIDOS? (Scores & Fixtures)
-            # Debe tener Date, Opponent y Result
-            if "date" in cols and "opponent" in cols and "result" in cols and "player" not in cols:
-                df_scores = df # Guardamos la original
+            # CRITERIO 1: Inferencia de tabla de calendario y resultados (Scores & Fixtures)
+            if "date" in firma_columnas and "opponent" in firma_columnas and "result" in firma_columnas and "player" not in firma_columnas:
+                df_resultados = df 
             
-            # CRITERIO 2: Es tabla de JUGADORES? (Standard Stats)
-            # Debe tener Player, Pos, Age, MP (Matches Played)
-            # Buscamos 'mp' o 'matches_played' y 'starts'
-            if "player" in cols and "pos" in cols and ("mp" in cols or "matches" in cols):
-                # A veces hay varias tablas de stats (Porteros, Shoots...), nos quedamos la primera grande (Standard)
-                if len(df) > 5: # Filtro simple para evitar tablitas pequeñas
-                    df_stats = df
-                    # Si encontramos Standard Stats, a veces es suficiente, pero seguimos por si acaso el loop
-                    # Prioridad: Standard Stats suele ser la primera grande.
+            # CRITERIO 2: Inferencia de tabla de rendimiento individual (Standard Stats)
+            if "player" in firma_columnas and "pos" in firma_columnas and ("mp" in firma_columnas or "matches" in firma_columnas):
+                # Umbral mínimo de registros para omitir tablas residuales
+                if len(df) > 5: 
+                    df_estadisticas = df
         
-        # --- RETORNO DE RESULTADOS ---
-        results = {}
+        # --- TRANSFORMACIÓN Y CONSOLIDACIÓN ---
+        diccionario_retorno = {}
         
-        # 1. PROCESAR SCORES (Si encontró)
-        if df_scores is not None:
-            df = limpiar_columnas(df_scores)
-            # Columnas clave
-            cols_map = {
-                'date': next((c for c in df.columns if 'date' in c), 'date'),
-                'round': next((c for c in df.columns if 'round' in c), 'round'),
-                'opponent': next((c for c in df.columns if 'opponent' in c), 'opponent'),
-                'result': next((c for c in df.columns if 'result' in c), 'result'),
-                'gf': next((c for c in df.columns if 'gf' in c), 'gf'),
-                'ga': next((c for c in df.columns if 'ga' in c), 'ga'),
-                'venue': next((c for c in df.columns if 'venue' in c), 'venue'),
-                'xg_favor': next((c for c in df.columns if 'xg' in c and 'expected' in c and 'allow' not in c), 'xg'),
-                'xg_contra': next((c for c in df.columns if 'xga' in c), 'xga'),
-                'poss': next((c for c in df.columns if 'poss' in c), 'poss')
+        # 1. Pipeline para tabla de Resultados (Scores)
+        if df_resultados is not None:
+            df_norm = normalizar_columnas_dataframe(df_resultados)
+            
+            # Mapeo dinámico de atributos mediante generadores 
+            mapa_columnas = {
+                'date': next((c for c in df_norm.columns if 'date' in c), 'date'),
+                'round': next((c for c in df_norm.columns if 'round' in c), 'round'),
+                'opponent': next((c for c in df_norm.columns if 'opponent' in c), 'opponent'),
+                'result': next((c for c in df_norm.columns if 'result' in c), 'result'),
+                'gf': next((c for c in df_norm.columns if 'gf' in c), 'gf'),
+                'ga': next((c for c in df_norm.columns if 'ga' in c), 'ga'),
+                'venue': next((c for c in df_norm.columns if 'venue' in c), 'venue'),
+                'xg_favor': next((c for c in df_norm.columns if 'xg' in c and 'expected' in c and 'allow' not in c), 'xg'),
+                'xg_contra': next((c for c in df_norm.columns if 'xga' in c), 'xga'),
+                'poss': next((c for c in df_norm.columns if 'poss' in c), 'poss')
             }
             
-            # Limpieza filas
-            df = df[df[cols_map['date']].notna()]
-            df = df[df[cols_map['date']] != 'Date']
-            df = df[df[cols_map['result']].notna()] # Solo partidos jugados
+            # Depuración de registros nulos y filas de separación
+            df_norm = df_norm[df_norm[mapa_columnas['date']].notna()]
+            df_norm = df_norm[df_norm[mapa_columnas['date']] != 'Date']
+            df_norm = df_norm[df_norm[mapa_columnas['result']].notna()] 
             
-            # Añadir metadatos
-            df['season'] = season
-            df['competition'] = 'Champions League'
+            # Inyección de dimensionalidad contextual
+            df_norm['season'] = temporada
+            df_norm['competition'] = 'Champions League'
             
-            # Estandarizar nombres clave
-            df = df.rename(columns={
-                cols_map['xg_favor']: 'xg_favor',
-                cols_map['xg_contra']: 'xg_contra',
-                cols_map['poss']: 'posesion'
+            # Traducción y estandarización del esquema
+            df_norm = df_norm.rename(columns={
+                mapa_columnas['xg_favor']: 'xg_favor',
+                mapa_columnas['xg_contra']: 'xg_contra',
+                mapa_columnas['poss']: 'posesion'
             })
             
-            results['type'] = 'scores'
-            results['df'] = df
+            diccionario_retorno['type'] = 'scores'
+            diccionario_retorno['df'] = df_norm
 
-        # 2. PROCESAR STATS (Si encontró y NO es scores)
-        elif df_stats is not None:
-            df = limpiar_columnas(df_stats)
+        # 2. Pipeline para tabla de Estadísticas (Stats)
+        elif df_estadisticas is not None:
+            df_norm = normalizar_columnas_dataframe(df_estadisticas)
             
-            # Limpieza básica
-            col_player = next((c for c in df.columns if 'player' in c), 'player')
-            df = df[df[col_player] != 'Player']
-            df = df[df[col_player].notna()]
+            # Aislamiento de clave primaria del jugador
+            col_jugador = next((c for c in df_norm.columns if 'player' in c), 'player')
+            df_norm = df_norm[df_norm[col_jugador] != 'Player']
+            df_norm = df_norm[df_norm[col_jugador].notna()]
             
-            # Filtro: Eliminar filas de "Squad Total" o "Opponent Total"
-            df = df[~df[col_player].astype(str).str.contains("Total", case=False)]
+            # Purga de filas de agregación (Totales de equipo u oponente)
+            df_norm = df_norm[~df_norm[col_jugador].astype(str).str.contains("Total", case=False)]
             
-            df['season'] = season
-            df['competition'] = 'Champions League'
+            df_norm['season'] = temporada
+            df_norm['competition'] = 'Champions League'
             
-            results['type'] = 'stats'
-            results['df'] = df
+            diccionario_retorno['type'] = 'stats'
+            diccionario_retorno['df'] = df_norm
 
-        return results
+        return diccionario_retorno
 
     except Exception as e:
-        print(f"❌ Error en {filename}: {e}")
+        print(f"Error crítico durante el procesamiento de {nombre_archivo}: {e}")
         return {}
 
-def main():
-    print("--- 🏭 UNIFICADOR DE CHAMPIONS (SCORES + STATS) ---")
+def ejecutar_etl_champions_historico():
+    """
+    Orquesta la ingestión masiva de documentos HTML de la Champions League.
+    Clasifica los archivos en dominios de 'Resultados' o 'Estadísticas Individuales',
+    los procesa, y consolida dos tablas maestras (Fact Tables) en formato CSV.
+    """
+    print("--- INICIANDO CONSOLIDACIÓN ESTRUCTURAL (CHAMPIONS LEAGUE) ---")
     
-    if not os.path.exists(INPUT_FOLDER):
-        print(f"❌ No existe la carpeta {INPUT_FOLDER}")
+    if not os.path.exists(DIR_ENTRADA):
+        print(f"Error de origen: El directorio especificado no existe ({DIR_ENTRADA})")
         return
         
-    if not os.path.exists(OUTPUT_FOLDER):
-        os.makedirs(OUTPUT_FOLDER)
+    os.makedirs(DIR_SALIDA, exist_ok=True)
 
-    archivos = [f for f in os.listdir(INPUT_FOLDER) if f.endswith(".html")]
-    print(f"📂 Escaneando {len(archivos)} archivos...")
+    archivos_objetivo = [f for f in os.listdir(DIR_ENTRADA) if f.endswith(".html")]
+    print(f"Info: Detectados {len(archivos_objetivo)} documentos HTML para análisis de tipología.")
     
-    list_scores = []
-    list_stats = []
+    coleccion_resultados = []
+    coleccion_estadisticas = []
     
-    for archivo in archivos:
-        path = os.path.join(INPUT_FOLDER, archivo)
-        res = clasificar_y_procesar(path)
+    for archivo in archivos_objetivo:
+        ruta_completa = os.path.join(DIR_ENTRADA, archivo)
+        resultado_proceso = clasificar_y_parsear_html(ruta_completa)
         
-        if res.get('type') == 'scores':
-            list_scores.append(res['df'])
-            print(f"   ⚽ {archivo} -> Scores")
-        elif res.get('type') == 'stats':
-            list_stats.append(res['df'])
-            print(f"   📊 {archivo} -> Stats")
+        tipo_extraccion = resultado_proceso.get('type')
+        if tipo_extraccion == 'scores':
+            coleccion_resultados.append(resultado_proceso['df'])
+            print(f"Clasificado: {archivo} -> [Tabla de Hechos: Resultados]")
+        elif tipo_extraccion == 'stats':
+            coleccion_estadisticas.append(resultado_proceso['df'])
+            print(f"Clasificado: {archivo} -> [Tabla de Hechos: Rendimiento Individual]")
         else:
-            print(f"   ⚠️ {archivo} -> No identificado / Saltado")
+            print(f"Aviso: {archivo} -> [Tipología no identificada / Omitido]")
 
-    # --- GUARDAR SCORES ---
-    if list_scores:
-        df_scores = pd.concat(list_scores, ignore_index=True)
-        # Ordenar por fecha
-        if 'date' in df_scores.columns:
-            df_scores['date'] = pd.to_datetime(df_scores['date'], errors='coerce')
-            df_scores = df_scores.sort_values('date')
-            
-        path_scores = os.path.join(OUTPUT_FOLDER, FILE_SCORES)
-        df_scores.to_csv(path_scores, index=False, encoding='utf-8-sig')
-        print(f"\n✅ GENERADO: {FILE_SCORES} ({len(df_scores)} partidos)")
-    
-    # --- GUARDAR STATS ---
-    if list_stats:
-        df_stats = pd.concat(list_stats, ignore_index=True)
-        # Ordenar por temporada y jugador
-        df_stats = df_stats.sort_values(['season', 'player'])
+    # --- FASE DE CARGA (LOAD): RESULTADOS DE EQUIPO ---
+    if coleccion_resultados:
+        df_consolidado_scores = pd.concat(coleccion_resultados, ignore_index=True)
         
-        path_stats = os.path.join(OUTPUT_FOLDER, FILE_STATS)
-        df_stats.to_csv(path_stats, index=False, encoding='utf-8-sig')
-        print(f"✅ GENERADO: {FILE_STATS} ({len(df_stats)} registros de jugadores)")
+        # Coerción temporal explícita para asegurar un ordenamiento cronológico preciso
+        if 'date' in df_consolidado_scores.columns:
+            df_consolidado_scores['date'] = pd.to_datetime(df_consolidado_scores['date'], errors='coerce')
+            df_consolidado_scores = df_consolidado_scores.sort_values('date')
+            
+        ruta_salida_scores = os.path.join(DIR_SALIDA, ARCHIVO_SCORES)
+        df_consolidado_scores.to_csv(ruta_salida_scores, index=False, encoding='utf-8-sig')
+        print(f"\nPersistencia exitosa: {ARCHIVO_SCORES} ({len(df_consolidado_scores)} registros de partido integrados).")
+    
+    # --- FASE DE CARGA (LOAD): ESTADÍSTICAS INDIVIDUALES ---
+    if coleccion_estadisticas:
+        df_consolidado_stats = pd.concat(coleccion_estadisticas, ignore_index=True)
+        
+        # Ordenamiento jerárquico por temporada y jugador
+        df_consolidado_stats = df_consolidado_stats.sort_values(['season', 'player'])
+        
+        ruta_salida_stats = os.path.join(DIR_SALIDA, ARCHIVO_STATS)
+        df_consolidado_stats.to_csv(ruta_salida_stats, index=False, encoding='utf-8-sig')
+        print(f"Persistencia exitosa: {ARCHIVO_STATS} ({len(df_consolidado_stats)} registros individuales integrados).")
 
-    print("\n🚀 ¡Proceso completado!")
+    print("\nProceso ETL completado en su totalidad.")
 
 if __name__ == "__main__":
-    main()
+    ejecutar_etl_champions_historico()

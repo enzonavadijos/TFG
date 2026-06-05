@@ -4,20 +4,24 @@ import os
 import warnings
 import time
 
-# --- CONFIGURACION ---
-INPUT_FILE = r"C:\Users\enson\Desktop\TFG\ETL\DatosLaLiga2003_2021.csv"
-OUTPUT_FILE = r"C:\Users\enson\Desktop\TFG\ETL\Metricas_Barca_LaLiga_Final.csv"
-EQUIPO_OBJETIVO = "Barcelona"
+# --- CONFIGURACIÓN DE RUTAS Y PARÁMETROS ---
+PATH_INPUT = r"C:\Users\enson\Desktop\TFG\ETL\DatosLaLiga2003_2021.csv"
+PATH_OUTPUT = r"C:\Users\enson\Desktop\TFG\ETL\Metricas_Barca_LaLiga_Final.csv"
+TARGET_TEAM = "Barcelona"
 
-def calcular_metricas_equipo(match_id, equipo_nombre):
+def calcular_metricas_agregadas_equipo(match_id, equipo_nombre):
     """
-    Calcula metricas colectivas (Ofensivas, Defensivas y de Control).
+    Consume la API de StatsBomb para descargar los eventos granulares de un partido
+    específico y calcula métricas agregadas a nivel de equipo, divididas en tres
+    fases del juego: Ofensiva, Control (Posesión) y Defensiva.
     """
     try:
-        events = sb.events(match_id=match_id)
+        # Petición a la API para obtener el DataFrame de eventos del partido
+        df_eventos = sb.events(match_id=match_id)
         
-        # Inicializamos todo a 0 para evitar errores si faltan datos
-        metrics = {
+        # Inicialización del diccionario de métricas. Se preasignan valores a cero
+        # para garantizar la integridad estructural en caso de ausencia de datos.
+        diccionario_metricas = {
             'goles_favor': 0,
             'xg_favor': 0.0,
             'xg_contra': 0.0,
@@ -33,133 +37,129 @@ def calcular_metricas_equipo(match_id, equipo_nombre):
             'status': 'OK'
         }
 
-        # SI NO HAY COLUMNA 'TEAM', ES UN ERROR CRITICO DEL DATAFRAME
-        if 'team' not in events.columns:
-            return metrics # Retorna todo a 0 pero con status OK
+        # Validación estructural: Si el DataFrame no contiene la columna 'team', 
+        # carece de la granularidad necesaria para la agregación.
+        if 'team' not in df_eventos.columns:
+            return diccionario_metricas 
 
-        # --- 1. METRICAS OFENSIVAS ---
-        if 'type' in events.columns and 'shot_outcome' in events.columns:
-            tiros = events[(events['type'] == 'Shot') & (events['team'] == equipo_nombre)]
+        # --- 1. MÉTRICAS OFENSIVAS ---
+        if 'type' in df_eventos.columns and 'shot_outcome' in df_eventos.columns:
+            df_tiros = df_eventos[(df_eventos['type'] == 'Shot') & (df_eventos['team'] == equipo_nombre)]
             
-            # Volumen
-            metrics['tiros_totales'] = len(tiros)
+            # Volumen ofensivo bruto
+            diccionario_metricas['tiros_totales'] = len(df_tiros)
             
-            # Goles
-            metrics['goles_favor'] = len(tiros[tiros['shot_outcome'] == 'Goal'])
+            # Efectividad (Goles reales)
+            diccionario_metricas['goles_favor'] = len(df_tiros[df_tiros['shot_outcome'] == 'Goal'])
             
-            # Tiros a Puerta (Goal + Saved + Saved to Post)
-            # Nota: StatsBomb distingue muchos tipos de outcome. Simplificamos.
-            outcome_a_puerta = ['Goal', 'Saved', 'Saved to Post']
-            metrics['tiros_a_puerta'] = len(tiros[tiros['shot_outcome'].isin(outcome_a_puerta)])
+            # Tiros a Puerta: Se agrupan los resultados que estadísticamente cuentan como tiro a puerta
+            resultados_tiro_a_puerta = ['Goal', 'Saved', 'Saved to Post']
+            diccionario_metricas['tiros_a_puerta'] = len(df_tiros[df_tiros['shot_outcome'].isin(resultados_tiro_a_puerta)])
 
-            # xG
-            if 'shot_statsbomb_xg' in events.columns:
-                xg_data = events[events['type'] == 'Shot'] # Recuperamos todos para sacar a favor y contra
-                metrics['xg_favor'] = xg_data[xg_data['team'] == equipo_nombre]['shot_statsbomb_xg'].fillna(0).sum()
-                metrics['xg_contra'] = xg_data[xg_data['team'] != equipo_nombre]['shot_statsbomb_xg'].fillna(0).sum()
+            # Goles Esperados (xG): Métrica avanzada de probabilidad
+            if 'shot_statsbomb_xg' in df_eventos.columns:
+                df_xg = df_eventos[df_eventos['type'] == 'Shot'] 
+                diccionario_metricas['xg_favor'] = df_xg[df_xg['team'] == equipo_nombre]['shot_statsbomb_xg'].fillna(0).sum()
+                diccionario_metricas['xg_contra'] = df_xg[df_xg['team'] != equipo_nombre]['shot_statsbomb_xg'].fillna(0).sum()
 
-        # --- 2. METRICAS DE CONTROL (PASES) ---
-        if 'type' in events.columns:
-            pases = events[(events['type'] == 'Pass') & (events['team'] == equipo_nombre)]
-            metrics['pases_intentados'] = len(pases)
+        # --- 2. MÉTRICAS DE CONTROL (DISTRIBUCIÓN Y POSESIÓN) ---
+        if 'type' in df_eventos.columns:
+            df_pases = df_eventos[(df_eventos['type'] == 'Pass') & (df_eventos['team'] == equipo_nombre)]
+            diccionario_metricas['pases_intentados'] = len(df_pases)
             
-            if 'pass_outcome' in events.columns:
-                # pass_outcome NaN significa pase bueno
-                metrics['pases_completados'] = len(pases[pases['pass_outcome'].isnull()])
+            if 'pass_outcome' in df_eventos.columns:
+                # En StatsBomb, un 'pass_outcome' nulo (NaN) indica que el pase fue completado con éxito
+                diccionario_metricas['pases_completados'] = len(df_pases[df_pases['pass_outcome'].isnull()])
             else:
-                metrics['pases_completados'] = len(pases)
+                diccionario_metricas['pases_completados'] = len(df_pases)
 
-            # Posesion aproximada
-            total_pases_partido = len(events[events['type'] == 'Pass'])
+            # Cálculo de posesión aproximada mediante volumen de pases relativos
+            total_pases_partido = len(df_eventos[df_eventos['type'] == 'Pass'])
             if total_pases_partido > 0:
-                metrics['posesion_pct'] = round((metrics['pases_intentados'] / total_pases_partido) * 100, 2)
+                diccionario_metricas['posesion_pct'] = round((diccionario_metricas['pases_intentados'] / total_pases_partido) * 100, 2)
 
-        # --- 3. METRICAS DEFENSIVAS (EL SELLO DE IDENTIDAD) ---
-        # Estas metricas definen la intensidad del equipo
-        if 'type' in events.columns:
-            # Presion alta (Pressure)
-            metrics['presiones'] = len(events[(events['type'] == 'Pressure') & (events['team'] == equipo_nombre)])
-            
-            # Recuperaciones (Ball Recovery)
-            metrics['recuperaciones'] = len(events[(events['type'] == 'Ball Recovery') & (events['team'] == equipo_nombre)])
-            
-            # Intercepciones (Interception)
-            metrics['intercepciones'] = len(events[(events['type'] == 'Interception') & (events['team'] == equipo_nombre)])
-            
-            # Faltas (Foul Committed)
-            metrics['faltas_cometidas'] = len(events[(events['type'] == 'Foul Committed') & (events['team'] == equipo_nombre)])
+        # --- 3. MÉTRICAS DEFENSIVAS (INTENSIDAD SIN BALÓN) ---
+        if 'type' in df_eventos.columns:
+            diccionario_metricas['presiones'] = len(df_eventos[(df_eventos['type'] == 'Pressure') & (df_eventos['team'] == equipo_nombre)])
+            diccionario_metricas['recuperaciones'] = len(df_eventos[(df_eventos['type'] == 'Ball Recovery') & (df_eventos['team'] == equipo_nombre)])
+            diccionario_metricas['intercepciones'] = len(df_eventos[(df_eventos['type'] == 'Interception') & (df_eventos['team'] == equipo_nombre)])
+            diccionario_metricas['faltas_cometidas'] = len(df_eventos[(df_eventos['type'] == 'Foul Committed') & (df_eventos['team'] == equipo_nombre)])
 
-        # Redondeos finales
-        metrics['xg_favor'] = round(metrics['xg_favor'], 2)
-        metrics['xg_contra'] = round(metrics['xg_contra'], 2)
+        # Redondeo de métricas continuas para su exportación
+        diccionario_metricas['xg_favor'] = round(diccionario_metricas['xg_favor'], 2)
+        diccionario_metricas['xg_contra'] = round(diccionario_metricas['xg_contra'], 2)
         
-        return metrics
+        return diccionario_metricas
 
     except Exception as e:
         return {'status': 'ERROR', 'error_msg': str(e)}
 
-def main():
-    print("--- INICIANDO EXTRACTOR DE METRICAS DE EQUIPO (BARCA TOTAL) ---")
+def ejecutar_extraccion_metricas():
+    """
+    Orquesta la lectura del catálogo de partidos, itera sobre los encuentros 
+    del equipo objetivo y anexa las métricas agregadas para generar el dataset final.
+    """
+    print("--- INICIANDO EXTRACCIÓN DE MÉTRICAS AGREGADAS (STATSBOMB API) ---")
     
-    if not os.path.exists(INPUT_FILE):
-        print(f"Error: No encuentro el archivo {INPUT_FILE}")
+    if not os.path.exists(PATH_INPUT):
+        print(f"Error crítico: No se localizó el archivo de entrada en {PATH_INPUT}")
         return
 
-    df_matches = pd.read_csv(INPUT_FILE)
+    df_partidos = pd.read_csv(PATH_INPUT)
     
-    # Filtrar solo Barcelona
-    df_barca = df_matches[
-        (df_matches['home_team'] == EQUIPO_OBJETIVO) | 
-        (df_matches['away_team'] == EQUIPO_OBJETIVO)
+    # Filtrado del dataset para procesar únicamente los partidos del equipo objetivo
+    df_partidos_objetivo = df_partidos[
+        (df_partidos['home_team'] == TARGET_TEAM) | 
+        (df_partidos['away_team'] == TARGET_TEAM)
     ].copy()
     
-    print(f"Total partidos a analizar: {len(df_barca)}")
-    print("Extrayendo: Tiros, Pases, Presion, Recuperaciones, Faltas...")
+    total_partidos = len(df_partidos_objetivo)
+    print(f"Info: Total de partidos a analizar: {total_partidos}")
+    print("Iniciando agregación de volumen ofensivo, posesión y métricas defensivas...")
 
-    metricas_list = []
-    start_time = time.time()
-
-    for index, row in df_barca.iterrows():
+    lista_metricas_partidos = []
+    
+    for index, row in df_partidos_objetivo.iterrows():
         match_id = row['match_id']
         fecha = row['match_date']
-        rival = row['away_team'] if row['home_team'] == EQUIPO_OBJETIVO else row['home_team']
+        rival = row['away_team'] if row['home_team'] == TARGET_TEAM else row['home_team']
         
-        print(f"[{index+1}/{len(df_matches)}] {fecha} vs {rival}...", end=" ")
+        print(f"Procesando [{len(lista_metricas_partidos)+1}/{total_partidos}] {fecha} vs {rival}...", end=" ")
         
-        datos = calcular_metricas_equipo(match_id, EQUIPO_OBJETIVO)
+        datos_agregados = calcular_metricas_agregadas_equipo(match_id, TARGET_TEAM)
         
-        if datos['status'] == 'OK':
-            print("✅")
+        if datos_agregados['status'] == 'OK':
+            print("Completado")
             fila_completa = row.to_dict()
-            fila_completa.update(datos)
-            metricas_list.append(fila_completa)
+            fila_completa.update(datos_agregados)
+            lista_metricas_partidos.append(fila_completa)
         else:
-            print(f"{datos.get('error_msg')}")
+            print(f"Fallo: {datos_agregados.get('error_msg')}")
 
-    # Guardado final
-    if metricas_list:
-        df_final = pd.DataFrame(metricas_list)
+    # Estructuración y guardado del conjunto de datos final
+    if lista_metricas_partidos:
+        df_resultado = pd.DataFrame(lista_metricas_partidos)
         
-        # Ordenamos columnas logicamente
+        # Ordenación semántica de las columnas para facilitar el análisis posterior
         cols_info = ['match_date', 'season', 'home_team', 'away_team', 'home_score', 'away_score']
         cols_ataque = ['goles_favor', 'xg_favor', 'xg_contra', 'tiros_totales', 'tiros_a_puerta']
         cols_control = ['posesion_pct', 'pases_intentados', 'pases_completados']
         cols_defensa = ['presiones', 'recuperaciones', 'intercepciones', 'faltas_cometidas']
         
-        # Construimos la lista de columnas forzando el orden
-        cols_final = cols_info + cols_ataque + cols_control + cols_defensa
+        cols_ordenadas = cols_info + cols_ataque + cols_control + cols_defensa
         
-        # Anadimos cualquier otra columna que pudiera haber en el original (ids, etc)
-        otras_cols = [c for c in df_final.columns if c not in cols_final and c != 'status' and c != 'error_msg']
+        # Preservación de atributos adicionales inherentes a la fuente original
+        otras_cols = [c for c in df_resultado.columns if c not in cols_ordenadas and c not in ['status', 'error_msg']]
         
-        df_final = df_final[cols_final + otras_cols]
+        df_resultado = df_resultado[cols_ordenadas + otras_cols]
         
-        df_final.to_csv(OUTPUT_FILE, index=False)
-        print(f"\nPROCESO FINALIZADO. Dataset guardado en: {OUTPUT_FILE}")
-        print(f"Partidos procesados: {len(df_final)}")
+        df_resultado.to_csv(PATH_OUTPUT, index=False)
+        print(f"\nProceso finalizado con éxito. Dataset consolidado guardado en: {PATH_OUTPUT}")
+        print(f"Total de registros exportados: {len(df_resultado)}")
     else:
-        print("No se pudieron extraer metricas.")
+        print("Aviso: No se generaron métricas para exportar.")
 
 if __name__ == "__main__":
+    # Supresión de advertencias relacionadas con la obsolescencia de funciones internas de dependencias
     warnings.filterwarnings("ignore")
-    main()
+    ejecutar_extraccion_metricas()

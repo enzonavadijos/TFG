@@ -1,20 +1,21 @@
 import pandas as pd
 import os
 
-# 1. Configuración de Rutas
-ruta_entrada = r"C:\Users\enson\Desktop\TFG\ETL\CSV\Dim_Jugadores_Final.csv"
-ruta_salida_excel = r"C:\Users\enson\Desktop\TFG\ETL\CSV\Dim_Jugadores_Definitivo.xlsx"
+# --- CONFIGURACIÓN DE RUTAS ---
+PATH_INPUT = r"C:\Users\enson\Desktop\TFG\ETL\CSV\Dim_Jugadores_Final.csv"
+PATH_OUTPUT_EXCEL = r"C:\Users\enson\Desktop\TFG\ETL\CSV\Dim_Jugadores_Definitivo.xlsx"
 
-# 2. Diccionario Maestro de Mapeo (Basado en tu lista de LaLiga)
-# Este diccionario traduce tus nombres cortos (incluso los que tienen caracteres rotos)
-# al nombre largo oficial que aparece en tus archivos.
+# --- DICCIONARIO MAESTRO DE MAPEO ---
+# Este diccionario actúa como una tabla de traducción para corregir errores de 
+# codificación (mojibake) derivados de conflictos entre UTF-8 y Latin-1 durante 
+# la extracción web, mapeando además los nombres cortos a sus nombres largos oficiales.
 mapeo_completo = {
     "Abraham GonzÃ¡lez": "Abraham GonzÃ¡lez Casanova", "Adama TraorÃ©": "Adama TraorÃ© Diarra",
-    "Albert Jorquera": "Albert Jorquera FortiÃ ", "Alberto BotÃa": "Alberto BotÃ­a Rabasco",
+    "Albert Jorquera": "Albert Jorquera FortiÃ ", "Alberto BotÃa": "Alberto BotÃ­a Rabasco",
     "Aleix Garrido": "Aleix GarcÃ­a Serrano", "Alejandro Balde": "Alejandro Balde MartÃ­nez",
     "Alexis Olmedo": "Alexis Ruano Delgado", "Alvaro Sanz": "Ãlvaro Sanz CatalÃ¡n",
     "Ander Astralaga": "Ander Murillo GarcÃ­a", "Andrea Orlandi": "Andrea Orlandi",
-    "Andres Cuenca": "AndrÃ©s Cuenca Cejudo", "Andreu FontÃ s": "Andreu FontÃ s Prat",
+    "Andres Cuenca": "AndrÃ©s Cuenca Cejudo", "Andreu FontÃ s": "Andreu FontÃ s Prat",
     "AndrÃ©s Iniesta": "AndrÃ©s Iniesta LujÃ¡n", "Ansu Fati": "Anssumane Fati Vieira",
     "Arnau Comas": "Arnau Comas Freixas", "Arnau Tenas": "Arnau Tenas UreÃ±a",
     "Bojan Krki?": "Bojan KrkÃ­c PÃ©rez", "Borja LÃ³pez": "Borja LÃ³pez MenÃ©ndez",
@@ -24,7 +25,7 @@ mapeo_completo = {
     "Daniel Rodriguez": "Daniel RodrÃ­guez Crespo", "David Costas": "David Costas Cordal",
     "Denis SuÃ¡rez": "Denis SuÃ¡rez FernÃ¡ndez", "Eric GarcÃa": "Eric GarcÃ­a MartrÃ©t",
     "Estanis": "Estanislao Pedrola Fortuny", "Fali": "Rafael JimÃ©nez Jarque",
-    "Fermin LÃ³pez": "FermÃ­n LÃ³pez MarÃ­n", "Ferran JutglÃ ": "Ferran JutglÃ  Blanch",
+    "Fermin LÃ³pez": "FermÃ­n LÃ³pez MarÃ­n", "Ferran JutglÃ ": "Ferran JutglÃ  Blanch",
     "FerrÃ¡n Torres": "FerrÃ¡n Torres GarcÃ­a", "Francisco Martos": "Francisco Javier Martos Espigares",
     "Gabri GarcÃa": "Gabriel Francisco GarcÃ­a de la Torre", "Gavi": "Pablo MartÃ­n PÃ¡ez Gavira",
     "Gerard LÃ³pez": "Gerard LÃ³pez SegÃº", "Gerard MartÃn": "Gerard MartÃ­n Langreo",
@@ -101,29 +102,39 @@ mapeo_completo = {
     "?lkay GÃ¼ndo?an": "Ãlkay GÃ¼ndoÄŸan"
 }
 
-try:
-    # 3. Lectura del CSV original
-    print("Leyendo archivo original...")
-    df = pd.read_csv(ruta_entrada, sep=';', encoding='latin1')
-    
-    # 4. Creación de la columna con el mapeo oficial
-    # Buscamos en el diccionario, si no está dejamos el nombre corto original
-    df['Nombre Completo'] = df['Jugador'].map(mapeo_completo).fillna("")
+def normalizar_nombres_jugadores():
+    """
+    Lee la dimensión de jugadores en crudo, corrige los problemas de codificación 
+    de caracteres mediante un diccionario maestro y exporta el resultado a Excel 
+    para garantizar la correcta visualización en sistemas posteriores.
+    """
+    try:
+        # 1. Lectura del CSV original especificando el separador y la codificación
+        print("Iniciando lectura del archivo original...")
+        df_jugadores = pd.read_csv(PATH_INPUT, sep=';', encoding='latin1')
+        
+        # 2. Creación de la columna con el mapeo oficial
+        # Si la clave no se encuentra en el diccionario, se asigna un valor nulo/vacío
+        df_jugadores['Nombre Completo'] = df_jugadores['Jugador'].map(mapeo_completo).fillna("")
 
-    # 5. Guardado en formato EXCEL (.xlsx)
-    # Esto soluciona los problemas de visibilidad y separadores
-    print("Generando archivo Excel definitivo...")
-    df.to_excel(ruta_salida_excel, index=False)
+        # 3. Exportación a formato Excel (.xlsx)
+        # La conversión a Excel previene fallos de delimitación y preserva los caracteres especiales
+        print("Generando archivo Excel definitivo...")
+        df_jugadores.to_excel(PATH_OUTPUT_EXCEL, index=False)
 
-    print("\n" + "="*40)
-    print("¡PROCESO FINALIZADO CON ÉXITO!")
-    print(f"Archivo creado: Dim_Jugadores_Definitivo.xlsx")
-    print(f"Total filas: {len(df)}")
-    print(f"Nombres completados: {df['Nombre Completo'].ne('').sum()}")
-    print("="*40)
+        # 4. Resumen de métricas del proceso
+        print("\n" + "="*50)
+        print("PROCESO FINALIZADO SATISFACTORIAMENTE")
+        print(f"Archivo creado: {os.path.basename(PATH_OUTPUT_EXCEL)}")
+        print(f"Total de registros procesados: {len(df_jugadores)}")
+        print(f"Nombres completados exitosamente: {df_jugadores['Nombre Completo'].ne('').sum()}")
+        print("="*50)
 
-    # 6. Intentar abrir el archivo automáticamente
-    os.startfile(ruta_salida_excel)
+        # 5. Apertura automática del archivo generado (Operativo en entornos Windows)
+        os.startfile(PATH_OUTPUT_EXCEL)
 
-except Exception as e:
-    print(f"\n❌ ERROR CRÍTICO: {e}")
+    except Exception as e:
+        print(f"\nError crítico durante la ejecución del mapeo: {e}")
+
+if __name__ == "__main__":
+    normalizar_nombres_jugadores()

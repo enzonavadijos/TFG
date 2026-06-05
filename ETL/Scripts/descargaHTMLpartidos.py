@@ -3,86 +3,95 @@ import os
 import time
 import undetected_chromedriver as uc
 
-# --- RUTAS ---
-CARPETA_BASE = r"C:\Users\enson\Desktop\TFG\ETL"
-ruta_links = os.path.join(CARPETA_BASE, "CSV", "Lista_Links_StatsBomb_Para_FBref.csv")
-carpeta_salida = os.path.join(CARPETA_BASE, "HTML_Partidos")
+# --- CONFIGURACIÓN DE RUTAS ---
+BASE_DIR = r"C:\Users\enson\Desktop\TFG\ETL"
+PATH_LINKS_CSV = os.path.join(BASE_DIR, "CSV", "Lista_Links_StatsBomb_Para_FBref.csv")
+OUTPUT_DIR = os.path.join(BASE_DIR, "HTML_Partidos")
 
-def robot_descargador_furtivo():
-    print("--- 🥷 INICIANDO MODO FURTIVO (UNDETECTED CHROMEDRIVER) ---")
+def descargar_html_partidos():
+    """
+    Lee un listado de enlaces previamente consolidado y utiliza un controlador 
+    web automatizado con evasión de detección para descargar el código fuente 
+    (HTML) de los informes de los partidos. Implementa validación estructural 
+    e idempotencia para permitir la reanudación ante interrupciones.
+    """
+    print("--- INICIANDO EXTRACCIÓN AUTOMATIZADA DE PARTIDOS (MATCH REPORTS) ---")
     
-    # 1. Crear carpeta si no existe
-    if not os.path.exists(carpeta_salida):
-        os.makedirs(carpeta_salida)
+    # 1. Verificación y creación del directorio de salida
+    if not os.path.exists(OUTPUT_DIR):
+        os.makedirs(OUTPUT_DIR)
         
     try:
-        df_links = pd.read_csv(ruta_links)
+        df_enlaces = pd.read_csv(PATH_LINKS_CSV)
     except FileNotFoundError:
-        print(f"❌ Error: No encuentro el archivo {ruta_links}")
+        print(f"Error crítico: No se ha localizado el archivo de enlaces en {PATH_LINKS_CSV}")
         return
 
-    # 2. ARRANCAMOS EL CHROME INDETECTABLE
-    print("🚀 Levantando el navegador camuflado...")
+    # 2. Inicialización del controlador web
+    print("Info: Inicializando instancia de undetected_chromedriver...")
     options = uc.ChromeOptions()
-    # No usamos headless para no levantar sospechas en Cloudflare
+    # Se ejecuta de forma interactiva (non-headless) para minimizar la probabilidad 
+    # de detección algorítmica por parte del firewall de origen.
     driver = uc.Chrome(options=options, version_main=144)
 
-    total = len(df_links)
-    descargados = 0
-    ya_existentes = 0
+    total_partidos = len(df_enlaces)
+    descargados_exito = 0
+    archivos_existentes = 0
 
-    print(f"Total de partidos a descargar: {total}")
-    print("⏳ Iniciando ataque a FBref...\n")
+    print(f"Info: Total de encuentros encolados para extracción: {total_partidos}")
+    print("Iniciando peticiones HTTP secuenciales...\n")
 
-    for index, row in df_links.iterrows():
+    for index, row in df_enlaces.iterrows():
         id_partido = row['ID_Partido']
         url = row['URL_FBref']
         fecha = row['Fecha']
-        # Limpiamos el nombre para que Windows no dé error al guardar el archivo
+        
+        # Saneamiento del nombre del equipo rival para evitar conflictos de sistema de archivos
         rival = str(row['Rival']).replace(" ", "_").replace("/", "_") 
         
         nombre_archivo = f"{id_partido}_{fecha}_{rival}.html"
-        ruta_archivo = os.path.join(carpeta_salida, nombre_archivo)
+        ruta_archivo = os.path.join(OUTPUT_DIR, nombre_archivo)
         
-        # 3. Si ya lo tienes, salta al siguiente (ideal si tienes que pausar el proceso)
+        # 3. Control de idempotencia: Omisión de descargas previamente completadas
         if os.path.exists(ruta_archivo):
-            ya_existentes += 1
+            archivos_existentes += 1
             continue
             
         try:
-            print(f"[{index + 1}/{total}] Descargando: {nombre_archivo}...")
+            print(f"[{index + 1}/{total_partidos}] Extrayendo código fuente: {nombre_archivo}...")
             driver.get(url)
             
-            # 4. ESPERA INTELIGENTE ANTI-CLOUDFLARE
-            intentos = 0
+            # 4. Mecanismo de evasión antibot (Cloudflare)
+            intentos_bloqueo = 0
             while "Just a moment" in driver.title or "Cloudflare" in driver.title:
-                print("   🛡️ Cloudflare detectado. El camuflaje está actuando, espera...")
+                print("Aviso: Intercepción por firewall detectada. Pausando hilo de ejecución...")
                 time.sleep(3)
-                intentos += 1
-                if intentos > 10: # Si pasan 30 segundos y sigue bloqueado
-                    print("   ⚠️ Atascado. Haz clic manual en la casilla de Chrome si la ves.")
+                intentos_bloqueo += 1
+                if intentos_bloqueo > 10: 
+                    print("Aviso: Tiempo máximo de espera superado. Intervención manual requerida en el navegador.")
                     break
             
-            # 5. Pausa de seguridad para que la tabla HTML termine de renderizarse
+            # 5. Retardo asíncrono para garantizar la correcta renderización de las tablas dinámicas (JS)
             time.sleep(4)
             
             html_content = driver.page_source
             
-            # 6. Comprobamos que la página tiene chicha y no es un error 404
+            # 6. Validación estructural del documento HTML
+            # Se evalúa la presencia de identificadores CSS característicos de las tablas objetivo
             if "matchlogs_for" in html_content or "stats" in html_content or "timeline" in html_content:
-                with open(ruta_archivo, 'w', encoding='utf-8') as f:
-                    f.write(html_content)
-                descargados += 1
-                print("   ✅ ¡Guardado con éxito!")
+                with open(ruta_archivo, 'w', encoding='utf-8') as archivo_html:
+                    archivo_html.write(html_content)
+                descargados_exito += 1
+                print("Operación completada: Archivo guardado correctamente.")
             else:
-                print(f"   ❌ La página cargó incompleta o en blanco.")
+                print("Fallo de integridad: La página cargó incompleta o carece de la estructura tabular esperada.")
                 
         except Exception as e:
-            print(f"   ⚠️ Fallo crítico en {url}: {e}")
+            print(f"Error crítico durante la extracción de {url}: {e}")
 
-    # 7. Cerramos Chrome al terminar
+    # 7. Cierre de sesión y liberación de recursos en memoria
     driver.quit()
-    print(f"\n🎉 ¡VICTORIA! {descargados} archivos nuevos descargados | {ya_existentes} ya existían.")
+    print(f"\nProceso finalizado. Resumen: {descargados_exito} nuevos archivos extraídos | {archivos_existentes} archivos previamente existentes.")
 
 if __name__ == "__main__":
-    robot_descargador_furtivo()
+    descargar_html_partidos()
