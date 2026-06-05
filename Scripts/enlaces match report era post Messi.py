@@ -4,104 +4,118 @@ import time
 import os
 import undetected_chromedriver as uc
 
-# --- RUTAS ---
-CARPETA_CSV = r"C:\Users\enson\Desktop\TFG\ETL\CSV"
-ruta_salida = os.path.join(CARPETA_CSV, "Lista_Links_PostMessi_FBref.csv")
+# --- CONFIGURACIÓN DE RUTAS ---
+BASE_DIR = r"C:\Users\enson\Desktop\TFG\ETL\CSV"
+PATH_OUTPUT = os.path.join(BASE_DIR, "Lista_Links_PostMessi_FBref.csv")
 
-# Las 4 temporadas que nos faltan
-temporadas = {
+# Definición estática de las temporadas recientes (Periodo Post-Messi)
+URLS_TEMPORADAS = {
     "2021-2022": "https://fbref.com/en/squads/206d90db/2021-2022/matchlogs/c12/schedule/Barcelona-Scores-and-Fixtures-La-Liga",
     "2022-2023": "https://fbref.com/en/squads/206d90db/2022-2023/matchlogs/c12/schedule/Barcelona-Scores-and-Fixtures-La-Liga",
     "2023-2024": "https://fbref.com/en/squads/206d90db/2023-2024/matchlogs/c12/schedule/Barcelona-Scores-and-Fixtures-La-Liga",
     "2024-2025": "https://fbref.com/en/squads/206d90db/2024-2025/matchlogs/c12/schedule/Barcelona-Scores-and-Fixtures-La-Liga"
 }
 
-def extraer_enlaces_furtivo():
-    print("--- 🥷 INICIANDO MODO FURTIVO: RASTREO DE ENLACES ---")
+def extraer_enlaces_recientes_fbref():
+    """
+    Despliega un controlador web con evasión de detección para navegar por 
+    los calendarios de las temporadas recientes. Utiliza BeautifulSoup para 
+    parsear el DOM, localizar la tabla de resultados y extraer las URLs 
+    de los informes detallados de cada partido.
+    """
+    print("--- INICIANDO EXTRACCIÓN DE ENLACES (PERIODO RECIENTE) ---")
     
-    # 🔥 Variables seguras dentro de la función
-    datos_partidos = []
-    id_ficticio = 5000 
+    lista_datos_partidos = []
     
-    # 1. Levantamos el Chrome camuflado (fijado a tu versión 146)
+    # Identificador secuencial temporal para mantener la estructura de la base de datos
+    id_partido_secuencial = 5000 
+    
+    # 1. Inicialización del controlador web automatizado
+    print("Info: Inicializando instancia de undetected_chromedriver (v146)...")
     options = uc.ChromeOptions()
     driver = uc.Chrome(options=options, version_main=146) 
 
-    for temp, url in temporadas.items():
-        print(f"\n🚀 Infiltrándonos en la temporada: {temp}...")
+    for temporada, url in URLS_TEMPORADAS.items():
+        print(f"\nProcesando temporada: {temporada}...")
         try:
             driver.get(url)
             
-            # 2. ESPERA INTELIGENTE ANTI-CLOUDFLARE
-            intentos = 0
+            # 2. Mecanismo de evasión antibot (Cloudflare)
+            intentos_bloqueo = 0
             while "Just a moment" in driver.title or "Cloudflare" in driver.title:
-                print("   🛡️ Cloudflare detectado. El camuflaje está actuando, espera...")
+                print("Aviso: Firewall detectado. Pausando hilo de ejecución para resolución de desafío...")
                 time.sleep(3)
-                intentos += 1
-                if intentos > 15:
-                    print("   ⚠️ Atascado. Haz clic manual en la casilla de Chrome si la ves.")
+                intentos_bloqueo += 1
+                if intentos_bloqueo > 15:
+                    print("Aviso: Límite de intentos superado. Intervención manual requerida.")
                     break
             
-            # Pausa de seguridad para que la tabla HTML termine de renderizarse
+            # Retardo asíncrono para asegurar la renderización completa de los elementos DOM dinámicos
             time.sleep(5)
             
-            # 3. Cogemos el HTML ya validado y lo pasamos a BeautifulSoup
+            # 3. Generación del árbol DOM e inicialización del parser
             html_content = driver.page_source
             soup = BeautifulSoup(html_content, 'html.parser')
             
-            # 4. Buscamos la tabla principal
-            tabla = soup.find('table', {'id': 'matchlogs_for'})
+            # 4. Navegación estructural y extracción de nodos
+            tabla_principal = soup.find('table', {'id': 'matchlogs_for'})
             
-            if not tabla:
-                print(f"   ⚠️ No se encontró la tabla en {temp}. Quizá la página cargó mal.")
+            if not tabla_principal:
+                print(f"Error de integridad: No se localizó la tabla principal en la temporada {temporada}.")
                 continue
 
-            filas = tabla.find('tbody').find_all('tr')
-            enlaces_temp = 0
+            filas = tabla_principal.find('tbody').find_all('tr')
+            enlaces_extraidos_temp = 0
 
             for fila in filas:
+                # Omisión de filas espaciadoras que no contienen datos estructurales válidos
                 if 'spacer' in fila.get('class', []): 
                     continue
 
-                td_fecha = fila.find('th', {'data-stat': 'date'})
-                if not td_fecha or not td_fecha.text.strip(): 
+                # Extracción del nodo de fecha
+                nodo_fecha = fila.find('th', {'data-stat': 'date'})
+                if not nodo_fecha or not nodo_fecha.text.strip(): 
                     continue
-                fecha = td_fecha.text.strip()
+                fecha_partido = nodo_fecha.text.strip()
 
-                td_rival = fila.find('td', {'data-stat': 'opponent'})
-                rival = td_rival.text.strip() if td_rival else "Desconocido"
+                # Extracción del nodo del equipo rival
+                nodo_rival = fila.find('td', {'data-stat': 'opponent'})
+                nombre_rival = nodo_rival.text.strip() if nodo_rival else "Desconocido"
 
-                td_report = fila.find('td', {'data-stat': 'match_report'})
-                a_tag = td_report.find('a') if td_report else None
+                # Extracción del nodo contenedor del enlace al informe detallado
+                nodo_reporte = fila.find('td', {'data-stat': 'match_report'})
+                etiqueta_enlace = nodo_reporte.find('a') if nodo_reporte else None
 
-                if a_tag and 'href' in a_tag.attrs:
-                    link_completo = "https://fbref.com" + a_tag['href']
+                if etiqueta_enlace and 'href' in etiqueta_enlace.attrs:
+                    url_completa = "https://fbref.com" + etiqueta_enlace['href']
 
-                    datos_partidos.append({
-                        'ID_Partido': id_ficticio,
-                        'Temporada': temp,
-                        'Fecha': fecha,
-                        'Rival': rival,
-                        'URL_FBref': link_completo
+                    lista_datos_partidos.append({
+                        'ID_Partido': id_partido_secuencial,
+                        'Temporada': temporada,
+                        'Fecha': fecha_partido,
+                        'Rival': nombre_rival,
+                        'URL_FBref': url_completa
                     })
-                    id_ficticio += 1
-                    enlaces_temp += 1
+                    id_partido_secuencial += 1
+                    enlaces_extraidos_temp += 1
 
-            print(f"   ✅ {enlaces_temp} enlaces extraídos de {temp}.")
-            time.sleep(3) # Pausa de cortesía entre temporadas
+            print(f"Operación completada: {enlaces_extraidos_temp} enlaces extraídos exitosamente de {temporada}.")
+            
+            # Pausa de control de tasa entre iteraciones (Rate limiting)
+            time.sleep(3) 
 
         except Exception as e:
-            print(f"   ❌ Fallo en {temp}: {e}")
+            print(f"Error crítico durante el procesamiento de la temporada {temporada}: {e}")
 
-    # 5. Cerramos el navegador ninja y guardamos
+    # 5. Cierre de sesión y persistencia de datos
     driver.quit()
     
-    if datos_partidos:
-        df_links = pd.DataFrame(datos_partidos)
-        df_links.to_csv(ruta_salida, index=False, encoding='utf-8')
-        print(f"\n🎉 ¡VICTORIA! {len(df_links)} enlaces guardados en: {ruta_salida}")
+    if lista_datos_partidos:
+        df_enlaces = pd.DataFrame(lista_datos_partidos)
+        df_enlaces.to_csv(PATH_OUTPUT, index=False, encoding='utf-8')
+        print(f"\nProceso finalizado. Total consolidado: {len(df_enlaces)} enlaces guardados en: {PATH_OUTPUT}")
     else:
-        print("\n⚠️ Operación fallida. No se ha extraído ningún enlace.")
+        print("\nAviso: La operación ha concluido sin extraer nuevos registros.")
 
 if __name__ == "__main__":
-    extraer_enlaces_furtivo()
+    extraer_enlaces_recientes_fbref()

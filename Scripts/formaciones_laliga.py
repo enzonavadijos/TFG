@@ -110,22 +110,20 @@ def obtener_tacticas_statsbomb_final():
         competicion = row["competition_name"]
         
         try:
-            # Descargamos eventos de alineación (Starting XI)
+            # Petición a la API para extraer todos los eventos de un encuentro
             events = sb.events(match_id=match_id)
+            # Filtrado paramétrico para obtener solo la alineación inicial del Barça
             starting_xi = events[
                 (events["type"] == "Starting XI") & 
                 (events["team"] == "Barcelona")
             ]
-            
+            # Extracción de la formación táctica (que venía anidada dentro de un JSON/Diccionario)
             if not starting_xi.empty:
-                # Extraer táctica (A veces es dict, a veces objeto)
                 tactics_data = starting_xi.iloc[0]["tactics"]
                 formacion_raw = "Desconocida"
                 
                 if isinstance(tactics_data, dict) and "formation" in tactics_data:
                     formacion_raw = tactics_data["formation"]
-                
-                # Guardamos el dato crudo, la limpieza va al final
                 tacticas_oficiales.append({
                     "id_partido_sb": match_id,
                     "fecha": fecha,
@@ -168,3 +166,26 @@ def obtener_tacticas_statsbomb_final():
 
 if __name__ == "__main__":
     obtener_tacticas_statsbomb_final()
+
+
+
+
+from statsbombpy import sb
+import pandas as pd
+
+# Petición a la API para extraer todos los eventos de un encuentro
+events = sb.events(match_id=match_id)
+
+# Filtrado paramétrico para obtener solo la alineación inicial del Barça
+starting_xi = events[
+    (events["type"] == "Starting XI") & 
+    (events["team"] == "Barcelona")
+]
+
+# Extracción de la formación táctica (que venía anidada dentro de un JSON/Diccionario)
+if not starting_xi.empty:
+    tactics_data = starting_xi.iloc[0]["tactics"]
+    formacion_raw = "Desconocida"
+    
+    if isinstance(tactics_data, dict) and "formation" in tactics_data:
+        formacion_raw = tactics_data["formation"]

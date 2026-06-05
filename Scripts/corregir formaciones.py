@@ -1,46 +1,52 @@
 import pandas as pd
 import os
 
-# --- RUTAS ---
-CARPETA_BASE = r"C:\Users\enson\Desktop\TFG\ETL\CSV"
-ruta_tactica = os.path.join(CARPETA_BASE, "Fact_Tactica_Avanzada.csv")
-ruta_sb = os.path.join(CARPETA_BASE, "Fact_Tacticas_Oficiales_SB.csv")
+# --- CONFIGURACIÓN DE RUTAS ---
+BASE_DIR = r"C:\Users\enson\Desktop\TFG\ETL\CSV"
+PATH_TACTICA = os.path.join(BASE_DIR, "Fact_Tactica_Avanzada.csv")
+PATH_STATSBOMB = os.path.join(BASE_DIR, "Fact_Tacticas_Oficiales_SB.csv")
 
-def sanar_formaciones():
-    print("--- 🩺 INICIANDO CIRUGÍA DE FORMACIONES ---")
+def imputar_formaciones_tacticas():
+    """
+    Realiza un cruce relacional entre la tabla de hechos tácticos y los datos 
+    oficiales de StatsBomb para imputar los valores nulos o desconocidos en 
+    la columna de formaciones, utilizando la fecha como clave temporal.
+    """
+    print("--- INICIANDO IMPUTACIÓN DE FORMACIONES TÁCTICAS ---")
     
-    # 1. Leer los dos archivos
-    df_tactica = pd.read_csv(ruta_tactica)
-    df_sb = pd.read_csv(ruta_sb)
+    # 1. Lectura de las tablas de datos
+    df_tactica = pd.read_csv(PATH_TACTICA)
+    df_statsbomb = pd.read_csv(PATH_STATSBOMB)
     
-    desconocidas_antes = len(df_tactica[df_tactica['Formacion'] == 'Desconocida'])
-    print(f"⚠️ Formaciones 'Desconocida' ANTES del cruce: {desconocidas_antes}")
+    registros_desconocidos_iniciales = len(df_tactica[df_tactica['Formacion'] == 'Desconocida'])
+    print(f"Info: Registros con formación 'Desconocida' antes del cruce: {registros_desconocidos_iniciales}")
     
-    # 2. Hacemos el cruce (Merge) usando la FECHA como llave maestra
-    df_merged = df_tactica.merge(
-        df_sb[['fecha', 'formacion_oficial']], 
+    # 2. Cruce relacional (Left Merge) utilizando la fecha como puente
+    df_resultado = df_tactica.merge(
+        df_statsbomb[['fecha', 'formacion_oficial']], 
         left_on='Fecha', 
         right_on='fecha', 
         how='left'
     )
     
-    # 3. LA REGLA QUE ME HAS PEDIDO: 
-    # Solo cambiamos si pone "Desconocida" en el CSV 1 Y hay algo escrito en el CSV 2
-    mascara = (df_merged['Formacion'] == 'Desconocida') & (df_merged['formacion_oficial'].notna())
-    df_merged.loc[mascara, 'Formacion'] = df_merged.loc[mascara, 'formacion_oficial']
+    # 3. Regla de imputación: 
+    # Solo se actualiza el registro si el valor actual es 'Desconocida' 
+    # y existe información válida en la fuente secundaria (StatsBomb)
+    condicion_imputacion = (df_resultado['Formacion'] == 'Desconocida') & (df_resultado['formacion_oficial'].notna())
+    df_resultado.loc[condicion_imputacion, 'Formacion'] = df_resultado.loc[condicion_imputacion, 'formacion_oficial']
     
-    # 4. Limpiamos las columnas de StatsBomb que ya no nos sirven (ya hemos copiado el dato)
-    df_merged = df_merged.drop(columns=['fecha', 'formacion_oficial'])
+    # 4. Limpieza de columnas auxiliares utilizadas durante el cruce
+    df_resultado = df_resultado.drop(columns=['fecha', 'formacion_oficial'])
     
-    desconocidas_despues = len(df_merged[df_merged['Formacion'] == 'Desconocida'])
-    recuperadas = desconocidas_antes - desconocidas_despues
+    registros_desconocidos_finales = len(df_resultado[df_resultado['Formacion'] == 'Desconocida'])
+    registros_recuperados = registros_desconocidos_iniciales - registros_desconocidos_finales
     
-    print(f"✅ Formaciones 'Desconocida' DESPUÉS del cruce: {desconocidas_despues}")
-    print(f"🎉 ¡Has recuperado y sobrescrito {recuperadas} formaciones históricas!")
+    print(f"Info: Registros con formación 'Desconocida' después del cruce: {registros_desconocidos_finales}")
+    print(f"Éxito: Se han imputado correctamente {registros_recuperados} formaciones históricas.")
     
-    # 5. Sobrescribir el archivo original para que Power BI lo lea limpio
-    df_merged.to_csv(ruta_tactica, index=False, encoding='utf-8-sig')
-    print("📍 Archivo 'Fact_Tactica_Avanzada.csv' curado y sobrescrito con éxito.")
+    # 5. Exportación sobrescribiendo el archivo original para su ingesta en Power BI
+    df_resultado.to_csv(PATH_TACTICA, index=False, encoding='utf-8-sig')
+    print("Archivo de táctica avanzada actualizado y exportado exitosamente.")
 
 if __name__ == "__main__":
-    sanar_formaciones()
+    imputar_formaciones_tacticas()

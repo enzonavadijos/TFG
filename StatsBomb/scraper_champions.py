@@ -7,87 +7,119 @@ import pandas as pd
 import undetected_chromedriver as uc
 from bs4 import BeautifulSoup
 
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(message)s'
-)
+# --- CONFIGURACIÓN DEL SISTEMA DE AUDITORÍA (LOGGING) ---
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - [ETL] - %(message)s')
 
-# === TODAS LAS TEMPORADAS (Desde 2024/25 hasta 2003/04) ===
-temporadas = [f"{anyo}-{anyo+1}" for anyo in range(2024, 2002, -1)]
+# --- CONFIGURACIÓN DE ENDPOINTS Y ALCANCE TEMPORAL ---
+# Generación dinámica del rango cronológico de estudio (Descendente: 2024-2025 hasta 2003-2004)
+RANGO_TEMPORADAS = [f"{anyo}-{anyo+1}" for anyo in range(2024, 2002, -1)]
 
-# === DICCIONARIO DE COMPETICIONES ESTABLES ===
-competiciones = {
+# Catálogo de URIs parametrizadas para competiciones de formato regular e histórico
+ENDPOINTS_COMPETICIONES = {
     "LaLiga": "https://fbref.com/en/comps/12/{temporada}/stats/{temporada}-La-Liga-Stats",
     "Champions": "https://fbref.com/en/comps/8/{temporada}/stats/{temporada}-Champions-League-Stats",
     "CopaDelRey": "https://fbref.com/en/comps/569/{temporada}/{temporada}-Copa-del-Rey-Stats",
     "Supercopa_Espana": "https://fbref.com/en/comps/570/{temporada}/{temporada}-Supercopa-de-Espana-Stats"
 }
 
-def extraer_tabla_general(soup):
-    tablas = soup.find_all('table')
-    for t in tablas:
+DIR_OUTPUT_BASE = "datos_fbref_estable"
+
+def extraer_matriz_rendimiento(soup):
+    """
+    Subrutina de extracción de datos.
+    Escanea el árbol DOM en busca de estructuras tabulares, realiza una ingesta 
+    en memoria y valida heurísticamente que se trata de la matriz principal de 
+    rendimiento (presencia de las métricas 'Player' y 'Min').
+    """
+    tablas_dom = soup.find_all('table')
+    for tabla in tablas_dom:
         try:
-            df = pd.read_html(StringIO(str(t)), header=1)[0]
+            # Ingesta optimizada mediante StringIO
+            df = pd.read_html(StringIO(str(tabla)), header=1)[0]
             if 'Player' in df.columns and 'Min' in df.columns:
                 return df
-        except:
+        except Exception:
             continue
     return None        
 
-def eliminar_cabeceras_extra(df):
-    serie = df.iloc[:,0].astype(str) == 'Rk'
-    return df[~serie].reset_index(drop=True)
+def depurar_encabezados_intercalados(df):
+    """
+    Elimina las filas de paginación o encabezados residuales inyectados 
+    por el servidor web en el cuerpo de la tabla (ej. filas donde el índice es 'Rk').
+    """
+    filtro_encabezados = df.iloc[:, 0].astype(str) == 'Rk'
+    return df[~filtro_encabezados].reset_index(drop=True)
 
-logging.info("Arrancando el motor de extracción de Competiciones Estables...")
-tiempo_inicio = time.time()
+def ejecutar_extraccion_competiciones_regulares():
+    """
+    Orquesta la extracción iterativa de estadísticas generales para las competiciones 
+    principales. Emplea Selenium WebDriver (undetected) para mitigar defensas Anti-Bot 
+    y aplica un filtrado dimensional dinámico para aislar los registros del equipo objetivo.
+    """
+    logging.info("Inicializando pipeline de extracción: Competiciones Regulares e Históricas...")
+    tiempo_inicio = time.time()
 
-options = uc.ChromeOptions()
-# options.add_argument("--headless") # Lo mantenemos comentado por seguridad anti-bot
-driver = uc.Chrome(options=options)
-driver.set_page_load_timeout(60)
+    opciones_navegador = uc.ChromeOptions()
+    # Ejecución sin interfaz gráfica (Headless Mode) desactivada temporalmente 
+    # para evitar bloqueos por heurística del firewall (WAF).
+    # opciones_navegador.add_argument("--headless") 
+    driver = uc.Chrome(options=opciones_navegador)
+    driver.set_page_load_timeout(60)
 
-try:
-    for temporada in temporadas:
-        logging.info(f"\n=========================================")
-        logging.info(f"   INICIANDO TEMPORADA: {temporada}")
-        logging.info(f"=========================================")
-        
-        directorio = os.path.join('datos_fbref_estable', temporada)
-        os.makedirs(directorio, exist_ok=True)
-        
-        for nombre_comp, url_plantilla in competiciones.items():
-            url = url_plantilla.format(temporada=temporada)
-            logging.info(f" -> Buscando {nombre_comp}...")
+    try:
+        for temporada in RANGO_TEMPORADAS:
+            logging.info("="*60)
+            logging.info(f"PROCESANDO PERIODO CRONOLÓGICO: {temporada}")
+            logging.info("="*60)
             
-            driver.get(url)
-            time.sleep(3) # Pausa rápida pero segura
+            directorio_destino = os.path.join(DIR_OUTPUT_BASE, temporada)
+            os.makedirs(directorio_destino, exist_ok=True)
             
-            soup = BeautifulSoup(driver.page_source, 'html.parser')
-            tabla_jug = extraer_tabla_general(soup)         
-            
-            if tabla_jug is not None:
-                tabla_jug = eliminar_cabeceras_extra(tabla_jug)
-                try:
-                    col_equipo = [col for col in tabla_jug.columns if 'Squad' in str(col) or 'Equipo' in str(col)][0]
-                    tabla_jug = tabla_jug[tabla_jug[col_equipo].astype(str).str.contains('Barcelona', case=False, na=False)]
-                    
-                    if not tabla_jug.empty:
-                        ruta_jug = os.path.join(directorio, f'General_{nombre_comp}_{temporada}.csv')
-                        tabla_jug.to_csv(ruta_jug, index=False, encoding='utf-8-sig')
-                        logging.info(f"    [ÉXITO] Guardados {len(tabla_jug)} jugadores del Barça.")
-                    else:
-                        logging.warning("    [OMITIDO] El Barcelona no aparece en esta competición.")
-                except Exception as e:
-                    logging.warning(f"    [ATENCIÓN] No se pudo filtrar el Barça en {nombre_comp}.")
-            else:
-                logging.error(f"    [FALLO] Tabla no encontrada (Normal en Copas antiguas o años no jugados).")
+            for nombre_competicion, url_plantilla in ENDPOINTS_COMPETICIONES.items():
+                url_objetivo = url_plantilla.format(temporada=temporada)
+                logging.info(f" -> Analizando dominio analítico: {nombre_competicion}...")
                 
-            time.sleep(1.5) 
+                driver.get(url_objetivo)
+                
+                # Latencia operativa obligatoria para elusión de Rate Limiting
+                time.sleep(3) 
+                
+                soup = BeautifulSoup(driver.page_source, 'html.parser')
+                df_estadisticas = extraer_matriz_rendimiento(soup)        
+                
+                if df_estadisticas is not None:
+                    df_estadisticas = depurar_encabezados_intercalados(df_estadisticas)
+                    try:
+                        # Resolución Dinámica de Dimensión: Identificación de la columna de equipo
+                        col_equipo = [col for col in df_estadisticas.columns if 'Squad' in str(col) or 'Equipo' in str(col)][0]
+                        
+                        # Filtrado Dimensional por Entidad Deportiva (Barcelona)
+                        filtro_entidad = df_estadisticas[col_equipo].astype(str).str.contains('Barcelona', case=False, na=False)
+                        df_estadisticas = df_estadisticas[filtro_entidad]
+                        
+                        if not df_estadisticas.empty:
+                            ruta_salida = os.path.join(directorio_destino, f'General_{nombre_competicion}_{temporada}.csv')
+                            df_estadisticas.to_csv(ruta_salida, index=False, encoding='utf-8-sig')
+                            logging.info(f"    [ÉXITO] Persistencia completada: {len(df_estadisticas)} registros de entidad asilados.")
+                        else:
+                            logging.warning("    [OMITIDO] Entidad deportiva ausente en la matriz de la competición.")
+                    except Exception as e:
+                        logging.warning(f"    [ANOMALÍA] Imposible resolver la dimensión de equipo en {nombre_competicion}: {e}")
+                else:
+                    logging.error(f"    [AVISO] Matriz tabular no localizada (Comportamiento esperado en registros históricos o ausencias).")
+                    
+                time.sleep(1.5) 
 
-except Exception as e:
-    logging.error(f"Error crítico en el bucle principal: {e}")
-finally:
-    driver.quit()
+    except Exception as e:
+        logging.error(f"[EXCEPCIÓN CRÍTICA DE ORQUESTACIÓN] {e}")
+    finally:
+        # Liberación segura de recursos de memoria
+        driver.quit()
 
-tiempo_fin = time.time()
-logging.info(f"\nProceso finalizado. Tiempo total: {int((tiempo_fin - tiempo_inicio) // 60)} min y {int((tiempo_fin - tiempo_inicio) % 60)} seg")
+    tiempo_fin = time.time()
+    duracion_minutos = int((tiempo_fin - tiempo_inicio) // 60)
+    duracion_segundos = int((tiempo_fin - tiempo_inicio) % 60)
+    logging.info(f"\nPipeline finalizado exitosamente. Tiempo de cómputo total: {duracion_minutos} min y {duracion_segundos} seg.")
+
+if __name__ == "__main__":
+    ejecutar_extraccion_competiciones_regulares()

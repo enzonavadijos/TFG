@@ -1,15 +1,13 @@
 import pandas as pd
+import os
 
-# Rutas exactas
-ruta_dat2 = r"C:\Users\enson\Documents\dat2.csv"
-ruta_salida = r"C:\Users\enson\Desktop\TFG\ETL\CSV\Diccionario_Nombres.csv"
+# --- CONFIGURACIÓN DE RUTAS ---
+PATH_INPUT = r"C:\Users\enson\Documents\dat2.csv"
+PATH_OUTPUT = r"C:\Users\enson\Desktop\TFG\ETL\CSV\Diccionario_Nombres.csv"
 
-# Leemos con latin1
-df_short = pd.read_csv(ruta_dat2, encoding='latin1')
-df_short = df_short.drop_duplicates(subset=['Jugador']).dropna(subset=['Jugador'])
-
-# 1. El diccionario normal (los que funcionan a la primera)
-diccionario_normal = {
+# --- DICCIONARIO MAESTRO ESTÁNDAR ---
+# Mapeo directo para normalizar nombres cortos a sus nomenclaturas completas oficiales.
+DICCIONARIO_NOMBRES_ESTANDAR = {
     "Abel Ruiz": "Abel Ruiz Ortega",
     "Adriano": "Adriano Correia Claro",
     "Aleix Vidal": "Aleix Vidal Parreu",
@@ -125,24 +123,47 @@ diccionario_normal = {
     "Pedri": "Pedro González López"
 }
 
-# 2. Función infalible para asignar el nombre
-def asignar_nombre(nombre_corto):
-    nc_lower = str(nombre_corto).lower()
+def estandarizar_nombre_jugador(nombre_extraido):
+    """
+    Función de mapeo robusto. Resuelve discrepancias de codificación mediante evaluación 
+    condicional de subcadenas para casos con caracteres especiales problemáticos (ej. ?, ć),
+    y aplica un mapeo de diccionario directo para el resto de la plantilla.
+    """
+    nombre_min = str(nombre_extraido).lower()
     
-    # --- LOS REBELDES (Ignoramos si terminan en ?, ć, o lo que sea) ---
-    if "bojan" in nc_lower: return "Bojan Krkíc Pérez"
-    if "rakiti" in nc_lower: return "Ivan Rakitić"
-    if "pjani" in nc_lower: return "Miralem Pjanić"
-    if "ibrahimovi" in nc_lower: return "Zlatan Ibrahimović"
-    if "saviola" in nc_lower: return "Javier Pedro Saviola Fernández"
-    if "fali" in nc_lower: return "Rafael Romero Serrano"
-    if "arnaiz" in nc_lower or "arnáiz" in nc_lower: return "José Manuel Arnáiz Díaz"
+    # --- GESTIÓN DE EXCEPCIONES (Conflictos de codificación) ---
+    # Identificación parcial para evadir terminaciones con caracteres anómalos o irreconocibles
+    if "bojan" in nombre_min: return "Bojan Krkíc Pérez"
+    if "rakiti" in nombre_min: return "Ivan Rakitić"
+    if "pjani" in nombre_min: return "Miralem Pjanić"
+    if "ibrahimovi" in nombre_min: return "Zlatan Ibrahimović"
+    if "saviola" in nombre_min: return "Javier Pedro Saviola Fernández"
+    if "fali" in nombre_min: return "Rafael Romero Serrano"
+    if "arnaiz" in nombre_min or "arnáiz" in nombre_min: return "José Manuel Arnáiz Díaz"
     
-    # --- EL RESTO DE LA PLANTILLA ---
-    return diccionario_normal.get(nombre_corto, "")
+    # --- MAPEO ESTÁNDAR ---
+    return DICCIONARIO_NOMBRES_ESTANDAR.get(nombre_extraido, "")
 
-# 3. Aplicamos la regla y guardamos
-df_short['Nombre_Completo'] = df_short['Jugador'].apply(asignar_nombre)
-df_short.to_csv(ruta_salida, index=False, encoding='utf-8-sig')
+def compilar_diccionario_nombres():
+    """
+    Lee el listado primario de jugadores, elimina duplicados y valores nulos, 
+    e invoca la función de estandarización para generar la dimensión de nombres completos.
+    """
+    try:
+        # Lectura forzando codificación latin1 para prevenir pérdida de datos en ingesta
+        df_crudo = pd.read_csv(PATH_INPUT, encoding='latin1')
+        df_crudo = df_crudo.drop_duplicates(subset=['Jugador']).dropna(subset=['Jugador'])
 
-print("¡AHORA SÍ! Diccionario perfecto guardado en:", ruta_salida)
+        # Aplicación de reglas de transformación
+        df_crudo['Nombre_Completo'] = df_crudo['Jugador'].apply(estandarizar_nombre_jugador)
+        
+        # Exportación asegurando codificación UTF-8 con firma (BOM)
+        df_crudo.to_csv(PATH_OUTPUT, index=False, encoding='utf-8-sig')
+
+        print(f"Proceso completado con éxito. Diccionario normalizado exportado en: {PATH_OUTPUT}")
+        
+    except Exception as e:
+        print(f"Error crítico durante el procesamiento de datos: {e}")
+
+if __name__ == "__main__":
+    compilar_diccionario_nombres()

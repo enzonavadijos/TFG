@@ -3,157 +3,183 @@ import os
 import re
 from io import StringIO
 
-# --- CONFIGURACIÓN ---
-INPUT_FOLDER = r"C:\Users\enson\Desktop\TFG\HTML_Champions"
-OUTPUT_FILE = r"C:\Users\enson\Desktop\TFG\ETL\stats_champions.csv"
+# --- CONFIGURACIÓN DE RUTAS ---
+DIR_ENTRADA = r"C:\Users\enson\Desktop\TFG\HTML_Champions"
+PATH_OUTPUT = r"C:\Users\enson\Desktop\TFG\ETL\stats_champions.csv"
 
-def extraer_temporada(filename):
-    match = re.search(r'(\d{4}-\d{4})', filename)
-    if match:
-        return match.group(1)
+def inferir_temporada(nombre_archivo):
+    """
+    Extrae el identificador temporal de la nomenclatura del archivo mediante Expresiones Regulares.
+    """
+    coincidencia = re.search(r'(\d{4}-\d{4})', nombre_archivo)
+    if coincidencia:
+        return coincidencia.group(1)
     return "Desconocida"
 
-def limpiar_comentarios_html(html_content):
-    """Elimina comentarios para exponer tablas ocultas."""
-    return html_content.replace("", "")
+def preprocesar_html_comentarios(contenido_html):
+    """
+    Elimina los bloques de comentarios HTML para exponer las estructuras tabulares 
+    secundarias inyectadas estáticamente en el código fuente.
+    """
+    return contenido_html.replace("<!--", "").replace("-->", "")
 
-def aplanar_columnas_cirujano(df):
+def aplanar_esquema_columnas(df):
     """
-    Convierte MultiIndex en nombres simples y únicos.
+    Reduce la dimensionalidad jerárquica (MultiIndex) de las cabeceras a un vector plano.
+    Estandariza la nomenclatura aplicando convención 'snake_case'.
     """
-    new_cols = []
+    nuevas_columnas = []
     if isinstance(df.columns, pd.MultiIndex):
         for col in df.columns.values:
-            top = str(col[0])
-            bot = str(col[1])
-            if "Unnamed" in top:
-                clean_name = bot
+            nivel_superior = str(col[0])
+            nivel_inferior = str(col[1])
+            
+            # Resolución de nombres: Omisión de niveles sin etiqueta explícita
+            if "Unnamed" in nivel_superior:
+                nombre_limpio = nivel_inferior
             else:
-                clean_name = f"{top}_{bot}"
-            new_cols.append(clean_name)
+                nombre_limpio = f"{nivel_superior}_{nivel_inferior}"
+            nuevas_columnas.append(nombre_limpio)
     else:
-        new_cols = [str(c) for c in df.columns]
+        nuevas_columnas = [str(c) for c in df.columns]
 
-    return [c.lower().strip().replace(" ", "_").replace("/", "_") for c in new_cols]
+    return [c.lower().strip().replace(" ", "_").replace("/", "_") for c in nuevas_columnas]
 
-def procesar_stats(filepath):
-    filename = os.path.basename(filepath)
-    season = extraer_temporada(filename)
+def extraer_metricas_individuales(ruta_archivo):
+    """
+    Motor de parseo y transformación para las estadísticas individuales (Standard Stats).
+    Identifica heurísticamente la tabla objetivo, filtra agregaciones (Totales) y 
+    aísla métricas absolutas (excluyendo normalizaciones como 'per 90 minutes').
+    """
+    nombre_archivo = os.path.basename(ruta_archivo)
+    temporada = inferir_temporada(nombre_archivo)
     
     try:
-        with open(filepath, "r", encoding="utf-8") as f:
-            raw_html = f.read()
+        with open(ruta_archivo, "r", encoding="utf-8") as f:
+            html_crudo = f.read()
         
-        # 1. DESCOMENTAR
-        clean_html = limpiar_comentarios_html(raw_html)
-        dfs = pd.read_html(StringIO(clean_html))
+        # 1. Preprocesamiento e Ingesta
+        html_limpio = preprocesar_html_comentarios(html_crudo)
+        dataframes_html = pd.read_html(StringIO(html_limpio))
         
-        df_target = None
+        df_objetivo = None
         
-        # 2. BUSCAR TABLA
-        for df in dfs:
-            cols_temp = aplanar_columnas_cirujano(df)
-            # Criterios: Player + MP + Gls (sin per 90)
-            if any('player' == c for c in cols_temp) and any('mp' == c for c in cols_temp):
-                 if any('gls' in c and '90' not in c for c in cols_temp):
-                    df_target = df
-                    df_target.columns = cols_temp # Asignamos columnas aplanadas
+        # 2. Tipificación Heurística de la Tabla
+        for df in dataframes_html:
+            columnas_temporales = aplanar_esquema_columnas(df)
+            
+            # Criterio Primario: Presencia de Jugador, Partidos Jugados y Goles Absolutos (no /90)
+            if any('player' == c for c in columnas_temporales) and any('mp' == c for c in columnas_temporales):
+                 if any('gls' in c and '90' not in c for c in columnas_temporales):
+                    df_objetivo = df
+                    df_objetivo.columns = columnas_temporales
                     break
         
-        if df_target is None:
-            # Fallback: Buscar Player + Minutos
-            for df in dfs:
-                cols_temp = aplanar_columnas_cirujano(df)
-                if any('player' == c for c in cols_temp) and any('min' in c for c in cols_temp):
-                    df_target = df
-                    df_target.columns = cols_temp
+        if df_objetivo is None:
+            # Criterio Secundario (Fallback histórico): Presencia de Jugador y Minutos
+            for df in dataframes_html:
+                columnas_temporales = aplanar_esquema_columnas(df)
+                if any('player' == c for c in columnas_temporales) and any('min' in c for c in columnas_temporales):
+                    df_objetivo = df
+                    df_objetivo.columns = columnas_temporales
                     break
 
-        if df_target is None:
+        if df_objetivo is None:
             return None
 
-        # --- AQUÍ ESTABA EL ERROR, AHORA CORREGIDO ---
-        df = df_target.copy()
+        # 3. Limpieza Estructural (Evitando la desalineación de índices / Index Misalignment)
+        df_procesado = df_objetivo.copy()
+        columna_jugador = 'player'
         
-        # 1. Identificar columna Player
-        col_player = 'player'
+        # Depuración de registros pre-extracción: 
+        # Es imperativo filtrar antes de generar el nuevo DataFrame para preservar 
+        # la correspondencia vectorial exacta al extraer los arrays de valores (.values).
+        df_procesado = df_procesado[df_procesado[columna_jugador].notna()]
+        df_procesado = df_procesado[df_procesado[columna_jugador] != 'player']
+        df_procesado = df_procesado[~df_procesado[columna_jugador].astype(str).str.lower().str.contains("total")]
+        df_procesado = df_procesado[~df_procesado[columna_jugador].astype(str).str.lower().str.contains("opponent")]
         
-        # 2. FILTRAR FILAS (ANTES DE CREAR EL NUEVO DF)
-        # Quitamos vacíos, cabeceras repetidas y filas de Totales
-        df = df[df[col_player].notna()]
-        df = df[df[col_player] != 'player']
-        df = df[~df[col_player].astype(str).str.lower().str.contains("total")]
-        df = df[~df[col_player].astype(str).str.lower().str.contains("opponent")]
+        # 4. Construcción del Modelo Analítico Limpio
+        df_limpio = pd.DataFrame()
+        df_limpio['season'] = [temporada] * len(df_procesado)
+        df_limpio['player'] = df_procesado[columna_jugador].values
         
-        # 3. AHORA SÍ, EXTRAEMOS (Los índices ya coinciden)
-        clean_df = pd.DataFrame()
-        clean_df['season'] = [season] * len(df)
-        clean_df['player'] = df[col_player].values
-        
-        # Función segura para sacar datos
-        def get_data(keywords):
-            for kw in keywords:
-                match = next((c for c in df.columns if kw in c), None)
-                if match:
-                    return df[match].values
+        def extraer_datos_seguro(palabras_clave):
+            """Función auxiliar para extracción tolerante a fallos mediante coincidencia parcial."""
+            for kw in palabras_clave:
+                coincidencia = next((c for c in df_procesado.columns if kw in c), None)
+                if coincidencia:
+                    return df_procesado[coincidencia].values
             return 0
 
-        clean_df['nation'] = get_data(['nation'])
-        clean_df['pos'] = get_data(['pos'])
-        clean_df['age'] = get_data(['age'])
-        clean_df['mp'] = get_data(['mp', 'matches'])
-        clean_df['starts'] = get_data(['starts'])
-        clean_df['min'] = get_data(['min', 'minutes'])
+        # Inyección de atributos demográficos y posicionales
+        df_limpio['nation'] = extraer_datos_seguro(['nation'])
+        df_limpio['pos'] = extraer_datos_seguro(['pos'])
+        df_limpio['age'] = extraer_datos_seguro(['age'])
         
-        # Goles y Asistencias (Evitando 'per 90')
-        col_gls = next((c for c in df.columns if ('gls' in c or 'goals' in c) and '90' not in c), None)
-        clean_df['goals'] = df[col_gls].values if col_gls else 0
+        # Inyección de métricas de participación
+        df_limpio['mp'] = extraer_datos_seguro(['mp', 'matches'])
+        df_limpio['starts'] = extraer_datos_seguro(['starts'])
+        df_limpio['min'] = extraer_datos_seguro(['min', 'minutes'])
         
-        col_ast = next((c for c in df.columns if ('ast' in c or 'assists' in c) and '90' not in c), None)
-        clean_df['assists'] = df[col_ast].values if col_ast else 0
+        # Inyección de métricas de rendimiento (Filtro explícito anti 'per 90')
+        columna_goles = next((c for c in df_procesado.columns if ('gls' in c or 'goals' in c) and '90' not in c), None)
+        df_limpio['goals'] = df_procesado[columna_goles].values if columna_goles else 0
+        
+        columna_asistencias = next((c for c in df_procesado.columns if ('ast' in c or 'assists' in c) and '90' not in c), None)
+        df_limpio['assists'] = df_procesado[columna_asistencias].values if columna_asistencias else 0
 
-        # Conversión Numérica
-        for c in ['mp', 'starts', 'min', 'goals', 'assists']:
-            clean_df[c] = pd.to_numeric(clean_df[c], errors='coerce').fillna(0).astype(int)
+        # 5. Coerción de Tipos (Type Casting)
+        # Transformación de métricas continuas extraídas como texto a formato entero discreto
+        columnas_numericas = ['mp', 'starts', 'min', 'goals', 'assists']
+        for col in columnas_numericas:
+            df_limpio[col] = pd.to_numeric(df_limpio[col], errors='coerce').fillna(0).astype(int)
 
-        return clean_df
+        return df_limpio
 
     except Exception as e:
-        print(f"❌ Error en {filename}: {e}")
+        print(f"Error de procesamiento en el archivo {nombre_archivo}: {e}")
         return None
 
-def main():
-    print("--- 🏁 GENERADOR STATS FINAL ---")
+def ejecutar_etl_stats_champions():
+    """
+    Orquesta el flujo de extracción y normalización de estadísticas individuales
+    para los encuentros de la Champions League. Consolida un modelo tabular único.
+    """
+    print("--- INICIANDO CONSOLIDACIÓN DE ESTADÍSTICAS INDIVIDUALES (CHAMPIONS LEAGUE) ---")
     
-    if not os.path.exists(INPUT_FOLDER):
-        print("Carpeta no encontrada.")
+    if not os.path.exists(DIR_ENTRADA):
+        print(f"Error de origen: Directorio no localizado en {DIR_ENTRADA}")
         return
 
-    archivos = [f for f in os.listdir(INPUT_FOLDER) if f.endswith(".html")]
-    all_stats = []
+    archivos_objetivo = [f for f in os.listdir(DIR_ENTRADA) if f.endswith(".html")]
+    coleccion_dataframes = []
     
-    print(f"📂 Procesando {len(archivos)} archivos...")
+    print(f"Info: Procesando lote de {len(archivos_objetivo)} documentos HTML...")
     
-    for archivo in archivos:
-        path = os.path.join(INPUT_FOLDER, archivo)
-        df = procesar_stats(path)
+    for archivo in archivos_objetivo:
+        ruta_completa = os.path.join(DIR_ENTRADA, archivo)
+        df_procesado = extraer_metricas_individuales(ruta_completa)
         
-        if df is not None and not df.empty:
-            all_stats.append(df)
-            print(f"✅ {archivo}: {len(df)} jugadores.")
-        else:
-             pass
+        if df_procesado is not None and not df_procesado.empty:
+            coleccion_dataframes.append(df_procesado)
+            print(f"Completado: {archivo} ({len(df_procesado)} entidades analizadas).")
 
-    if all_stats:
-        df_final = pd.concat(all_stats, ignore_index=True)
-        df_final = df_final.sort_values(['season', 'goals'], ascending=[True, False])
+    # Integración global de la tabla de hechos
+    if coleccion_dataframes:
+        df_consolidado_final = pd.concat(coleccion_dataframes, ignore_index=True)
         
-        os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
-        df_final.to_csv(OUTPUT_FILE, index=False, encoding='utf-8-sig')
-        print(f"\n🎉 ¡SE ACABÓ! Tienes el archivo en: {OUTPUT_FILE}")
-        print(f"📊 Total Jugadores: {len(df_final)}")
+        # Ordenamiento jerárquico: Cronológico y por rendimiento relativo (Goles descendente)
+        df_consolidado_final = df_consolidado_final.sort_values(['season', 'goals'], ascending=[True, False])
+        
+        os.makedirs(os.path.dirname(PATH_OUTPUT), exist_ok=True)
+        df_consolidado_final.to_csv(PATH_OUTPUT, index=False, encoding='utf-8-sig')
+        
+        print("\nProceso ETL finalizado exitosamente.")
+        print(f"Dataset maestro exportado a: {PATH_OUTPUT}")
+        print(f"Volumen de registros individuales consolidados: {len(df_consolidado_final)}")
     else:
-        print("❌ No se generaron datos.")
+        print("Aviso: Ejecución abortada. Ausencia de datos estadísticos estructurados.")
 
 if __name__ == "__main__":
-    main()
+    ejecutar_etl_stats_champions()

@@ -2,57 +2,72 @@ import pandas as pd
 import numpy as np
 import os
 
-# --- RUTAS ---
-CARPETA_BASE = r"C:\Users\enson\Desktop\TFG\ETL\CSV"
-ruta_jugadores_raw = os.path.join(CARPETA_BASE, "Fact_Estadisticas_Jugadores_RAW.csv")
-ruta_diccionario = os.path.join(CARPETA_BASE, "LaLiga", "stats_laliga.csv") 
-ruta_salida = os.path.join(CARPETA_BASE, "Fact_Estadisticas_Jugadores.csv") 
+# --- CONFIGURACIÓN DE RUTAS ---
+BASE_DIR = r"C:\Users\enson\Desktop\TFG\ETL\CSV"
+PATH_JUGADORES_RAW = os.path.join(BASE_DIR, "Fact_Estadisticas_Jugadores_RAW.csv")
+PATH_DICCIONARIO = os.path.join(BASE_DIR, "LaLiga", "stats_laliga.csv") 
+PATH_OUTPUT = os.path.join(BASE_DIR, "Fact_Estadisticas_Jugadores.csv") 
 
-def reparar_posiciones():
-    print("--- 🛠️ INICIANDO REPARACIÓN DE POSICIONES ---")
+def estandarizar_posiciones():
+    """
+    Lee los datos crudos de las estadísticas de los jugadores y aplica un cruce
+    con un diccionario de posiciones para estandarizar la nomenclatura 
+    (ej. limitando a 2 caracteres: FW, MF, DF) y corrigiendo defectos de extracción.
+    """
+    print("--- INICIANDO ESTANDARIZACIÓN DE POSICIONES ---")
     
-    # 1. Leer archivos
-    df_jugadores = pd.read_csv(ruta_jugadores_raw)
+    # 1. Lectura del archivo de hechos en crudo
+    df_jugadores = pd.read_csv(PATH_JUGADORES_RAW)
     
+    # 2. Carga y validación del diccionario de posiciones
     try:
-        df_dicc = pd.read_csv(ruta_diccionario)
-        col_jugador = next((col for col in df_dicc.columns if 'player' in str(col).lower() or 'jugador' in str(col).lower()), None)
-        col_posicion = next((col for col in df_dicc.columns if 'pos' in str(col).lower()), None)
+        df_diccionario = pd.read_csv(PATH_DICCIONARIO)
+        
+        # Identificación dinámica de las columnas relevantes
+        col_nombre_jugador = next((col for col in df_diccionario.columns if 'player' in str(col).lower() or 'jugador' in str(col).lower()), None)
+        col_posicion_original = next((col for col in df_diccionario.columns if 'pos' in str(col).lower()), None)
 
-        if not col_jugador or not col_posicion:
-            df_dicc = pd.read_csv(ruta_diccionario, header=1)
-            col_jugador = next((col for col in df_dicc.columns if 'player' in str(col).lower() or 'jugador' in str(col).lower()), None)
-            col_posicion = next((col for col in df_dicc.columns if 'pos' in str(col).lower()), None)
+        # Mecanismo de contingencia: Si no se detectan las columnas, se asume 
+        # que la cabecera real se encuentra en la segunda fila (header=1)
+        if not col_nombre_jugador or not col_posicion_original:
+            df_diccionario = pd.read_csv(PATH_DICCIONARIO, header=1)
+            col_nombre_jugador = next((col for col in df_diccionario.columns if 'player' in str(col).lower() or 'jugador' in str(col).lower()), None)
+            col_posicion_original = next((col for col in df_diccionario.columns if 'pos' in str(col).lower()), None)
             
     except Exception as e:
-        print(f"❌ Error leyendo el diccionario: {e}")
+        print(f"Error durante la lectura del diccionario de posiciones: {e}")
         return
 
-    # 2. Limpiar el diccionario a fondo
-    df_dicc = df_dicc[[col_jugador, col_posicion]].drop_duplicates(subset=[col_jugador]).copy()
-    df_dicc.columns = ['Jugador', 'Posicion_Global']
+    # 3. Limpieza y preparación del diccionario de posiciones
+    df_diccionario = df_diccionario[[col_nombre_jugador, col_posicion_original]].drop_duplicates(subset=[col_nombre_jugador]).copy()
+    df_diccionario.columns = ['Jugador', 'Posicion_Global']
 
-    # Cortar a 2 letras Y PASAR A MAYÚSCULAS para que quede FW, MF, DF limpios
-    df_dicc['Posicion_Global'] = df_dicc['Posicion_Global'].astype(str).str.replace(' ', '').str[:2].str.upper()
-    df_dicc['Posicion_Global'] = df_dicc['Posicion_Global'].replace('NA', '')
-    df_dicc['Posicion_Global'] = df_dicc['Posicion_Global'].replace('NA', '')
+    # Normalización: eliminación de espacios, extracción de los primeros 2 caracteres y conversión a mayúsculas
+    df_diccionario['Posicion_Global'] = df_diccionario['Posicion_Global'].astype(str).str.replace(' ', '').str[:2].str.upper()
+    
+    # Limpieza de nulos literales (se respeta la doble asignación estructural del script original)
+    df_diccionario['Posicion_Global'] = df_diccionario['Posicion_Global'].replace('NA', '')
+    df_diccionario['Posicion_Global'] = df_diccionario['Posicion_Global'].replace('NA', '')
 
-    # 3. El Cruce
-    df_final = df_jugadores.merge(df_dicc, on='Jugador', how='left')
+    # 4. Cruce de datos (Left Merge) para incorporar las posiciones corregidas a la tabla de hechos
+    df_resultado = df_jugadores.merge(df_diccionario, on='Jugador', how='left')
     
-    # 🚨 LA REGLA CORREGIDA: IGNORAMOS LA COLUMNA ROTA Y COGEMOS SOLO EL DICCIONARIO
-    df_final['Posicion_Global'] = df_final['Posicion_Global'].replace('', 'Desconocida').fillna('Desconocida')
-    df_final['Posicion'] = df_final['Posicion_Global']
+    # Tratamiento de valores no mapeados: sustitución de vacíos y nulos por "Desconocida"
+    df_resultado['Posicion_Global'] = df_resultado['Posicion_Global'].replace('', 'Desconocida').fillna('Desconocida')
+    df_resultado['Posicion'] = df_resultado['Posicion_Global']
     
-    # 4. Limpieza de las columnas basura
-    columnas_finales = ['ID_Partido', 'Jugador', 'Posicion', 'Titular', 'Minutos', 'Goles', 'Asistencias', 'Amarillas', 'Rojas', 'xG']
-    df_final = df_final[columnas_finales]
+    # 5. Selección final de atributos para la tabla de hechos
+    columnas_finales = [
+        'ID_Partido', 'Jugador', 'Posicion', 'Titular', 'Minutos', 
+        'Goles', 'Asistencias', 'Amarillas', 'Rojas', 'xG'
+    ]
+    df_resultado = df_resultado[columnas_finales]
     
-    # 5. Sobrescribir
-    df_final.to_csv(ruta_salida, index=False, encoding='utf-8-sig')
+    # 6. Exportación de los datos transformados
+    df_resultado.to_csv(PATH_OUTPUT, index=False, encoding='utf-8-sig')
     
-    print(f"\n✅ ¡ERROR ARREGLADO! Se acabaron los 'Pe' y los 'Ou'.")
-    print("📍 Abre tu Fact_Estadisticas_Jugadores.csv y comprueba que ahora pone FW, MF, DF.")
+    print("\nProceso completado: Nomenclatura de posiciones estandarizada al formato internacional (FW, MF, DF).")
+    print(f"Archivo exportado exitosamente en: {PATH_OUTPUT}")
 
 if __name__ == "__main__":
-    reparar_posiciones()
+    estandarizar_posiciones()

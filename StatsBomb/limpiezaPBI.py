@@ -1,57 +1,79 @@
-# -*- coding: utf-8 -*-
 import os
 import glob
 import pandas as pd
 import logging
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
+# --- CONFIGURACIÓN DEL SISTEMA DE AUDITORÍA (LOGGING) ---
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - [ETL] - %(message)s')
 
-carpeta_origen = "datos_fbref_estable"
-carpeta_destino = "Datos_PBI_Por_Competicion"
+# --- CONFIGURACIÓN DE RUTAS ---
+DIR_ORIGEN = "datos_fbref_estable"
+DIR_DESTINO = "Datos_PBI_Por_Competicion"
 
-# Buscamos todos los CSV en la carpeta origen y subcarpetas
-archivos = glob.glob(f"{carpeta_origen}/**/*.csv", recursive=True)
-logging.info(f"Encontrados {len(archivos)} archivos. Iniciando reorganización de carpetas...")
-
-for archivo in archivos:
-    # Extraemos el nombre del archivo, ej: "General_LaLiga_2018-2019.csv"
-    nombre_archivo = os.path.basename(archivo)
-    nombre_sin_ext = nombre_archivo.replace(".csv", "")
-    partes = nombre_sin_ext.split("_")
+def ejecutar_enriquecimiento_y_particionado():
+    """
+    Orquesta la fase final de transformación y particionado del modelo de datos.
+    Recorre el repositorio estructurado, extrae metadatos (competición y temporada) 
+    desde la nomenclatura de los archivos, inyecta la dimensión temporal (Temporada) 
+    en el DataFrame y particiona físicamente los archivos resultantes por competición 
+    para optimizar su posterior ingesta y modelado en Power BI.
+    """
+    logging.info("--- INICIANDO ENRIQUECIMIENTO DIMENSIONAL Y PARTICIONADO ---")
     
-    # Identificamos la competición y la temporada según el nombre del archivo
-    if "Supercopa_Espana" in nombre_archivo:
-        competicion = "Supercopa_Espana"
-        temporada = partes[-1]
-    elif "Supercopa_Europa" in nombre_archivo:
-        competicion = "Supercopa_Europa"
-        temporada = partes[-1]
-    elif "CopaDelRey" in nombre_archivo:
-        competicion = "CopaDelRey"
-        temporada = partes[-1]
-    else:
-        # Para LaLiga y Champions
-        competicion = partes[1]
-        temporada = partes[2]
+    # Búsqueda recursiva del lote de archivos CSV consolidados en las fases previas
+    coleccion_archivos = glob.glob(f"{DIR_ORIGEN}/**/*.csv", recursive=True)
+    logging.info(f"Info: Detectados {len(coleccion_archivos)} modelos tabulares. Iniciando reorganización topológica...")
 
-    # 1. Creamos la carpeta específica de la competición en el destino
-    ruta_carpeta_competicion = os.path.join(carpeta_destino, competicion)
-    os.makedirs(ruta_carpeta_competicion, exist_ok=True)
+    for archivo in coleccion_archivos:
+        # Extracción de metadatos desde la nomenclatura del archivo
+        # Ej: "General_LaLiga_2018-2019.csv"
+        nombre_archivo = os.path.basename(archivo)
+        nombre_sin_ext = nombre_archivo.replace(".csv", "")
+        partes = nombre_sin_ext.split("_")
+        
+        # Clasificación heurística de la competición y resolución de la temporada
+        if "Supercopa_Espana" in nombre_archivo:
+            competicion = "Supercopa_Espana"
+            temporada = partes[-1]
+        elif "Supercopa_Europa" in nombre_archivo:
+            competicion = "Supercopa_Europa"
+            temporada = partes[-1]
+        elif "CopaDelRey" in nombre_archivo:
+            competicion = "CopaDelRey"
+            temporada = partes[-1]
+        else:
+            # Lógica de asignación para competiciones regulares (LaLiga, Champions)
+            competicion = partes[1]
+            temporada = partes[2]
 
-    # 2. Leemos el CSV
-    try:
-        df = pd.read_csv(archivo)
-        
-        # 3. Añadimos ÚNICAMENTE la columna 'Temporada' (la ponemos la primera para que se vea bien)
-        if 'Temporada' not in df.columns:
-            df.insert(0, 'Temporada', temporada)
-        
-        # 4. Lo guardamos en su nueva carpeta sin mezclarlo con otros
-        ruta_final = os.path.join(ruta_carpeta_competicion, nombre_archivo)
-        df.to_csv(ruta_final, index=False, encoding='utf-8-sig')
-        
-    except Exception as e:
-        logging.error(f"Error procesando {archivo}: {e}")
+        # 1. Particionado Físico: Creación del directorio de dominio (Competición)
+        ruta_directorio_competicion = os.path.join(DIR_DESTINO, competicion)
+        os.makedirs(ruta_directorio_competicion, exist_ok=True)
 
-logging.info("\n¡Proceso completado!")
-logging.info(f"Revisa la carpeta '{carpeta_destino}'. Tendrás subcarpetas limpias por torneo y los archivos con su columna 'Temporada' lista para Power BI.")
+        # 2. Ingesta del modelo tabular individual
+        try:
+            df = pd.read_csv(archivo)
+            
+            # 3. Enriquecimiento Dimensional
+            # Inyección de la variable temporal (Temporada) como primer atributo (índice 0)
+            # para facilitar su indexación y modelado semántico en herramientas OLAP.
+            if 'Temporada' not in df.columns:
+                df.insert(0, 'Temporada', temporada)
+            
+            # 4. Persistencia en el nuevo esquema particionado
+            ruta_salida = os.path.join(ruta_directorio_competicion, nombre_archivo)
+            
+            # Exportación con codificación 'utf-8-sig' para preservar caracteres especiales (ej. tildes, eñes)
+            df.to_csv(ruta_salida, index=False, encoding='utf-8-sig')
+            
+        except Exception as e:
+            logging.error(f"Fallo durante la transformación estructural del recurso {archivo}: {e}")
+
+    logging.info("\n" + "="*70)
+    logging.info("PROCESO DE PARTICIONADO Y ENRIQUECIMIENTO FINALIZADO EXITOSAMENTE")
+    logging.info(f"Los modelos han sido estructurados en el directorio: '{DIR_DESTINO}'.")
+    logging.info("El ecosistema de datos está preparado para su importación a Power BI.")
+    logging.info("="*70)
+
+if __name__ == "__main__":
+    ejecutar_enriquecimiento_y_particionado()
